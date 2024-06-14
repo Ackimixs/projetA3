@@ -851,3 +851,7 @@ cat("Accuracy:", accuracy, "\n")
 cat("Precision:", precision, "\n")
 cat("Recall:", recall, "\n")
 cat("F1 Score:", f1_score, "\n")
+
+write.csv(filtered_data, "filtered_data.csv")
+write.csv(vector_data, "vectorised_data.csv")
+write.csv(data_pearson, "data_pearson.csv")
