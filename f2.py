@@ -4,6 +4,7 @@ import sys
 from sklearn.linear_model import SGDClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
+from sklearn.neighbors import KNeighborsClassifier
 
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import train_test_split
@@ -38,25 +39,13 @@ Y = Y.apply(parse_value)
 
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
 
-# print(X_train.shape, X_test.shape, Y_train.shape, Y_test.shape)
+for i in [SGDClassifier, RandomForestClassifier, MLPClassifier, KNeighborsClassifier]:
+    print("Using", i)
+    clf = i().fit(X_train, Y_train)
+    print("score on test : ", clf.score(X_test, Y_test))
+    print("score on test : ", clf.score(X_train, Y_train))
 
-sgd_clf = SGDClassifier().fit(X_train, Y_train)
+    res = cross_val_score(clf, X_train, Y_train, scoring="accuracy", cv=5)
+    print("cross_val_score : ", res.mean())
+    print()
 
-res = cross_val_score(sgd_clf, X_train, Y_train, scoring="accuracy", cv=3)
-
-# print(res)
-print(res.mean())
-
-rdf = RandomForestClassifier().fit(X_train, Y_train)
-
-res = cross_val_score(rdf, X_train, Y_train, scoring="accuracy", cv=3)
-
-# print(res)
-print(res.mean())
-
-neural = MLPClassifier().fit(X_train, Y_train)
-
-res = cross_val_score(neural, X_train, Y_train, scoring="accuracy", cv=3)
-
-# print(res)
-print(res.mean())
