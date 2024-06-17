@@ -43,7 +43,8 @@ Y = Y.apply(parse_value)
 
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
 
-for mod in [SGDClassifier, RandomForestClassifier, MLPClassifier, KNeighborsClassifier, SVC, DecisionTreeClassifier]:
+# for mod in [SGDClassifier, RandomForestClassifier, MLPClassifier, KNeighborsClassifier, SVC, DecisionTreeClassifier]:
+for mod in [SGDClassifier, RandomForestClassifier, MLPClassifier]:
     print("Using", mod.__name__)
     start = time.time()
     clf = mod().fit(X_train, Y_train)

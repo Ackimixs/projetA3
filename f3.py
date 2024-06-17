@@ -10,6 +10,8 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 
+from sklearn.model_selection import GridSearchCV
+
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import train_test_split
 
@@ -38,7 +40,8 @@ Y = Y.apply(parse_arb_etat)
 
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
 
-for mod in [SGDClassifier, RandomForestClassifier, MLPClassifier, KNeighborsClassifier, SVC, DecisionTreeClassifier]:
+# for mod in [SGDClassifier, RandomForestClassifier, MLPClassifier, KNeighborsClassifier, SVC, DecisionTreeClassifier]:
+for mod in [SGDClassifier, RandomForestClassifier, MLPClassifier]:
     print("Using", mod.__name__)
     start = time.time()
     clf = mod().fit(X_train, Y_train)
@@ -50,3 +53,7 @@ for mod in [SGDClassifier, RandomForestClassifier, MLPClassifier, KNeighborsClas
     res = cross_val_score(clf, X_train, Y_train, scoring="accuracy", cv=5)
     print("cross_val_score : ", res.mean())
     print()
+
+
+print("Grid Search : ")
+clf = GridSearchCV(RandomForestClassifier(), {
