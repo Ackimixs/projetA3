@@ -58,6 +58,51 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
 if parser.has_option("no_model"):
     sys.exit()
 
+param_grid = {
+    'SGDClassifier': {
+        'loss': ['hinge', 'log', 'perceptron'],
+        'penalty': ['l2', 'l1', 'elasticnet'],
+        'alpha': [0.0001, 0.001, 0.01],
+        'max_iter': [1000, 2000, 3000],
+        'tol': [1e-3, 1e-4, 1e-5],
+    },
+    'RandomForestClassifier': {
+        'n_estimators': [50, 100, 200],
+        'criterion': ['gini', 'entropy'],
+        'max_depth': [None, 10, 20, 30],
+        'min_samples_split': [2, 5, 10],
+        'min_samples_leaf': [1, 2, 4],
+        'max_features': ['sqrt', 'log2'],
+    },
+    'MLPClassifier': {
+        'hidden_layer_sizes': [(50,), (100,), (50, 50), (100, 50)],
+        'activation': ['relu', 'tanh'],
+        'solver': ['adam', 'sgd'],
+        'alpha': [0.0001, 0.001, 0.01],
+        'learning_rate': ['constant', 'invscaling', 'adaptive'],
+    },
+    'KNeighborsClassifier': {
+        'n_neighbors': [5, 10, 15],
+        'weights': ['uniform', 'distance'],
+        'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute'],
+        'p': [1, 2],  # for Minkowski distance
+    },
+    'SVC': {
+        'kernel': ['linear', 'poly', 'rbf', 'sigmoid'],
+        'C': [0.1, 1, 10],
+        'gamma': ['scale', 'auto'],
+        'degree': [2, 3, 4],
+    },
+    'DecisionTreeClassifier': {
+        'criterion': ['gini', 'entropy'],
+        'splitter': ['best', 'random'],
+        'max_depth': [None, 10, 20, 30],
+        'min_samples_split': [2, 5, 10],
+        'min_samples_leaf': [1, 2, 4],
+        'max_features': ['auto', 'sqrt', 'log2'],
+    }
+}
+
 # for mod in [SGDClassifier, RandomForestClassifier, MLPClassifier, KNeighborsClassifier, SVC, DecisionTreeClassifier]:
 for model_name in models:
     model = eval(model_name)
@@ -95,27 +140,6 @@ for model_name in models:
     print()
 
     if parser.has_option("grid_search"):
-        if model.__name__ == "RandomForestClassifier":
-            param_grid = {
-                'n_estimators': [3, 10, 30],
-                'max_features': [2, 4, 6, 8],
-                'max_depth': [None, 10, 20, 30]
-            }
-        elif model.__name__ == "SGDClassifier":
-            param_grid = {
-                'loss': ['hinge', 'log_loss'],
-                'penalty': ['l2', 'l1'],
-                'alpha': [0.0001, 0.001],
-            }
-        elif model.__name__ == "MLPClassifier":
-            param_grid = {
-                'hidden_layer_sizes': [(50,), (100,), (50, 50), (100, 100)],
-                'activation': ['tanh', 'relu'],
-                'alpha': [0.0001, 0.001],
-            }
-        else:
-            param_grid = {}
-
         print("    GridSearchCV")
         if model.__name__ == "SGDClassifier":
             gs_model = model(max_iter=1000)
@@ -123,7 +147,7 @@ for model_name in models:
             gs_model = model(max_iter=1000)
         else:
             gs_model = model()
-        grid_search = GridSearchCV(estimator=gs_model, param_grid=param_grid, cv=5, scoring="accuracy")
+        grid_search = GridSearchCV(estimator=gs_model, param_grid=param_grid[model.__name__], cv=5, scoring="accuracy")
         grid_search.fit(X_train, Y_train)
 
         # Print the best parameters and best score
