@@ -4,6 +4,7 @@ from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classifica
 from CLParser import CLParser
 import sys
 import time
+import pickle
 
 from sklearn.linear_model import SGDClassifier
 from sklearn.ensemble import RandomForestClassifier
@@ -14,15 +15,18 @@ from sklearn.tree import DecisionTreeClassifier
 
 from sklearn.model_selection import GridSearchCV
 
+from sklearn.preprocessing import OrdinalEncoder
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import train_test_split
 
 
-parser = CLParser(sys.argv)
-file = parser.get_one_option("file", "Data_Arbre.csv")
-
-X_to_keep = parser.get_option("X", ["haut_tronc"])
-Y_to_keep = parser.get_one_option("Y", "fk_arb_etat")
+def parse_string_data(data):
+    for col in data.columns:
+        if data[col].dtype == "object":
+            data_to = data[[col]]  # Create a DataFrame with a single column
+            encoder = OrdinalEncoder()
+            data.loc[:, col] = encoder.fit_transform(data_to)  # Use .loc to modify original DataFrame
+    return data
 
 
 def parse_arb_etat(x):
@@ -30,6 +34,13 @@ def parse_arb_etat(x):
         return 1
     return 0
 
+
+parser = CLParser(sys.argv)
+file = parser.get_one_option("file", "Data_Arbre.csv")
+models = parser.get_option("models", ["SGDClassifier", "RandomForestClassifier", "MLPClassifier"])
+
+X_to_keep = parser.get_option("X", ["haut_tronc"])
+Y_to_keep = parser.get_one_option("Y", "fk_arb_etat")
 
 print(file, X_to_keep, Y_to_keep)
 
@@ -40,44 +51,83 @@ Y = data[Y_to_keep]
 
 Y = Y.apply(parse_arb_etat)
 
+X = parse_string_data(X)
+
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
 
-# param_grid =[
-#     {"n_estimators": [10, 100, 1000], "max_features": ["auto", "sqrt", "log2"]}
-# ]
-
-param_grid = [
-    {'n_estimators': [3, 10, 30], 'max_features': [2, 4, 6, 8]}
-]
+if parser.has_option("no_model"):
+    sys.exit()
 
 # for mod in [SGDClassifier, RandomForestClassifier, MLPClassifier, KNeighborsClassifier, SVC, DecisionTreeClassifier]:
-for mod in [SGDClassifier, RandomForestClassifier, MLPClassifier]:
-    print("Using", mod.__name__)
+for model_name in models:
+    model = eval(model_name)
+    print("Using", model.__name__)
+    if model.__name__ == "SGDClassifier":
+        clf = model(max_iter=1000)
+    elif model.__name__ == "MLPClassifier":
+        clf = model(max_iter=1000)
+    else:
+        clf = model()
     start = time.time()
-    clf = mod().fit(X_train, Y_train)
+    clf = clf.fit(X_train, Y_train)
     end = time.time()
     print("    score on train : ", clf.score(X_train, Y_train))
     print("    score on test : ", clf.score(X_test, Y_test))
     print("    Time execution to train the model: ", end - start, "s")
 
+    if parser.has_option("save_model"):
+        with open("models/f3_" + model.__name__ + ".pkl", 'wb') as file:
+            pickle.dump(clf, file)
 
     # Calculer et afficher la matrice de confusion
-    # Y_pred = clf.predict(X_test)
-    # conf_matrix = confusion_matrix(Y_test, Y_pred)
-    # disp = ConfusionMatrixDisplay(confusion_matrix=conf_matrix, display_labels=clf.classes_)
-    # disp.plot()
-    # plt.show()
-    #
-    # print(classification_report(Y_test, Y_pred))
+    if parser.has_option("confusion_matrix"):
+        Y_pred = clf.predict(X_test)
+        conf_matrix = confusion_matrix(Y_test, Y_pred)
+        disp = ConfusionMatrixDisplay(confusion_matrix=conf_matrix, display_labels=clf.classes_)
+        disp.plot()
+        plt.show()
+
+        print(classification_report(Y_test, Y_pred))
 
     # Cross-validation
     res = cross_val_score(clf, X_train, Y_train, scoring="accuracy", cv=5)
     print("    cross_val_score : ", res.mean())
     print()
 
-    if mod.__name__ == "RandomForestClassifier":
+    if parser.has_option("grid_search"):
+        if model.__name__ == "RandomForestClassifier":
+            param_grid = {
+                'n_estimators': [3, 10, 30],
+                'max_features': [2, 4, 6, 8],
+                'max_depth': [None, 10, 20, 30]
+            }
+        elif model.__name__ == "SGDClassifier":
+            param_grid = {
+                'loss': ['hinge', 'log_loss'],
+                'penalty': ['l2', 'l1'],
+                'alpha': [0.0001, 0.001],
+            }
+        elif model.__name__ == "MLPClassifier":
+            param_grid = {
+                'hidden_layer_sizes': [(50,), (100,), (50, 50), (100, 100)],
+                'activation': ['tanh', 'relu'],
+                'alpha': [0.0001, 0.001],
+            }
+
         print("    GridSearchCV")
-        gscv = GridSearchCV(mod(), param_grid=param_grid, cv=5, scoring="accuracy")
-        gscv.fit(X_train, Y_train)
-        print("    Best parameters: ", gscv.best_params_)
+        grid_search = GridSearchCV(estimator=model(), param_grid=param_grid, cv=5, scoring="accuracy")
+        grid_search.fit(X_train, Y_train)
+
+        # Print the best parameters and best score
+        print("        Best Parameters: ", grid_search.best_params_)
+        print("        Best Cross-Validation Score: ", grid_search.best_score_)
+
+        # Evaluate the model on the test set
+        best_model = grid_search.best_estimator_
+        test_score = best_model.score(X_test, Y_test)
+        print("        Test Set Score: ", test_score)
         print()
+
+        if parser.has_option("save_model"):
+            with open("models/f3_" + model.__name__ + "_grid_search.pkl", 'wb') as file:
+                pickle.dump(best_model, file)
