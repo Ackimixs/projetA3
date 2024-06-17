@@ -1,4 +1,6 @@
 import pandas as pd
+from matplotlib import pyplot as plt
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report
 from CLParser import CLParser
 import sys
 import time
@@ -53,6 +55,17 @@ for mod in [SGDClassifier, RandomForestClassifier, MLPClassifier]:
     print("score on test : ", clf.score(X_test, Y_test))
     print("Time execution to train the model: ", end - start, "s")
 
-    res = cross_val_score(clf, X_train, Y_train, scoring="accuracy", cv=5)
+    # Calculer et afficher la matrice de confusion
+    Y_pred = clf.predict(X_test)
+    conf_matrix = confusion_matrix(Y_test, Y_pred)
+    disp = ConfusionMatrixDisplay(confusion_matrix=conf_matrix, display_labels=clf.classes_)
+    disp.plot()
+    plt.show()
+
+    print(classification_report(Y_test, Y_pred))
+
+    # Cross-validation
+
+    res = cross_val_score(clf, X_train, Y_train, scoring="accuracy", cv=3)
     print("cross_val_score : ", res.mean())
     print()
