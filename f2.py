@@ -5,6 +5,7 @@ from sklearn.linear_model import SGDClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
 
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import train_test_split
@@ -39,11 +40,11 @@ Y = Y.apply(parse_value)
 
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
 
-for i in [SGDClassifier, RandomForestClassifier, MLPClassifier, KNeighborsClassifier]:
+for i in [SGDClassifier, RandomForestClassifier, MLPClassifier, KNeighborsClassifier, SVC]:
     print("Using", i)
     clf = i().fit(X_train, Y_train)
+    print("score on train : ", clf.score(X_train, Y_train))
     print("score on test : ", clf.score(X_test, Y_test))
-    print("score on test : ", clf.score(X_train, Y_train))
 
     res = cross_val_score(clf, X_train, Y_train, scoring="accuracy", cv=5)
     print("cross_val_score : ", res.mean())
