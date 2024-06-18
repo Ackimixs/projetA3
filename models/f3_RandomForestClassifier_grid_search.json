@@ -5,18 +5,21 @@
     ],
     "Y": "fk_arb_etat",
     "score": {
-        "train": 0.9760418424160621,
-        "test": 0.9743589743589743,
-        "cross_val": 0.9719927992543103,
+        "train": 0.9758731229964569,
+        "test": 0.9696356275303644,
+        "cross_val": 0.9751984118513459,
+        "time": 41.33217453956604,
         "RMSE": {
-            "train": 0.15478422911891868,
-            "test": 0.16012815380508713
+            "train": 0.1553282878407636,
+            "test": 0.17425375883933072
         }
     },
     "best_params": {
         "max_depth": 10,
         "max_features": "sqrt",
-        "n_estimators": 50
+        "min_samples_leaf": 1,
+        "min_samples_split": 5,
+        "n_estimators": 100
     },
     "params": {
         "bootstrap": true,
@@ -29,10 +32,10 @@
         "max_samples": null,
         "min_impurity_decrease": 0.0,
         "min_samples_leaf": 1,
-        "min_samples_split": 2,
+        "min_samples_split": 5,
         "min_weight_fraction_leaf": 0.0,
         "monotonic_cst": null,
-        "n_estimators": 50,
+        "n_estimators": 100,
         "n_jobs": null,
         "oob_score": false,
         "random_state": null,

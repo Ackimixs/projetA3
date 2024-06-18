@@ -1,0 +1,32 @@
+{
+    "X": [
+        "haut_tot",
+        "tronc_diam"
+    ],
+    "Y": "age_estim",
+    "score": {
+        "train": 0.6905685844440695,
+        "test": 0.4966261808367072,
+        "cross_val": 0.49620381241061323,
+        "time": 0.0057506561279296875,
+        "RMSE": {
+            "train": 1.018141500015753,
+            "test": 1.328601590483324
+        }
+    },
+    "params": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": null,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": null,
+        "splitter": "best"
+    }
+}

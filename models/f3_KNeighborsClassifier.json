@@ -1,0 +1,27 @@
+{
+    "X": [
+        "haut_tot",
+        "tronc_diam"
+    ],
+    "Y": "fk_arb_etat",
+    "score": {
+        "train": 0.9751982453180361,
+        "test": 0.9696356275303644,
+        "cross_val": 0.9748608591087299,
+        "time": 0.003371715545654297,
+        "RMSE": {
+            "train": 0.1574857285025024,
+            "test": 0.17425375883933072
+        }
+    },
+    "params": {
+        "algorithm": "auto",
+        "leaf_size": 30,
+        "metric": "minkowski",
+        "metric_params": null,
+        "n_jobs": null,
+        "n_neighbors": 5,
+        "p": 2,
+        "weights": "uniform"
+    }
+}

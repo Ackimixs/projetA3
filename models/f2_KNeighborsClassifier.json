@@ -1,0 +1,27 @@
+{
+    "X": [
+        "haut_tot",
+        "tronc_diam"
+    ],
+    "Y": "age_estim",
+    "score": {
+        "train": 0.5955795512063439,
+        "test": 0.4669365721997301,
+        "cross_val": 0.48203342796763937,
+        "time": 0.0032346248626708984,
+        "RMSE": {
+            "train": 1.1952891052865848,
+            "test": 1.3354403055609034
+        }
+    },
+    "params": {
+        "algorithm": "auto",
+        "leaf_size": 30,
+        "metric": "minkowski",
+        "metric_params": null,
+        "n_jobs": null,
+        "n_neighbors": 5,
+        "p": 2,
+        "weights": "uniform"
+    }
+}

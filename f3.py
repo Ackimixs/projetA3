@@ -1,6 +1,6 @@
 import pandas as pd
 from matplotlib import pyplot as plt
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report, roc_curve, RocCurveDisplay, roc_auc_score
 from CLParser import CLParser
 import sys
 import time
@@ -62,37 +62,42 @@ if parser.has_option("no_model"):
 
 param_grid = {
     'SGDClassifier': {
-        'loss': ['hinge', 'log_loss'],
+        'loss': ['hinge', 'log'],
+        'penalty': ['l2', 'l1'],
         'alpha': [0.0001, 0.001, 0.01],
-        'max_iter': [1000, 2000, 3000],
+        'max_iter': [2000, 3000],
+        'tol': [1e-3, 1e-4]
     },
     'RandomForestClassifier': {
-        'n_estimators': [50, 100, 200],
-        'max_depth': [None, 10, 20, 30],
-        'max_features': ['sqrt', 'log2'],
+        'n_estimators': [50, 100],
+        'max_depth': [None, 10, 20],
+        'min_samples_split': [2, 5],
+        'min_samples_leaf': [1, 2],
+        'max_features': ['sqrt', 'log2']
     },
     'MLPClassifier': {
-        'hidden_layer_sizes': [(50,), (100,), (50, 50), (100, 50)],
-        'max_iter': [1000, 2000],
+        'hidden_layer_sizes': [(50,), (100,)],
         'solver': ['adam', 'sgd'],
+        'max_iter': [1000, 2000],
+        'learning_rate': ['constant', 'adaptive']
     },
     'KNeighborsClassifier': {
-        'n_neighbors': [5, 10, 15],
+        'n_neighbors': [5, 10],
         'weights': ['uniform', 'distance'],
-        'algorithm': ['auto', 'ball_tree', 'kd_tree'],
-        'p': [1, 2],
+        'algorithm': ['auto', 'ball_tree'],
+        'p': [1, 2]
     },
     'SVC': {
-        'kernel': ['linear', 'poly', 'rbf', 'sigmoid'],
         'C': [0.1, 1, 10],
-        'gamma': ['scale', 'auto'],
-        'degree': [2, 3, 4],
+        'kernel': ['linear', 'rbf'],
+        'gamma': ['scale']
     },
     'DecisionTreeClassifier': {
         'criterion': ['gini', 'entropy'],
-        'splitter': ['best', 'random'],
-        'max_depth': [None, 10, 20, 30],
-        'max_features': ['sqrt', 'log2'],
+        'max_depth': [None, 10, 20],
+        'min_samples_split': [2, 5],
+        'min_samples_leaf': [1, 2],
+        'max_features': ['sqrt', 'log2']
     }
 }
 
@@ -100,12 +105,12 @@ param_grid = {
 for model_name in models:
     model = eval(model_name)
     print("Using", model.__name__)
-    if model.__name__ == "SGDClassifier":
-        clf = model(max_iter=1000)
-    elif model.__name__ == "MLPClassifier":
+
+    if hasattr(model().get_params(), "max_iter"):
         clf = model(max_iter=1000)
     else:
         clf = model()
+
     start = time.time()
     clf = clf.fit(X_train, Y_train)
     end = time.time()
@@ -160,12 +165,12 @@ for model_name in models:
 
     if parser.has_option("grid_search"):
         print("    GridSearchCV : " + model.__name__)
-        if model.__name__ == "SGDClassifier":
-            gs_model = model(max_iter=1000)
-        elif model.__name__ == "MLPClassifier":
+
+        if hasattr(model().get_params(), "max_iter"):
             gs_model = model(max_iter=1000)
         else:
             gs_model = model()
+
         start = time.time()
         grid_search = GridSearchCV(estimator=gs_model, param_grid=param_grid[model.__name__], cv=5, scoring="accuracy")
         grid_search.fit(X_train, Y_train)

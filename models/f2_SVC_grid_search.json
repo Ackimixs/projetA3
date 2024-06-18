@@ -1,0 +1,39 @@
+{
+    "X": [
+        "haut_tot",
+        "tronc_diam"
+    ],
+    "Y": "age_estim",
+    "score": {
+        "train": 0.646364096507508,
+        "test": 0.49460188933873145,
+        "cross_val": 0.5026129029962786,
+        "time": 626.8506245613098,
+        "RMSE": {
+            "train": 1.0957223142341215,
+            "test": 1.3891812557774845
+        }
+    },
+    "best_params": {
+        "C": 1,
+        "gamma": "auto",
+        "kernel": "rbf"
+    },
+    "params": {
+        "C": 1,
+        "break_ties": false,
+        "cache_size": 200,
+        "class_weight": null,
+        "coef0": 0.0,
+        "decision_function_shape": "ovr",
+        "degree": 3,
+        "gamma": "auto",
+        "kernel": "rbf",
+        "max_iter": -1,
+        "probability": false,
+        "random_state": null,
+        "shrinking": true,
+        "tol": 0.001,
+        "verbose": false
+    }
+}

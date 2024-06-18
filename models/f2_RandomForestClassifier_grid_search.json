@@ -5,18 +5,21 @@
     ],
     "Y": "age_estim",
     "score": {
-        "train": 0.6436645857938249,
-        "test": 0.524966261808367,
-        "cross_val": 0.5095317380693178,
+        "train": 0.6458579382486924,
+        "test": 0.5188933873144399,
+        "cross_val": 0.5184764588269616,
+        "time": 52.31872534751892,
         "RMSE": {
-            "train": 1.1104819844978944,
-            "test": 1.2579034889785248
+            "train": 1.098106411928434,
+            "test": 1.277596850027848
         }
     },
     "best_params": {
         "max_depth": 10,
-        "max_features": "log2",
-        "n_estimators": 200
+        "max_features": "sqrt",
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "n_estimators": 100
     },
     "params": {
         "bootstrap": true,
@@ -24,7 +27,7 @@
         "class_weight": null,
         "criterion": "gini",
         "max_depth": 10,
-        "max_features": "log2",
+        "max_features": "sqrt",
         "max_leaf_nodes": null,
         "max_samples": null,
         "min_impurity_decrease": 0.0,
@@ -32,7 +35,7 @@
         "min_samples_split": 2,
         "min_weight_fraction_leaf": 0.0,
         "monotonic_cst": null,
-        "n_estimators": 200,
+        "n_estimators": 100,
         "n_jobs": null,
         "oob_score": false,
         "random_state": null,

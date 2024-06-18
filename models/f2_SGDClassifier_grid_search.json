@@ -5,18 +5,21 @@
     ],
     "Y": "age_estim",
     "score": {
-        "train": 0.3234351273831618,
-        "test": 0.31309041835357626,
-        "cross_val": 0.37640446560078555,
+        "train": 0.35701029188459593,
+        "test": 0.3576248313090418,
+        "cross_val": 0.33321137603973217,
+        "time": 16.678342819213867,
         "RMSE": {
-            "train": 1.5347611596297808,
-            "test": 1.5557563651633532
+            "train": 1.5530113017155687,
+            "test": 1.5693591014180848
         }
     },
     "best_params": {
         "alpha": 0.01,
-        "loss": "log_loss",
-        "max_iter": 3000
+        "loss": "hinge",
+        "max_iter": 2000,
+        "penalty": "l2",
+        "tol": 0.001
     },
     "params": {
         "alpha": 0.01,
@@ -28,8 +31,8 @@
         "fit_intercept": true,
         "l1_ratio": 0.15,
         "learning_rate": "optimal",
-        "loss": "log_loss",
-        "max_iter": 3000,
+        "loss": "hinge",
+        "max_iter": 2000,
         "n_iter_no_change": 5,
         "n_jobs": null,
         "penalty": "l2",
