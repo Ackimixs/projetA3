@@ -5,6 +5,7 @@ from CLParser import CLParser
 import sys
 import time
 import pickle
+import json
 
 from sklearn.linear_model import SGDClassifier
 from sklearn.ensemble import RandomForestClassifier
@@ -18,6 +19,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import OrdinalEncoder
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import root_mean_squared_error
 
 
 def parse_string_data(data):
@@ -116,12 +118,39 @@ for model_name in models:
     start = time.time()
     clf = clf.fit(X_train, Y_train)
     end = time.time()
-    print("score on train : ", clf.score(X_train, Y_train))
-    print("score on test : ", clf.score(X_test, Y_test))
+    print("    score on train : ", clf.score(X_train, Y_train))
+    print("    score on test : ", clf.score(X_test, Y_test))
+    rmse_train = root_mean_squared_error(Y_train, clf.predict(X_train))
+    rmse_test = root_mean_squared_error(Y_test, clf.predict(X_test))
+    print("    RMSE on train : ", rmse_train)
+    print("    RMSE on test : ", rmse_test)
+
+    # Cross-validation
+    res = cross_val_score(clf, X_train, Y_train, scoring="accuracy", cv=3)
+    print("    cross_val_score : ", res.mean())
+    print("    Time execution to train the model: ", end - start, "s")
+    print()
 
     if parser.has_option("save_model"):
-        with open("models/f3_" + model.__name__ + ".pkl", 'wb') as file:
+        with open("models/f2_" + model.__name__ + ".pkl", 'wb') as file:
             pickle.dump(clf, file)
+        with open("models/f2_" + model.__name__ + ".json", 'w', encoding='utf-8') as file:
+            to_write = {
+                "X": X_to_keep,
+                "Y": Y_to_keep,
+                "score": {
+                    "train": clf.score(X_train, Y_train),
+                    "test": clf.score(X_test, Y_test),
+                    "cross_val": res.mean(),
+                    "time": end - start,
+                    "RMSE": {
+                        "train": rmse_train,
+                        "test": rmse_test,
+                    }
+                },
+                "params": clf.get_params()
+            }
+            json.dump(to_write, file, ensure_ascii=False, indent=4)
 
     # Calculer et afficher la matrice de confusion
     if parser.has_option("confusion_matrix"):
@@ -132,12 +161,6 @@ for model_name in models:
         plt.show()
 
         print(classification_report(Y_test, Y_pred))
-
-    # Cross-validation
-    res = cross_val_score(clf, X_train, Y_train, scoring="accuracy", cv=3)
-    print("cross_val_score : ", res.mean())
-    print("Time execution to train the model: ", end - start, "s")
-    print()
 
     if parser.has_option("grid_search"):
         print("    GridSearchCV")
@@ -154,12 +177,32 @@ for model_name in models:
         best_model = grid_search.best_estimator_
         train_score = best_model.score(X_train, Y_train)
         test_score = best_model.score(X_test, Y_test)
+        rmse_train = root_mean_squared_error(Y_train, best_model.predict(X_train))
+        rmse_test = root_mean_squared_error(Y_test, best_model.predict(X_test))
         print("        Best Parameters: ", grid_search.best_params_)
         print("        Best score on training set: ", train_score)
         print("        Best score on test set: ", test_score)
         print("        Best Cross-Validation Score: ", grid_search.best_score_)
+        print("        RMSE on training set: ", rmse_train)
+        print("        RMSE on test set: ", rmse_test)
         print()
 
         if parser.has_option("save_model"):
-            with open("models/f3_" + model.__name__ + "_grid_search.pkl", 'wb') as file:
+            with open("models/f2_" + model.__name__ + "_grid_search.pkl", 'wb') as file:
                 pickle.dump(clf, file)
+            with open("models/f2_" + model.__name__ + "_grid_search.json", 'wb', encoding='utf-8') as file:
+                to_write = {
+                    "X": X_to_keep,
+                    "Y": Y_to_keep,
+                    "score": {
+                        "train": train_score,
+                        "test": test_score,
+                        "cross_val": grid_search.best_score_,
+                        "RMSE": {
+                            "train": rmse_train,
+                            "test": rmse_test,
+                        }
+                    },
+                    "params": best_model.get_params()
+                }
+                json.dump(to_write, file, ensure_ascii=False, indent=4)
