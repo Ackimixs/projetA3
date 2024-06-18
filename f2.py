@@ -62,32 +62,25 @@ if parser.has_option("no_model"):
 
 param_grid = {
     'SGDClassifier': {
-        'loss': ['hinge', 'log', 'perceptron'],
-        'penalty': ['l2', 'l1', 'elasticnet'],
+        'loss': ['hinge', 'log_loss'],
         'alpha': [0.0001, 0.001, 0.01],
         'max_iter': [1000, 2000, 3000],
-        'tol': [1e-3, 1e-4, 1e-5],
     },
     'RandomForestClassifier': {
         'n_estimators': [50, 100, 200],
-        'criterion': ['gini', 'entropy'],
         'max_depth': [None, 10, 20, 30],
-        'min_samples_split': [2, 5, 10],
-        'min_samples_leaf': [1, 2, 4],
         'max_features': ['sqrt', 'log2'],
     },
     'MLPClassifier': {
         'hidden_layer_sizes': [(50,), (100,), (50, 50), (100, 50)],
-        'activation': ['relu', 'tanh'],
+        'max_iter': [1000, 2000],
         'solver': ['adam', 'sgd'],
-        'alpha': [0.0001, 0.001, 0.01],
-        'learning_rate': ['constant', 'invscaling', 'adaptive'],
     },
     'KNeighborsClassifier': {
         'n_neighbors': [5, 10, 15],
         'weights': ['uniform', 'distance'],
-        'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute'],
-        'p': [1, 2],  # for Minkowski distance
+        'algorithm': ['auto', 'ball_tree', 'kd_tree'],
+        'p': [1, 2],
     },
     'SVC': {
         'kernel': ['linear', 'poly', 'rbf', 'sigmoid'],
@@ -99,9 +92,7 @@ param_grid = {
         'criterion': ['gini', 'entropy'],
         'splitter': ['best', 'random'],
         'max_depth': [None, 10, 20, 30],
-        'min_samples_split': [2, 5, 10],
-        'min_samples_leaf': [1, 2, 4],
-        'max_features': ['auto', 'sqrt', 'log2'],
+        'max_features': ['sqrt', 'log2'],
     }
 }
 
@@ -120,6 +111,8 @@ for model_name in models:
     end = time.time()
     print("    score on train : ", clf.score(X_train, Y_train))
     print("    score on test : ", clf.score(X_test, Y_test))
+
+    # RMSE
     rmse_train = root_mean_squared_error(Y_train, clf.predict(X_train))
     rmse_test = root_mean_squared_error(Y_test, clf.predict(X_test))
     print("    RMSE on train : ", rmse_train)
@@ -163,7 +156,7 @@ for model_name in models:
         print(classification_report(Y_test, Y_pred))
 
     if parser.has_option("grid_search"):
-        print("    GridSearchCV")
+        print("    GridSearchCV : " + model.__name__)
         if model.__name__ == "SGDClassifier":
             gs_model = model(max_iter=1000)
         elif model.__name__ == "MLPClassifier":
@@ -185,12 +178,11 @@ for model_name in models:
         print("        Best Cross-Validation Score: ", grid_search.best_score_)
         print("        RMSE on training set: ", rmse_train)
         print("        RMSE on test set: ", rmse_test)
-        print()
 
         if parser.has_option("save_model"):
             with open("models/f2_" + model.__name__ + "_grid_search.pkl", 'wb') as file:
-                pickle.dump(clf, file)
-            with open("models/f2_" + model.__name__ + "_grid_search.json", 'wb', encoding='utf-8') as file:
+                pickle.dump(best_model, file)
+            with open("models/f2_" + model.__name__ + "_grid_search.json", 'w', encoding='utf-8') as file:
                 to_write = {
                     "X": X_to_keep,
                     "Y": Y_to_keep,
@@ -203,6 +195,7 @@ for model_name in models:
                             "test": rmse_test,
                         }
                     },
+                    "best_params": grid_search.best_params_,
                     "params": best_model.get_params()
                 }
                 json.dump(to_write, file, ensure_ascii=False, indent=4)

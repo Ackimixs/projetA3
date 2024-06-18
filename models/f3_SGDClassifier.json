@@ -1,0 +1,40 @@
+{
+    "X": [
+        "haut_tot",
+        "tronc_diam"
+    ],
+    "Y": "fk_arb_etat",
+    "score": {
+        "train": 0.9735110511219841,
+        "test": 0.9763832658569501,
+        "cross_val": 0.855298738446432,
+        "time": 0.014635562896728516,
+        "RMSE": {
+            "train": 0.1627542591701239,
+            "test": 0.15367737030236409
+        }
+    },
+    "params": {
+        "alpha": 0.0001,
+        "average": false,
+        "class_weight": null,
+        "early_stopping": false,
+        "epsilon": 0.1,
+        "eta0": 0.0,
+        "fit_intercept": true,
+        "l1_ratio": 0.15,
+        "learning_rate": "optimal",
+        "loss": "hinge",
+        "max_iter": 1000,
+        "n_iter_no_change": 5,
+        "n_jobs": null,
+        "penalty": "l2",
+        "power_t": 0.5,
+        "random_state": null,
+        "shuffle": true,
+        "tol": 0.001,
+        "validation_fraction": 0.1,
+        "verbose": 0,
+        "warm_start": false
+    }
+}

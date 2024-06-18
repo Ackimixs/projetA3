@@ -1,0 +1,52 @@
+{
+    "X": [
+        "haut_tot",
+        "tronc_diam"
+    ],
+    "Y": "age_estim",
+    "score": {
+        "train": 0.4597604184241606,
+        "test": 0.451417004048583,
+        "cross_val": 0.4403543449954106,
+        "RMSE": {
+            "train": 1.2973607555269433,
+            "test": 1.2925615071100556
+        }
+    },
+    "best_params": {
+        "hidden_layer_sizes": [
+            50,
+            50
+        ],
+        "max_iter": 2000,
+        "solver": "adam"
+    },
+    "params": {
+        "activation": "relu",
+        "alpha": 0.0001,
+        "batch_size": "auto",
+        "beta_1": 0.9,
+        "beta_2": 0.999,
+        "early_stopping": false,
+        "epsilon": 1e-08,
+        "hidden_layer_sizes": [
+            50,
+            50
+        ],
+        "learning_rate": "constant",
+        "learning_rate_init": 0.001,
+        "max_fun": 15000,
+        "max_iter": 2000,
+        "momentum": 0.9,
+        "n_iter_no_change": 10,
+        "nesterovs_momentum": true,
+        "power_t": 0.5,
+        "random_state": null,
+        "shuffle": true,
+        "solver": "adam",
+        "tol": 0.0001,
+        "validation_fraction": 0.1,
+        "verbose": false,
+        "warm_start": false
+    }
+}
