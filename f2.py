@@ -109,18 +109,21 @@ for model_name in models:
     start = time.time()
     clf = clf.fit(X_train, Y_train)
     end = time.time()
-    print("    score on train : ", clf.score(X_train, Y_train))
-    print("    score on test : ", clf.score(X_test, Y_test))
+    train_score = clf.score(X_train, Y_train)
+    test_score = clf.score(X_test, Y_test)
 
     # RMSE
     rmse_train = root_mean_squared_error(Y_train, clf.predict(X_train))
     rmse_test = root_mean_squared_error(Y_test, clf.predict(X_test))
-    print("    RMSE on train : ", rmse_train)
-    print("    RMSE on test : ", rmse_test)
 
     # Cross-validation
-    res = cross_val_score(clf, X_train, Y_train, scoring="accuracy", cv=3)
-    print("    cross_val_score : ", res.mean())
+    res = cross_val_score(clf, X_train, Y_train, scoring="accuracy", cv=5)
+
+    print("    score on training set: ", train_score)
+    print("    score on test set: ", test_score)
+    print("    Cross-Validation Score: ", res.mean())
+    print("    RMSE on training set: ", rmse_train)
+    print("    RMSE on test set: ", rmse_test)
     print("    Time execution to train the model: ", end - start, "s")
     print()
 
@@ -163,8 +166,10 @@ for model_name in models:
             gs_model = model(max_iter=1000)
         else:
             gs_model = model()
+        start = time.time()
         grid_search = GridSearchCV(estimator=gs_model, param_grid=param_grid[model.__name__], cv=5, scoring="accuracy")
         grid_search.fit(X_train, Y_train)
+        end = time.time()
 
         # Print the best parameters and best score
         best_model = grid_search.best_estimator_
@@ -178,6 +183,8 @@ for model_name in models:
         print("        Best Cross-Validation Score: ", grid_search.best_score_)
         print("        RMSE on training set: ", rmse_train)
         print("        RMSE on test set: ", rmse_test)
+        print("        Time execution to train the model: ", end - start, "s")
+        print()
 
         if parser.has_option("save_model"):
             with open("models/f2_" + model.__name__ + "_grid_search.pkl", 'wb') as file:
@@ -190,6 +197,7 @@ for model_name in models:
                         "train": train_score,
                         "test": test_score,
                         "cross_val": grid_search.best_score_,
+                        "time": end - start,
                         "RMSE": {
                             "train": rmse_train,
                             "test": rmse_test,
