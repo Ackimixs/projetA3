@@ -18,7 +18,7 @@ data_complete = pd.read_csv(fichier_csv)
 print("Fin du read de fichier")
 
 # Sélection des colonnes spécifiques
-colonnes_voulues = ['haut_tronc', 'tronc_diam', 'age_estim', 'fk_prec_estim']#'longitude', 'latitude',
+colonnes_voulues = ['haut_tronc', 'tronc_diam', 'age_estim', 'fk_prec_estim'] # 'longitude', 'latitude',
 data_selection = deepcopy(data_complete[colonnes_voulues])
 
 
@@ -305,14 +305,21 @@ def Centroide_and_cluster(methode, nb_clusters, data_select):
         # Création du modèle KMeans avec nb_clusters clusters
         kmeans = KMeans(n_clusters=nb_clusters, random_state=42)
         data_use['cluster'] = kmeans.fit_predict(data_use)
+
+
         # Pour récupérer les centroïdes
         centroids = kmeans.cluster_centers_
 
-        centroids_data = pd.DataFrame(centroids, columns=['Centroide_haut_tronc', 'Centroide_tronc_diam', 'Centroide_age_estim', 'Centroide_fk_prec_estim'])#'Centroide_long', 'Centroide_lat',
 
+        data_complete['cluster'] = kmeans.fit_predict(data_use)
+        # Grouper par la colonne 'Groupe' et calculer la moyenne de chaque groupe
+        moyennes_par_groupe = data_complete.groupby('cluster')['haut_tot'].mean()
+
+
+        centroids_data = pd.DataFrame(centroids, columns=['Centroide_haut_tronc', 'Centroide_tronc_diam', 'Centroide_age_estim', 'Centroide_fk_prec_estim'])#'Centroide_long', 'Centroide_lat',
+        centroids_data['moy_haut_tot'] = moyennes_par_groupe
         # Écriture des données dans le fichier CSV
         centroids_data.to_csv(file_path, index=False)
-
         print(f"Fichier CSV créé à {file_path}")
 
     elif methode == 2:
@@ -322,17 +329,22 @@ def Centroide_and_cluster(methode, nb_clusters, data_select):
         # Chemin du fichier CSV
         file_path = var + '_' + str(nb_clusters) + '.csv'
 
-        # Création du modèle KMeans avec nb_clusters clusters
+        # Création du modèle Birch avec nb_clusters clusters
         brc = Birch(n_clusters=nb_clusters).fit(data_use)
-        data_use['cluster'] = brc.predict(data_use)
+        data_use['cluster'] = brc.fit_predict(data_use)
+
         # Pour récupérer les centroïdes
         centroids = brc.subcluster_centers_[np.unique(brc.labels_)]
 
-        centroids_data = pd.DataFrame(centroids, columns=['Centroide_haut_tronc', 'Centroide_tronc_diam', 'Centroide_age_estim', 'Centroide_fk_prec_estim'])#'Centroide_long', 'Centroide_lat',
+        data_complete['cluster'] = brc.fit_predict(data_use)
 
+        # Grouper par la colonne 'Groupe' et calculer la moyenne de chaque groupe
+        moyennes_par_groupe = data_complete.groupby('cluster')['haut_tot'].mean()
+
+        centroids_data = pd.DataFrame(centroids, columns=['Centroide_haut_tronc', 'Centroide_tronc_diam', 'Centroide_age_estim', 'Centroide_fk_prec_estim'])#'Centroide_long', 'Centroide_lat',
+        centroids_data['moy_haut_tot'] = moyennes_par_groupe
         # Écriture des données dans le fichier CSV
         centroids_data.to_csv(file_path, index=False)
-
         print(f"Fichier CSV créé à {file_path}")
 
     else:
@@ -341,10 +353,10 @@ def Centroide_and_cluster(methode, nb_clusters, data_select):
 
 
 
-Visualisation(2, data_selection, data_complete)
-Visualisation(1, data_selection, data_complete)
+#Visualisation(2, data_selection, data_complete)
+#Visualisation(1, data_selection, data_complete)
 
-Courbe(19, data_selection)
+#Courbe(19, data_selection)
 
 Centroide_and_cluster(1, 2, data_selection)
 Centroide_and_cluster(1, 3, data_selection)
