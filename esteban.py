@@ -6,6 +6,7 @@ import plotly.express as px
 from sklearn.metrics import davies_bouldin_score
 from copy import deepcopy
 from sklearn.cluster import Birch
+import csv
 
 print("Fin des import")
 
@@ -17,7 +18,7 @@ data_complete = pd.read_csv(fichier_csv)
 print("Fin du read de fichier")
 
 # Sélection des colonnes spécifiques
-colonnes_voulues = ['longitude', 'latitude', 'haut_tronc', 'tronc_diam', 'age_estim', 'fk_prec_estim']
+colonnes_voulues = ['haut_tronc', 'tronc_diam', 'age_estim', 'fk_prec_estim']#'longitude', 'latitude',
 data_selection = deepcopy(data_complete[colonnes_voulues])
 
 
@@ -71,14 +72,21 @@ def Visualisation(methode, data_select, data_complete):
                         z='haut_tot',
                         color=data_selection_2c_b['noms_clusters_2c'])
     fig.update_traces(marker=dict(size=3))
+
+    # Définition des plages d'axes pour figer les échelles
+    fig.update_layout(scene=dict(
+        xaxis=dict(range=[3.25, 3.31]),
+        yaxis=dict(range=[49.82, 49.87]),
+        zaxis=dict(range=[0, 40])
+    ))
     # Show the plot
     fig.show()
 
-    fig_2d = px.scatter_mapbox(data_selection_2c_b, lon='longitude', lat='latitude',
-                               color='noms_clusters_2c',
+    fig_2d = px.scatter_mapbox(data_complete, lon='longitude', lat='latitude',
+                               color=data_selection_2c_b['noms_clusters_2c'],
                                title=f'Clustering en 2 clusters avec {var}',
                                labels={'longitude': 'Longitude', 'latitude': 'Latitude'},
-                               hover_data=['cluster', 'haut_tronc', 'tronc_diam', 'age_estim', 'fk_prec_estim'],
+                               hover_data=[data_selection_2c_b['cluster'], 'haut_tronc', 'tronc_diam', 'age_estim', 'fk_prec_estim', 'haut_tot'],
                                zoom=12)
 
     fig_2d.update_layout(mapbox_style="open-street-map")
@@ -121,14 +129,21 @@ def Visualisation(methode, data_select, data_complete):
                         z='haut_tot',
                         color=data_selection_3c_b['noms_clusters_3c'])
     fig.update_traces(marker=dict(size=3))
+
+    # Définition des plages d'axes pour figer les échelles
+    fig.update_layout(scene=dict(
+        xaxis=dict(range=[3.25, 3.31]),
+        yaxis=dict(range=[49.82, 49.87]),
+        zaxis=dict(range=[0, 40])
+    ))
     # Show the plot
     fig.show()
 
-    fig_2d = px.scatter_mapbox(data_selection_3c_b, lon='longitude', lat='latitude',
-                               color='noms_clusters_3c',
+    fig_2d = px.scatter_mapbox(data_complete, lon='longitude', lat='latitude',
+                               color=data_selection_3c_b['noms_clusters_3c'],
                                title=f'Clustering en 3 clusters avec {var}',
                                labels={'longitude': 'Longitude', 'latitude': 'Latitude'},
-                               hover_data=['cluster', 'haut_tronc', 'tronc_diam', 'age_estim', 'fk_prec_estim'],
+                               hover_data=[data_selection_3c_b['cluster'], 'haut_tronc', 'tronc_diam', 'age_estim', 'fk_prec_estim', 'haut_tot'],
                                zoom=12)
 
     fig_2d.update_layout(mapbox_style="open-street-map")
@@ -277,9 +292,61 @@ def Courbe(n, data_select):
     fig.show()
     print("Test 7 : validé")
 
+def Centroide_and_cluster(methode, nb_clusters, data_select):
+    data_use = deepcopy(data_select)
+    var = ' '
+    if methode == 1:
+        var = 'Kmeans'
+        print("KMeans method utilisé")
+
+        # Chemin du fichier CSV
+        file_path = var + '_' + str(nb_clusters) + '.csv'
+
+        # Création du modèle KMeans avec nb_clusters clusters
+        kmeans = KMeans(n_clusters=nb_clusters, random_state=42)
+        data_use['cluster'] = kmeans.fit_predict(data_use)
+        # Pour récupérer les centroïdes
+        centroids = kmeans.cluster_centers_
+
+        centroids_data = pd.DataFrame(centroids, columns=['Centroide_haut_tronc', 'Centroide_tronc_diam', 'Centroide_age_estim', 'Centroide_fk_prec_estim'])#'Centroide_long', 'Centroide_lat',
+
+        # Écriture des données dans le fichier CSV
+        centroids_data.to_csv(file_path, index=False)
+
+        print(f"Fichier CSV créé à {file_path}")
+
+    elif methode == 2:
+        var = 'Birch'
+        print("Birch method utilisé")
+
+        # Chemin du fichier CSV
+        file_path = var + '_' + str(nb_clusters) + '.csv'
+
+        # Création du modèle KMeans avec nb_clusters clusters
+        brc = Birch(n_clusters=nb_clusters).fit(data_use)
+        data_use['cluster'] = brc.predict(data_use)
+        # Pour récupérer les centroïdes
+        centroids = brc.subcluster_centers_[np.unique(brc.labels_)]
+
+        centroids_data = pd.DataFrame(centroids, columns=['Centroide_haut_tronc', 'Centroide_tronc_diam', 'Centroide_age_estim', 'Centroide_fk_prec_estim'])#'Centroide_long', 'Centroide_lat',
+
+        # Écriture des données dans le fichier CSV
+        centroids_data.to_csv(file_path, index=False)
+
+        print(f"Fichier CSV créé à {file_path}")
+
+    else:
+        print("Methode non reconnu")
+        return 0
+
+
 
 #Visualisation(2, data_selection, data_complete)
 #Visualisation(1, data_selection, data_complete)
 
-Courbe(49, data_selection)
+Courbe(19, data_selection)
 
+#Centroide_and_cluster(1, 2, data_selection)
+#Centroide_and_cluster(1, 3, data_selection)
+#Centroide_and_cluster(2, 2, data_selection)
+#Centroide_and_cluster(2, 3, data_selection)
