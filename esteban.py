@@ -341,12 +341,12 @@ def Centroide_and_cluster(methode, nb_clusters, data_select):
 
 
 
-#Visualisation(2, data_selection, data_complete)
-#Visualisation(1, data_selection, data_complete)
+Visualisation(2, data_selection, data_complete)
+Visualisation(1, data_selection, data_complete)
 
 Courbe(19, data_selection)
 
-#Centroide_and_cluster(1, 2, data_selection)
-#Centroide_and_cluster(1, 3, data_selection)
-#Centroide_and_cluster(2, 2, data_selection)
-#Centroide_and_cluster(2, 3, data_selection)
+Centroide_and_cluster(1, 2, data_selection)
+Centroide_and_cluster(1, 3, data_selection)
+Centroide_and_cluster(2, 2, data_selection)
+Centroide_and_cluster(2, 3, data_selection)
