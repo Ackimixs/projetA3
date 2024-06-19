@@ -333,15 +333,28 @@ def Centroide_and_cluster(methode, nb_clusters, data_select):
         brc = Birch(n_clusters=nb_clusters).fit(data_use)
         data_use['cluster'] = brc.fit_predict(data_use)
 
-        # Pour récupérer les centroïdes
-        centroids = brc.subcluster_centers_[np.unique(brc.labels_)]
+
+
+        # Récupérer les étiquettes des clusters finaux
+        labels = brc.labels_
+
+        centroids = []
+        for i in range(max(labels) + 1):
+            cluster_points = data_use[labels == i]
+            centroid = cluster_points.mean(axis=0)
+            centroids.append(centroid)
+        centroids = np.array(centroids)
+        # Afficher les centroïdes
+        print("Centroïdes des clusters :")
+        print(centroids)
+
 
         data_complete['cluster'] = brc.fit_predict(data_use)
 
         # Grouper par la colonne 'Groupe' et calculer la moyenne de chaque groupe
         moyennes_par_groupe = data_complete.groupby('cluster')['haut_tot'].mean()
 
-        centroids_data = pd.DataFrame(centroids, columns=['Centroide_haut_tronc', 'Centroide_tronc_diam', 'Centroide_age_estim', 'Centroide_fk_prec_estim'])#'Centroide_long', 'Centroide_lat',
+        centroids_data = pd.DataFrame(centroids, columns=['Centroide_haut_tronc', 'Centroide_tronc_diam', 'Centroide_age_estim', 'Centroide_fk_prec_estim','id'])#'Centroide_long', 'Centroide_lat',
         centroids_data['moy_haut_tot'] = moyennes_par_groupe
         # Écriture des données dans le fichier CSV
         centroids_data.to_csv(file_path, index=False)
