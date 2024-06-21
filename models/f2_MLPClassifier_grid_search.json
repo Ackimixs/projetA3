@@ -1,22 +1,24 @@
 {
     "X": [
+        "haut_tronc",
         "haut_tot",
-        "tronc_diam"
+        "tronc_diam",
+        "fk_prec_estim",
+        "clc_nbr_diag",
+        "fk_situation"
     ],
     "Y": "age_estim",
     "score": {
-        "train": 0.42534165682470054,
-        "test": 0.4318488529014845,
-        "cross_val": 0.43815854448168146,
-        "time": 146.47383975982666,
-        "RMSE": {
-            "train": 1.3110090493654638,
-            "test": 1.290210205807058
-        }
+        "train": 0.6284798380293571,
+        "test": 0.5917678812415654,
+        "cross_val": 0.5726358856134509,
+        "f1": 0.5884499681342322,
+        "recall": 0.5917678812415654,
+        "time": 194.83015751838684
     },
     "best_params": {
         "hidden_layer_sizes": [
-            50
+            100
         ],
         "learning_rate": "adaptive",
         "max_iter": 2000,
@@ -31,7 +33,7 @@
         "early_stopping": false,
         "epsilon": 1e-08,
         "hidden_layer_sizes": [
-            50
+            100
         ],
         "learning_rate": "adaptive",
         "learning_rate_init": 0.001,

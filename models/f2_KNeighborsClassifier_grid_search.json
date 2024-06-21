@@ -1,18 +1,20 @@
 {
     "X": [
+        "haut_tronc",
         "haut_tot",
-        "tronc_diam"
+        "tronc_diam",
+        "fk_prec_estim",
+        "clc_nbr_diag",
+        "fk_situation"
     ],
     "Y": "age_estim",
     "score": {
-        "train": 0.6873629154715708,
-        "test": 0.4824561403508772,
-        "cross_val": 0.4923226674066642,
-        "time": 1.9354424476623535,
-        "RMSE": {
-            "train": 1.0105734247793452,
-            "test": 1.3283476285980862
-        }
+        "train": 0.9303188797030538,
+        "test": 0.6410256410256411,
+        "cross_val": 0.6181899943788645,
+        "f1": 0.6383482451998586,
+        "recall": 0.6410256410256411,
+        "time": 2.6862194538116455
     },
     "best_params": {
         "algorithm": "auto",

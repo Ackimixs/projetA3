@@ -1,0 +1,16 @@
+[
+  {
+    "haut_tronc":  8,
+    "haut_tot":  12,
+    "tronc_diam":  116,
+    "fk_prec_estim": 5,
+    "clc_nbr_diag": 0
+  },
+  {
+    "haut_tronc":  20,
+    "haut_tot":  25,
+    "tronc_diam":  255,
+    "fk_prec_estim": 10,
+    "clc_nbr_diag": 11
+  }
+]

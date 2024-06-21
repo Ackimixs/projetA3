@@ -1,24 +1,26 @@
 {
     "X": [
+        "haut_tronc",
         "haut_tot",
-        "tronc_diam"
+        "tronc_diam",
+        "fk_prec_estim",
+        "clc_nbr_diag",
+        "fk_situation"
     ],
     "Y": "age_estim",
     "score": {
-        "train": 0.6458579382486924,
-        "test": 0.5188933873144399,
-        "cross_val": 0.5184764588269616,
-        "time": 52.31872534751892,
-        "RMSE": {
-            "train": 1.098106411928434,
-            "test": 1.277596850027848
-        }
+        "train": 0.8522017884258478,
+        "test": 0.7010796221322537,
+        "cross_val": 0.6978218455824279,
+        "f1": 0.7024169216210249,
+        "recall": 0.7010796221322537,
+        "time": 65.11813044548035
     },
     "best_params": {
-        "max_depth": 10,
+        "max_depth": null,
         "max_features": "sqrt",
-        "min_samples_leaf": 1,
-        "min_samples_split": 2,
+        "min_samples_leaf": 2,
+        "min_samples_split": 5,
         "n_estimators": 100
     },
     "params": {
@@ -26,13 +28,13 @@
         "ccp_alpha": 0.0,
         "class_weight": null,
         "criterion": "gini",
-        "max_depth": 10,
+        "max_depth": null,
         "max_features": "sqrt",
         "max_leaf_nodes": null,
         "max_samples": null,
         "min_impurity_decrease": 0.0,
-        "min_samples_leaf": 1,
-        "min_samples_split": 2,
+        "min_samples_leaf": 2,
+        "min_samples_split": 5,
         "min_weight_fraction_leaf": 0.0,
         "monotonic_cst": null,
         "n_estimators": 100,
