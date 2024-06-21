@@ -69,3 +69,5 @@ si f2 ou f3 utilisé :
 
 example de script :
 python3 load_models.py --model DecisionTreeClassifier --f2 --input_json to_predict_f2.json
+
+Les fichiers input doivents être dans le format JSON, les données à l'intérieur doivents êtres dans des tableau noramlisé au format JSON. Vous pouvez trouver des exemples dans les fichiers `to_predict_X.json`.
