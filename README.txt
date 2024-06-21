@@ -23,7 +23,7 @@ options :
 f2 (f2.py) :
 
 options :
-- file : lien vers le fichier de donnée (par default Data_Arbre.csv)
+- file : lien vers le fichier de donnée (default : Data_Arbre.csv)
 - models : modele a utilisé (SGDClassifier RandomForestClassifier MLPClassifier KNeighborsClassifier SVC DecisionTreeClassifier)  (default : SGDClassifier, RandomForestClassifier, MLPClassifier)
 - X : features à utilisé (default : haut_tronc haut_tot tronc_diam)
 - Y : class a utilisé (default : age_estim)
@@ -38,7 +38,7 @@ python3 f2.py --X haut_tronc haut_tot tronc_diam fk_prec_estim clc_nbr_diag fk_s
 f3 (f3.py) :
 
 options :
-- file : lien vers le fichier de donnée (par default Data_Arbre.csv)
+- file : lien vers le fichier de donnée (default : Data_Arbre.csv)
 - models : modele a utilisé (SGDClassifier RandomForestClassifier MLPClassifier KNeighborsClassifier SVC DecisionTreeClassifier)  (default : SGDClassifier, RandomForestClassifier, MLPClassifier)
 - X : features à utilisé (default : haut_tronc tronc_diam haut_tot age_estim)
 - Y : class a utilisé (default : fk_arb_etat)
