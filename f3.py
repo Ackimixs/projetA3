@@ -44,7 +44,7 @@ parser = CLParser(sys.argv)
 file = parser.get_one_option("file", "Data_Arbre.csv")
 models = parser.get_option("models", ["SGDClassifier", "RandomForestClassifier", "MLPClassifier"])
 
-X_to_keep = parser.get_option("X", ["haut_tronc"])
+X_to_keep = parser.get_option("X", ["haut_tronc", "tronc_diam", "haut_tot", "age_estim"])
 Y_to_keep = parser.get_one_option("Y", "fk_arb_etat")
 
 print(file, X_to_keep, Y_to_keep)

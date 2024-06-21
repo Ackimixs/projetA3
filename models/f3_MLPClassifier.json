@@ -1,20 +1,18 @@
 {
     "X": [
         "haut_tronc",
-        "haut_tot",
         "tronc_diam",
-        "fk_revetement",
-        "feuillage",
+        "haut_tot",
         "age_estim"
     ],
     "Y": "fk_arb_etat",
     "score": {
-        "train": 0.9740172093807997,
-        "test": 0.975033738191633,
-        "cross_val": 0.973848485495336,
-        "f1": 0.9627084056623911,
-        "recall": 0.975033738191633,
-        "time": 1.4549164772033691
+        "train": 0.9731736122827738,
+        "test": 0.9777327935222672,
+        "cross_val": 0.9731736646245579,
+        "f1": 0.9667245430322519,
+        "recall": 0.9777327935222672,
+        "time": 1.664628505706787
     },
     "params": {
         "activation": "relu",

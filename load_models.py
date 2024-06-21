@@ -32,7 +32,6 @@ def load_models(filename):
 def main():
     parser = CLParser(sys.argv)
 
-    models_name = parser.get_one_option("model", "MLPClassifier")
     if parser.has_option("f2"):
         func = "f2"
     elif parser.has_option("f3"):
@@ -43,6 +42,7 @@ def main():
         func = "f2"
 
     if func == "f2" or func == "f3":
+        models_name = parser.get_one_option("model", "MLPClassifier")
         grid_search = parser.has_option("grid_search")
         if grid_search:
             model = load_models("models/" + func + "_" + models_name + "_grid_search.pkl")
@@ -93,7 +93,7 @@ def main():
                     if distance_with_centroid(json_data, data[i]) < distance_with_centroid(json_data, data[best]):
                         best = i
 
-                to_save = {"cluster": best+1, "centroid": data[best].tolist(),
+                to_save = {"cluster": best, "centroid": data[best].tolist(),
                            "distance": distance_with_centroid(json_data, data[best]), "algo": algo,
                            "nb_clusters": nb_clusters}
 
