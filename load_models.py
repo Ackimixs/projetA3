@@ -89,15 +89,15 @@ def main():
 
                 result = []
 
-                for i in range(len(json_data)):
+                for j in range(len(json_data)):
                     best = 0
                     for i in range(nb_clusters):
 
-                        if distance_with_centroid(json_data, data[i]) < distance_with_centroid(json_data, data[best]):
+                        if distance_with_centroid(json_data[j], data[i]) < distance_with_centroid(json_data[j], data[best]):
                             best = i
 
                     to_save = {"cluster": best, "centroid": data[best].tolist(),
-                               "distance": distance_with_centroid(json_data, data[best]), "algo": algo,
+                               "distance": distance_with_centroid(json_data[j], data[best]), "algo": algo,
                                "nb_clusters": nb_clusters}
 
                     result.append(to_save)
