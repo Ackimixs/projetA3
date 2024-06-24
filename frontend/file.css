@@ -16,15 +16,14 @@ header {
     padding: 0 20px;
 }
 .logo {
-    width: 50px;
-    height: 50px;
-    background-color: lightgray; /* Placeholder for logo */
+    max-width: 50%;
+    max-height: 50%;
+    
 }
 .nav {
     display: flex;
-    gap: 15px;
-    margin-right: 20px;
-    margin-left: auto;
+    gap: 25px;
+    font-size: 25px;
 }
 .nav a {
     color: white;
@@ -36,7 +35,14 @@ header {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 20px;
+}
+.main h1 {
+    text-align: center;
+    padding: 20px;
+    color: #E27D60;
+    font-size: 50px;
 }
 .main {
     text-align: center;
