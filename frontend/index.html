@@ -1,10 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Quentin TreeBrowser</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #41B3A3;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .logo {
+            width: 50px;
+            height: 50px;
+            background-color: lightgray; /* Placeholder for logo */
+        }
+        .nav {
+            display: flex;
+            gap: 15px;
+            margin-right: 20px;
+            margin-left: auto;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+        }
+        .btn-login {
+            background-color: #E27D60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .main {
+            text-align: center;
+            padding: 20px;
+        }
+        .main img {
+            width: 80%;
+            max-width: 800px;
+            height: auto;
+            border: 5px solid lightgray;
+        }
+        .main button {
+            background-color: #41B3A3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .project-description {
+            padding: 20px;
+            background-color: #f9f9f9;
+            text-align: left;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background-color: #eef5f9;
+        }
+        .feature {
+            text-align: center;
+            width: 30%;
+        }
+        .feature img {
+            width: 50px;
+            height: 50px;
+        }
+        .footer {
+            background-color: #41B3A3;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .footer .contact {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px 0;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-
+    <header>
+        <div class="header-container">
+            <div class="logo"></div>
+            <nav class="nav">
+                <a href="#">Insérer un arbre</a>
+                <a href="#">Carte/tableau</a>
+                <a href="#">Prédictions</a>
+            </nav>
+            <button class="btn-login">Se connecter</button>
+        </div>
+    </header>
+    <main class="main">
+        <h1>St. Quentin TreeBrowser</h1>
+        <h2>And a subheading describing your site, too</h2>
+        <button>Visualiser</button>
+        <img src="path/to/your/image.png" alt="Main image placeholder">
+    </main>
+    <section class="project-description">
+        <h2>Descriptif du projet</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </section>
+    <section class="features">
+        <div class="feature">
+            <img src="path/to/icon1.png" alt="Ajouter un arbre">
+            <p>Ajouter un arbre</p>
+        </div>
+        <div class="feature">
+            <img src="path/to/icon2.png" alt="Visualiser les données">
+            <p>Visualiser les données</p>
+        </div>
+        <div class="feature">
+            <img src="path/to/icon3.png" alt="Prédictions">
+            <p>Prédictions</p>
+        </div>
+    </section>
+    <footer class="footer">
+        <p>St. Quentin TreeBrowser</p>
+        <div class="contact">
+            <a href="mailto:mathis.meunier@isen-ouest.yncrea.fr">mathis.meunier@isen-ouest.yncrea.fr</a>
+            <a href="mailto:killian.guichet@isen-ouest.yncrea.fr">killian.guichet@isen-ouest.yncrea.fr</a>
+            <a href="mailto:esteban.fanjul@isen-ouest.yncrea.fr">esteban.fanjul@isen-ouest.yncrea.fr</a>
+        </div>
+    </footer>
 </body>
 </html>
