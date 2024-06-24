@@ -1,3 +1,9 @@
+document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("user")) {
+        localStorage.removeItem("user");
+    }
+});
+
 document.querySelector(".login-form").addEventListener("submit", (e) => {
     e.preventDefault();
     let formData = new FormData(e.target);
