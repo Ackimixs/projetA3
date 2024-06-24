@@ -9,13 +9,13 @@ require_once('database.php');
 
 class User
 {
-    static function auth($email, $mdp)
+    static function auth($username, $mdp)
     {
         try {
             $db = database::connectionDB();
-            $request = 'SELECT * FROM "user" WHERE "user".email = :email';
+            $request = 'SELECT * FROM "user" WHERE "user".username = :username';
             $stmt = $db->prepare($request);
-            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':username', $username);
             $stmt->execute();
             $data = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $exception) {
@@ -25,45 +25,12 @@ class User
         return ($data && password_verify($mdp, $data['password']));
     }
 
-    static function getUserByEmail($email)
-    {
-        try {
-            $db = $db = database::connectionDB();
-            $request = 'SELECT * FROM "user"
-                        WHERE "user".email = :email';
-            $stmt = $db->prepare($request);
-            $stmt->bindParam(':email', $email);
-            $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-        } catch (PDOException $exception) {
-            error_log("[" . basename(__FILE__) . "][" . __LINE__ . "] " . 'Request error: ' . $exception->getMessage());
-            return false;
-        }
-    }
-
-    static function getUserByUsername($username)
+    static function addUser($username, $password)
     {
         try {
             $db = database::connectionDB();
-            $request = 'SELECT * FROM "user"
-                        WHERE "user".username = :username';
+            $request = 'INSERT INTO "user" (password, username) VALUES (:password, :username)';
             $stmt = $db->prepare($request);
-            $stmt->bindParam(':username', $username);
-            $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-        } catch (PDOException $exception) {
-            error_log("[" . basename(__FILE__) . "][" . __LINE__ . "] " . 'Request error: ' . $exception->getMessage());
-            return false;
-        }
-    }
-
-    static function addUser($username, $email, $password)
-    {
-        try {
-            $db = database::connectionDB();
-            $request = 'INSERT INTO "user" (email, password, username) VALUES (:email, :password, :username)';
-            $stmt = $db->prepare($request);
-            $stmt->bindParam(':email', $email);
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
             $stmt->bindParam(':password', $password_hash);
             $stmt->bindParam(':username', $username);
@@ -75,26 +42,11 @@ class User
         }
     }
 
-    static function getUserWithoutPassword($email)
+    static function getUserWithoutPassword($username)
     {
         try {
             $db = database::connectionDB();
-            $request = 'SELECT id, email, username FROM "user" WHERE email = :email';
-            $stmt = $db->prepare($request);
-            $stmt->bindParam(':email', $email);
-            $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-        } catch (PDOException $exception) {
-            error_log("[" . basename(__FILE__) . "][" . __LINE__ . "] " . 'Request error: ' . $exception->getMessage());
-            return false;
-        }
-    }
-
-    static function getUserEmailWithUsername($username)
-    {
-        try {
-            $db = database::connectionDB();
-            $request = 'SELECT email FROM "user" WHERE username = :username';
+            $request = 'SELECT id, username FROM "user" WHERE username = :username';
             $stmt = $db->prepare($request);
             $stmt->bindParam(':username', $username);
             $stmt->execute();

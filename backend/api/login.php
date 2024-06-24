@@ -13,16 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 if (isset($_POST['username'])) {
-    $email = User::getUserEmailWithUsername($_POST['username'])['email'];
-} else if (isset($_POST['email'])) {
-    $email = $_POST['email'];
+    if (User::auth($_POST['username'], $_POST['password'])) {
+        echo json_encode(array('status' => 'success', 'data' => User::getUserWithoutPassword($_POST['username'])));
+        exit();
+    }
 } else {
     echo json_encode(array('error' => 'Missing parameters', 'status' => 'error'));
-    exit();
-}
-
-if (User::auth($email, $_POST['password'])) {
-    echo json_encode(array('status' => 'success', 'data' => User::getUserWithoutPassword($email)));
     exit();
 }
 

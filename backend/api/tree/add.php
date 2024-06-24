@@ -8,24 +8,15 @@ use database\Tree;
 
 require_once '../../database/Tree.php';
 
-/*
- * haut_tronc
- * haut_tot
- * tronc_diam
- * prec_estim
- * clc_nbr_diag
- * age_estim
- * remarquable
- * longitude
- * latitude
- *
- * id_etat_arbre
- * id_pied
- * id_port
- * id_state_dev
- * id_uesr
- * */
-
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     echo json_encode(array('status' => 'success', 'data' => Tree::listPied()));
 }
+
+if (!isset($_POST['haut_tronc']) || !isset($_POST['haut_tot']) || !isset($_POST['tronc_diam']) || !isset($_POST['prec_estim']) || !isset($_POST['clc_nbr_diag']) || !isset($_POST['remarquable']) || !isset($_POST['longitude']) || !isset($_POST['latitude']) || !isset($_POST['id_etat_arbre']) || !isset($_POST['id_pied']) || !isset($_POST['id_port']) || !isset($_POST['id_state_dev']) || !isset($_POST['id_user'])) {
+    echo json_encode(array('status' => 'error', 'message' => 'Missing parameters'));
+    exit();
+}
+
+$data = Tree::createArbre($_POST['haut_tronc'], $_POST['haut_tot'], $_POST['tronc_diam'], $_POST['prec_estim'], $_POST['clc_nbr_diag'], $_POST['remarquable'], $_POST['longitude'], $_POST['latitude'], $_POST['id_etat_arbre'], $_POST['id_pied'], $_POST['id_port'], $_POST['id_state_dev'], $_POST['id_user']);
+
+echo json_encode(array('status' => 'success', 'data' => $data));

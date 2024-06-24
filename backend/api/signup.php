@@ -12,24 +12,19 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
-if (!isset($_POST['username']) || !isset($_POST['email']) || !isset($_POST['password'])) {
+if (!isset($_POST['username']) || !isset($_POST['password'])) {
     echo json_encode(array('error' => 'Missing parameters', 'status' => 'error'));
     exit();
 }
 
-if (User::getUserByEmail($_POST['email'])) {
-    echo json_encode(array('error' => 'Email already exists', 'status' => 'error'));
-    exit();
-}
-
-if (User::getUserByUsername($_POST['username'])) {
+if (User::getUserWithoutPassword($_POST['username'])) {
     echo json_encode(array('error' => 'Username already exists', 'status' => 'error'));
     exit();
 }
 
-if (User::addUser($_POST['username'], $_POST['email'], $_POST['password'])) {
+if (User::addUser($_POST['username'], $_POST['password'])) {
 
-    echo json_encode(array('status' => 'success', 'data' => User::getUserWithoutPassword($_POST['email'])));
+    echo json_encode(array('status' => 'success', 'data' => User::getUserWithoutPassword($_POST['username'])));
 
     exit();
 }
