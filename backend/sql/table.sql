@@ -15,9 +15,9 @@ DROP TABLE IF EXISTS public.stade_dev CASCADE;
 ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS public.User(
                             id         SERIAL NOT NULL ,
-                            email      VARCHAR (50) NOT NULL ,
+                            email      VARCHAR (150) NOT NULL ,
                             password   VARCHAR (255) NOT NULL ,
-                            username   VARCHAR (50) NOT NULL  ,
+                            username   VARCHAR (150) NOT NULL  ,
                             CONSTRAINT User_PK PRIMARY KEY (id)
 )WITHOUT OIDS;
 
