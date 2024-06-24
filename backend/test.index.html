@@ -3,26 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script>
-        document.querySelector("#form").addEventListener("submit", (e) => {
-            e.preventDefault();
-            let formData = new FormData(e.target);
-            console.log(formData);
-            fetch("api/auth.php", {
-                method: "POST",
-                body: formData
-            }).then(response => response.text())
-                .then(data => {
-                    console.log(data);
-                });
-        });
-    </script>
+    <script src="script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
-    <form method="post" id="form">
-        <input type="text" name="name" placeholder="Name">
-        <input type="text" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Password">
+    <form method="post" id="login">
+        <label>
+            <input type="text" name="username" placeholder="Username">
+        </label>
+        <label>
+            <input type="email" name="email" placeholder="Email">
+        </label>
+        <label>
+            <input type="password" name="password" placeholder="Password">
+        </label>
+        <input type="submit" value="Submit">
+    </form>
+    <form method="post" id="signup">
+        <label>
+            <input type="text" name="username" placeholder="Username">
+        </label>
+        <label>
+            <input type="email" name="email" placeholder="Email">
+        </label>
+        <label>
+            <input type="password" name="password" placeholder="Password">
+        </label>
         <input type="submit" value="Submit">
     </form>
 </body>
