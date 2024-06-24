@@ -11,5 +11,8 @@ require_once '../database/Tree.php';
 if (isset($_GET['id'])) {
     echo json_encode(array('status' => 'success', 'data' => Tree::getTreeById($_GET['id'])));
 } else {
-    echo json_encode(array('status' => 'success', 'data' => Tree::getTrees()));
+    $offset = isset($_GET['offset']) ? $_GET['offset'] : 0;
+    $limit = isset($_GET['limit']) ? $_GET['limit'] : 10;
+
+    echo json_encode(array('status' => 'success', 'data' => Tree::getTrees($limit, $offset)));
 }

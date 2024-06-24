@@ -75,7 +75,7 @@ CREATE TABLE public.Tree(
                             longitude             FLOAT8  NOT NULL ,
                             latitude              FLOAT8  NOT NULL ,
                             risque_deracinement   BOOL   ,
-                            cluster               INT   ,
+                            nom                   VARCHAR (255) NOT NULL ,
                             id_etat_arbre         INT  NOT NULL ,
                             id_pied               INT  NOT NULL ,
                             id_port               INT  NOT NULL ,

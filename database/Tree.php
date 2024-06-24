@@ -9,12 +9,21 @@ require_once('database.php');
 
 class Tree
 {
-    static function getTrees()
+    static function getTrees($limit = 10, $offset = 0)
     {
         try {
             $db = database::connectionDB();
-            $request = 'SELECT * FROM "tree"';
+            $request = 'SELECT t.id, t.haut_tronc, t.haut_tot, t.tronc_diam, t.prec_estim, t.clc_nbr_diag, t.age_estim, t.remarquable, t.longitude, t.latitude, t.risque_deracinement, t.nom, ea.value as etat_arbre, p.value as pied, p2.value as port, sd.value as stade_dev, u.username FROM tree t
+                          LEFT JOIN public.etat_arbre ea on ea.id = t.id_etat_arbre
+                          LEFT JOIN public.pied p on p.id = t.id_pied
+                          LEFT JOIN public.port p2 on p2.id = t.id_port
+                          LEFT JOIN public.stade_dev sd on sd.id = t.id_stade_dev
+                          LEFT JOIN public."user" u on u.id = t.id_user
+                        ORDER BY t.id
+                        LIMIT :limit OFFSET :offset;';
             $stmt = $db->prepare($request);
+            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $exception) {
@@ -83,26 +92,11 @@ class Tree
         }
     }
 
-    static function updateCluster($id, $cluster) {
-        try {
-            $db = database::connectionDB();
-            $request = 'UPDATE "tree" SET cluster = :cluster WHERE id = :id';
-            $stmt = $db->prepare($request);
-            $stmt->bindParam(':id', $id);
-            $stmt->bindParam(':cluster', $cluster);
-            $stmt->execute();
-            return true;
-        } catch (PDOException $exception) {
-            error_log("[" . basename(__FILE__) . "][" . __LINE__ . "] " . 'Request error: ' . $exception->getMessage());
-            return false;
-        }
-    }
-
-    static function createArbre($haut_tronc, $haut_tot, $tronc_diam, $prec_estim, $clc_nbr_diag, $remarquable, $longitude, $latitude, $id_etat_arbre, $id_pied, $id_port, $id_stade_dev, $id_user)
+    static function createArbre($haut_tronc, $haut_tot, $tronc_diam, $prec_estim, $clc_nbr_diag, $remarquable, $longitude, $latitude, $nom, $id_etat_arbre, $id_pied, $id_port, $id_stade_dev, $id_user)
     {
         try {
             $db = database::connectionDB();
-            $request = 'INSERT INTO "tree" (haut_tronc, haut_tot, tronc_diam, prec_estim, clc_nbr_diag, remarquable, longitude, latitude, id_etat_arbre, id_pied, id_port, id_stade_dev, id_user) VALUES (:haut_tronc, :haut_tot, :tronc_diam, :prec_estim, :clc_nbr_diag, :remarquable, :longitude, :latitude, :id_etat_arbre, :id_pied, :id_port, :id_stade_dev, :id_user) RETURNING *';
+            $request = 'INSERT INTO "tree" (haut_tronc, haut_tot, tronc_diam, prec_estim, clc_nbr_diag, remarquable, longitude, latitude, nom, id_etat_arbre, id_pied, id_port, id_stade_dev, id_user) VALUES (:haut_tronc, :haut_tot, :tronc_diam, :prec_estim, :clc_nbr_diag, :remarquable, :longitude, :latitude, :nom, :id_etat_arbre, :id_pied, :id_port, :id_stade_dev, :id_user) RETURNING *';
             $stmt = $db->prepare($request);
             $stmt->bindParam(':haut_tronc', $haut_tronc);
             $stmt->bindParam(':haut_tot', $haut_tot);
@@ -112,6 +106,7 @@ class Tree
             $stmt->bindParam(':remarquable', $remarquable);
             $stmt->bindParam(':longitude', $longitude);
             $stmt->bindParam(':latitude', $latitude);
+            $stmt->bindParam(':nom', $nom);
             $stmt->bindParam(':id_etat_arbre', $id_etat_arbre);
             $stmt->bindParam(':id_pied', $id_pied);
             $stmt->bindParam(':id_port', $id_port);
