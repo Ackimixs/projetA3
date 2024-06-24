@@ -87,17 +87,22 @@ def main():
             with open(file, 'r') as json_file:
                 json_data = json.load(json_file)
 
-                best = 0
-                for i in range(nb_clusters):
+                result = []
 
-                    if distance_with_centroid(json_data, data[i]) < distance_with_centroid(json_data, data[best]):
-                        best = i
+                for i in range(len(json_data)):
+                    best = 0
+                    for i in range(nb_clusters):
 
-                to_save = {"cluster": best, "centroid": data[best].tolist(),
-                           "distance": distance_with_centroid(json_data, data[best]), "algo": algo,
-                           "nb_clusters": nb_clusters}
+                        if distance_with_centroid(json_data, data[i]) < distance_with_centroid(json_data, data[best]):
+                            best = i
 
-                json.dump(to_save, open(output_file, "w"))
+                    to_save = {"cluster": best, "centroid": data[best].tolist(),
+                               "distance": distance_with_centroid(json_data, data[best]), "algo": algo,
+                               "nb_clusters": nb_clusters}
+
+                    result.append(to_save)
+
+                json.dump(result, open(output_file, "w"))
 
 
 if __name__ == "__main__":
