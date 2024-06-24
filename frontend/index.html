@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>St. Quentin TreeBrowser</title>
-    <link href="file.css" rel="stylesheet">
-</head>
+    <link href="index.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" /></head>
 <body>
     <header>
         <div class="header-container">
@@ -15,34 +15,40 @@
             
             <nav class="nav">
                 <a href="#">Insérer un arbre</a>
-                <a href="#">Carte/tableau</a>
+                <a href="#">Carte / Tableau</a>
                 <a href="#">Prédictions</a>
             </nav>
-            <button class="btn-login">Se connecter</button>
+            <button class="btn-login"><span class="material-symbols-outlined">
+                person
+                </span></button>
         </div>
     </header>
     <main class="main">
         <h1>St. Quentin TreeBrowser</h1>
-        <h2>And a subheading describing your site, too</h2>
-        <button>Visualiser</button>
-        <img src="path/to/your/image.png" alt="Main image placeholder">
+        <h2>Le patrimoine arboré de Saint Quentin, en un seul endroit.</h2>
+        <button class="btn-visual">Visualiser</button>
+        <br>
+        <img src="/frontend/images/arbre-photorealiste-branches-tronc-exterieur-dans-nature.jpg" alt="Main image placeholder">
     </main>
     <section class="project-description">
         <h2>Descriptif du projet</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p class="desc_proj">Projet de fin de troisième année, axé en dévelopement WEB. La recette réalisée offre au client un site ergonomique et aéré qui exploite les données du patrimoine arboré de la commune de Saint Quentin, en France. Il est possible de consulter via des cartes / tableaux les données à ce sujet. Il est également possible d'insérer une nouvelle donnée dans la base, et qu'elle apparaisse ensuite sur les différents outils de visualisation. Enfin, il est possible de prédire certains caractéristiques des arbres, tel que l'âge, la nécessité de déraciner ce dernier, etc...</p>
     </section>
     <section class="features">
         <div class="feature">
-            <img src="path/to/icon1.png" alt="Ajouter un arbre">
-            <p>Ajouter un arbre</p>
+            <img src="/frontend/images/icon1.png" alt="Ajouter un arbre">
+            <br>
+            <button class="btn_feature">Ajouter un arbre</button>
         </div>
         <div class="feature">
-            <img src="path/to/icon2.png" alt="Visualiser les données">
-            <p>Visualiser les données</p>
+            <img src="/frontend/images/icon2.png" alt="Visualiser les données">
+            <br>
+            <button class="btn_feature">Visualiser les données</button>
         </div>
         <div class="feature">
-            <img src="path/to/icon3.png" alt="Prédictions">
-            <p>Prédictions</p>
+            <img src="/frontend/images/icon3.png" alt="Prédictions">
+            <br>
+            <button class="btn_feature">Prédictions</button>
         </div>
     </section>
     <footer class="footer">
