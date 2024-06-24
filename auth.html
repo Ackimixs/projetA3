@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de connexion</title>
+    <link rel="stylesheet" href="style/auth.css">
+    <script src="script/auth.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h3>Page de connexion</h3>
+        </div>
+    </header>
+    <main>
+        <div class="login-container">
+            <img src="/images/Logo site web.png" alt="Logo St. Quentin TreeBrowser" class="logo">
+            <h2>St. Quentin TreeBrowser</h2>
+            <form action="#" class="login-form">
+                <label for="username">Nom d'utilisateur :</label>
+                <input type="text" id="username" name="username" placeholder="username">
+
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password" placeholder="password">
+
+                <p id="error" hidden></p>
+                <button type="submit" class="btn btn-login">Me connecter</button>
+                <button type="submit" class="btn btn-signup" hidden>M'inscrire</button>
+            </form>
+            <p class="no_account">Vous n'avez pas encore de compte ?</p>
+            <p class="have_account" hidden>Vous avez déjà un compte ?</p>
+            <button class="btn btn-to-signup">Créer un compte</button>
+            <button class="btn btn-to-login" hidden>Se connecter</button>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <h3>St. Quentin TreeBrowser</h3>
+            <div class="contact">
+                <a href="mailto:mathis.meunier@isen-ouest.yncrea.fr">mathis.meunier@isen-ouest.yncrea.fr</a>
+                <a href="mailto:killian.guichet@isen-ouest.yncrea.fr">killian.guichet@isen-ouest.yncrea.fr</a>
+                <a href="mailto:esteban.fanjul@isen-ouest.yncrea.fr">esteban.fanjul@isen-ouest.yncrea.fr</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
