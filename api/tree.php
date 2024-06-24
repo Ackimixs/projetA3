@@ -13,6 +13,8 @@ if (isset($_GET['id'])) {
 } else {
     $offset = isset($_GET['offset']) ? $_GET['offset'] : 0;
     $limit = isset($_GET['limit']) ? $_GET['limit'] : 10;
+    $sort = isset($_GET['sort']) ? $_GET['sort'] : 'id';
+    $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
 
-    echo json_encode(array('status' => 'success', 'data' => Tree::getTrees($limit, $offset)));
+    echo json_encode(array('status' => 'success', 'data' => Tree::getTrees($limit, $offset, $sort, $order)));
 }

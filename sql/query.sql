@@ -4,5 +4,5 @@ SELECT t.id, t.haut_tronc, t.haut_tot, t.tronc_diam, t.prec_estim, t.clc_nbr_dia
   LEFT JOIN public.port p2 on p2.id = t.id_port
   LEFT JOIN public.stade_dev sd on sd.id = t.id_stade_dev
   LEFT JOIN public."user" u on u.id = t.id_user
-ORDER BY t.id
+ORDER BY id
 LIMIT :limit OFFSET :offset;
