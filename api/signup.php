@@ -18,7 +18,7 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
 }
 
 if (User::getUserWithoutPassword($_POST['username'])) {
-    echo json_encode(array('error' => 'Username already exists', 'status' => 'error'));
+    echo json_encode(array('error' => "Le nom d'utilisateur est deja utilisé", 'status' => 'error'));
     exit();
 }
 
@@ -29,4 +29,4 @@ if (User::addUser($_POST['username'], $_POST['password'])) {
     exit();
 }
 
-echo json_encode(array('error' => 'An error occurred', 'status' => 'error'));
+echo json_encode(array('error' => 'Une erreur est survenue', 'status' => 'error'));
