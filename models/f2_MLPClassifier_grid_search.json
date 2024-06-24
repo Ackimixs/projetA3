@@ -4,23 +4,22 @@
         "haut_tot",
         "tronc_diam",
         "fk_prec_estim",
-        "clc_nbr_diag",
-        "fk_situation"
+        "clc_nbr_diag"
     ],
     "Y": "age_estim",
     "score": {
-        "train": 0.6284798380293571,
-        "test": 0.5917678812415654,
-        "cross_val": 0.5726358856134509,
-        "f1": 0.5884499681342322,
-        "recall": 0.5917678812415654,
-        "time": 194.83015751838684
+        "train": 0.5638603003205669,
+        "test": 0.5910931174089069,
+        "cross_val": 0.5555937413281533,
+        "f1": 0.5853572755984604,
+        "recall": 0.5910931174089069,
+        "time": 187.47282528877258
     },
     "best_params": {
         "hidden_layer_sizes": [
             100
         ],
-        "learning_rate": "adaptive",
+        "learning_rate": "constant",
         "max_iter": 2000,
         "solver": "adam"
     },
@@ -35,7 +34,7 @@
         "hidden_layer_sizes": [
             100
         ],
-        "learning_rate": "adaptive",
+        "learning_rate": "constant",
         "learning_rate_init": 0.001,
         "max_fun": 15000,
         "max_iter": 2000,

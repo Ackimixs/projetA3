@@ -4,27 +4,26 @@
         "haut_tot",
         "tronc_diam",
         "fk_prec_estim",
-        "clc_nbr_diag",
-        "fk_situation"
+        "clc_nbr_diag"
     ],
     "Y": "age_estim",
     "score": {
-        "train": 0.3910916146448456,
-        "test": 0.3900134952766532,
-        "cross_val": 0.40863335254480904,
-        "f1": 0.34004360340672996,
-        "recall": 0.3900134952766532,
-        "time": 70.46386742591858
+        "train": 0.37624430571958833,
+        "test": 0.38866396761133604,
+        "cross_val": 0.39614674721255716,
+        "f1": 0.27913805002403536,
+        "recall": 0.38866396761133604,
+        "time": 58.087451696395874
     },
     "best_params": {
-        "alpha": 0.01,
-        "loss": "log_loss",
+        "alpha": 0.001,
+        "loss": "hinge",
         "max_iter": 1000,
         "penalty": "l1",
-        "tol": 0.0001
+        "tol": 0.001
     },
     "params": {
-        "alpha": 0.01,
+        "alpha": 0.001,
         "average": false,
         "class_weight": null,
         "early_stopping": false,
@@ -33,7 +32,7 @@
         "fit_intercept": true,
         "l1_ratio": 0.15,
         "learning_rate": "optimal",
-        "loss": "log_loss",
+        "loss": "hinge",
         "max_iter": 1000,
         "n_iter_no_change": 5,
         "n_jobs": null,
@@ -41,7 +40,7 @@
         "power_t": 0.5,
         "random_state": null,
         "shuffle": true,
-        "tol": 0.0001,
+        "tol": 0.001,
         "validation_fraction": 0.1,
         "verbose": 0,
         "warm_start": false
