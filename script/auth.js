@@ -1,3 +1,5 @@
+let hasError = false;
+
 document.addEventListener("DOMContentLoaded", () => {
     if (localStorage.getItem("user")) {
         localStorage.removeItem("user");
@@ -7,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.querySelector(".login-form").addEventListener("submit", (e) => {
     e.preventDefault();
     let formData = new FormData(e.target);
-    fetch(`http://localhost:8080/api/${document.querySelector('.btn-login').hidden === true ? 'signup' : 'login'}.php`, {
+    fetch(`/api/${document.querySelector('.btn-login').hidden === true ? 'signup' : 'login'}.php`, {
         method: "POST",
         body: formData
     }).then(response => response.json())
@@ -15,7 +17,13 @@ document.querySelector(".login-form").addEventListener("submit", (e) => {
             console.log(data);
             if (data.status === "success") {
                 localStorage.setItem("user", JSON.stringify(data.data));
-                window.location.href = "http://localhost:8080/";
+                window.location.href = "/";
+            }
+            else {
+                let err = document.querySelector("#error");
+                err.innerText = data.error;
+                err.hidden = false;
+                hasError = true;
             }
         });
 });
@@ -40,4 +48,18 @@ document.querySelector('.btn-to-login').addEventListener('click', () => {
 
     document.querySelector('.no_account').hidden = false;
     document.querySelector('.have_account').hidden = true;
+})
+
+document.querySelector('#password').addEventListener('click', () => {
+    if (hasError) {
+        document.querySelector("#error").hidden = true;
+        hasError = false;
+    }
+});
+
+document.querySelector('#username').addEventListener('click', () => {
+    if (hasError) {
+        document.querySelector("#error").hidden = true;
+        hasError = false;
+    }
 })

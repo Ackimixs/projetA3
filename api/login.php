@@ -16,10 +16,11 @@ if (isset($_POST['username'])) {
     if (User::auth($_POST['username'], $_POST['password'])) {
         echo json_encode(array('status' => 'success', 'data' => User::getUserWithoutPassword($_POST['username'])));
         exit();
+    } else {
+        echo json_encode(array('error' => "Nom d'utilisateur ou mot de passe incorect", 'status' => 'error'));
+        exit();
     }
 } else {
     echo json_encode(array('error' => 'Missing parameters', 'status' => 'error'));
     exit();
 }
-
-echo json_encode(array('error' => 'An error occurred', 'status' => 'error'));
