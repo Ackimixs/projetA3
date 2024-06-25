@@ -96,6 +96,15 @@ header {
 }
 
 
+
+
+
+
+
+
+
+
+
 #simple-visualisation{
     margin-top: 50px;
     margin-bottom: 50px;
@@ -103,6 +112,9 @@ header {
     width: 90%;
 }
 
+#simple-tab{
+    display: none;
+}
 .map-tab-container{
     display: flex;
     flex-direction: row;
