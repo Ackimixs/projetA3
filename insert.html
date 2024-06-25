@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Quentin TreeBrowser</title>
+    <link href="style/insert.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" /></head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="container_logo">
+                <img class= "logo" src="/images/Logo site web.png" alt="Main image placeholder">
+            </div>
+            
+            <nav class="nav">
+                <a href="#">Insérer un arbre</a>
+                <a href="#">Carte / Tableau</a>
+                <a href="#">Prédictions</a>
+            </nav>
+            <a href="auth.html" class="btn-login"><span class="material-symbols-outlined">
+                person
+                </span>
+            </a>
+        </div>
+    </header>
+
+    <div class="form-container">
+        <form action="#">
+            <h3>Informations générales :</h3>
+            <br>
+            <p></p>
+            <div class="card">
+                <label for="espece_arbre">Espèce de l'arbre :</label>
+                <input type="text" id="espece_arbre" name="espece_arbre">
+            </div>
+            <div class="card">
+                <label for="etat_arbre">Quelle est l'état de l'arbre ?</label>
+                <select id="etat_arbre" name="etat_arbre">
+                    <option value="oui">Oui</option>
+                    <option value="non">Non</option>
+                </select>
+            </div>
+            <div class="card">
+                <label for="stade_dev">Quelle est son stade de développement ?</label>
+                <select id="stade_dev" name="stade_dev">
+                    <option value="oui">Oui</option>
+                    <option value="non">Non</option>
+                </select>
+            </div>
+            <h3>Dimensions :</h3>
+            <br>
+            <p></p>
+            <div class="card">
+                <label for="taille_arbre">Hauteur de l'arbre (en mètres) :</label>
+                <input type="number" id="taille_arbre" name="taille_arbre" min="0" max="300">
+            </div>
+            <div class="card">
+                <label for="taille_tronc">Hauteur du tronc de l'arbre (en mètres) :</label>
+                <input type="number" id="taille_tronc" name="taille_tronc" min="0" max="20">
+            </div>
+            <div class="card">
+                <label for="diam_tronc">Diamètre du tronc (en centimètres) :</label>
+                <input type="number" id="diam_tronc" name="diam_tronc" min="0" max="500">
+            </div>
+            <h3>Autres :</h3>
+            <br>
+            <p></p>
+            <div class="card">
+                <label for="remarquable">Cette arbre est-il remarquable ?</label>
+                <input type="text" id="diam_tronc" name="diam_tronc">
+            </div>
+            <div class="card">
+                <label for="latitude">Quelle est la latitude de l'arbre ?</label>
+                <input type="text" id="latitude" name="latitude">
+            </div>
+            <div class="card">
+                <label for="longitude">Quelle est la longitude de l'arbre ?</label>
+                <input type="text" id="longitude" name="longitude">
+            </div>
+            <div class="card">
+                <label for="elagage">Quelle est son type d'élagage ?</label>
+                <select id="elagage" name="elagage">
+                    <option value="oui">Oui</option>
+                    <option value="non">Non</option>
+                </select>
+            </div>
+            <div class="card">
+                <label for="type_sol">Sur quel sol pousse-t-il ?</label>
+                <select id="type_sol" name="type_sol">
+                    <option value="oui">Oui</option>
+                    <option value="non">Non</option>
+                </select>
+            </div>
+
+
+
+            <button type="submit" class="btn-submit">Soumettre</button>
+        </form>
+    </div>
+
+
+
+
+    <br>
+    <p></p>
+    <br>
+    <p></p>
+    <br>
+    <p></p>
+    <br>
+    <p></p>
+
+
+
+    <footer class="footer">
+        <p>St. Quentin TreeBrowser</p>
+        <div class="contact">
+            <a href="mailto:mathis.meunier@isen-ouest.yncrea.fr">mathis.meunier@isen-ouest.yncrea.fr</a>
+            <a href="mailto:killian.guichet@isen-ouest.yncrea.fr">killian.guichet@isen-ouest.yncrea.fr</a>
+            <a href="mailto:esteban.fanjul@isen-ouest.yncrea.fr">esteban.fanjul@isen-ouest.yncrea.fr</a>
+        </div>
+    </footer>
