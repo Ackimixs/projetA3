@@ -20,7 +20,7 @@ document.querySelector(".login-form").addEventListener("submit", (e) => {
                 window.location.href = new URL(window.location.href).searchParams.get("redirect") ?? "/index.html";
             }
             else {
-                let err = document.querySelector("#error");
+                let err = document.querySelector("#error-message");
                 err.innerText = data.error;
                 err.hidden = false;
                 hasError = true;
@@ -52,14 +52,14 @@ document.querySelector('.btn-to-login').addEventListener('click', () => {
 
 document.querySelector('#password').addEventListener('click', () => {
     if (hasError) {
-        document.querySelector("#error").hidden = true;
+        document.querySelector("#error-message").hidden = true;
         hasError = false;
     }
 });
 
 document.querySelector('#username').addEventListener('click', () => {
     if (hasError) {
-        document.querySelector("#error").hidden = true;
+        document.querySelector("#error-message").hidden = true;
         hasError = false;
     }
 })

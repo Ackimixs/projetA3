@@ -1,10 +1,14 @@
 let hasError = false;
-
+let hasSuccess = false;
 document.querySelectorAll("select").forEach(select => {
     select.addEventListener("click", () => {
         if (hasError) {
-            document.querySelector("#error").hidden = true;
+            document.querySelector("#error-message").hidden = true;
             hasError = false;
+        }
+        if (hasSuccess) {
+            document.querySelector("#success-message").hidden = true;
+            hasSuccess = false;
         }
     })
 
@@ -40,11 +44,13 @@ document.querySelector("#create-arbre").addEventListener("submit", (e) => {
     }).then(response => response.json())
         .then(data => {
             if (data.status === "success") {
-                window.location.href = "/index.html";
+                document.querySelector("#success-message").innerText = "Arbre ajouté avec succès";
+                document.querySelector("#success-message").hidden = false;
+                hasError = true;
             }
             else {
-                document.querySelector("#error").innerText = data.message;
-                document.querySelector("#error").hidden = false;
+                document.querySelector("#error-message").innerText = data.message;
+                document.querySelector("#error-message").hidden = false;
                 hasError = true;
             }
         });
@@ -53,8 +59,12 @@ document.querySelector("#create-arbre").addEventListener("submit", (e) => {
 document.querySelectorAll("input").forEach(input => {
     input.addEventListener("click", () => {
         if (hasError) {
-            document.querySelector("#error").hidden = true;
+            document.querySelector("#error-message").hidden = true;
             hasError = false;
+        }
+        if (hasSuccess) {
+            document.querySelector("#success-message").hidden = true;
+            hasSuccess = false;
         }
     })
 })

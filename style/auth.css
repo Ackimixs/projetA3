@@ -112,7 +112,7 @@ footer {
     text-decoration: none;
 }
 
-#error {
+#error-message {
     color: red;
     margin-top: 10px;
     font-size: 14px;

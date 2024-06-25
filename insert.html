@@ -32,18 +32,22 @@
     </header>
 
     <div class="error-div">
-        <p id="error" hidden>
+        <p id="error-message" hidden>
         </p>
     </div>
-    <div class="form-container">
-        <form action="#" id="create-arbre">
+    <div class="success-div">
+        <p id="success-message" hidden>
+        </p>
+    </div>
+    <form action="#" id="create-arbre">
+        <div class="card-list">
             <h3>Informations générales :</h3>
             <br>
             <p></p>
             <div class="card">
                 <label for="espece_arbre"><span class="material-symbols-outlined">
-                    nature
-                    </span> Espèce de l'arbre :</label>
+                nature
+                </span> Espèce de l'arbre :</label>
                 <input type="text" id="espece_arbre" name="nom">
             </div>
             <div class="card">
@@ -56,13 +60,16 @@
                 <select id="stade_dev" name="id_stade_dev" data-to-fetch="1">
                 </select>
             </div>
+        </div>
+
+        <div class="card-list">
             <h3>Dimensions :</h3>
             <br>
             <p></p>
             <div class="card">
                 <label for="taille_arbre"><span class="material-symbols-outlined">
-                    height
-                    </span> Hauteur de l'arbre (en mètres) :</label>
+                height
+                </span> Hauteur de l'arbre (en mètres) :</label>
                 <input type="number" id="taille_arbre" name="haut_tot" min="0" max="300">
             </div>
             <div class="card">
@@ -73,6 +80,10 @@
                 <label for="diam_tronc">Diamètre du tronc (en centimètres) :</label>
                 <input type="number" id="diam_tronc" name="tronc_diam" min="0" max="500">
             </div>
+        </div>
+
+
+        <div class="card-list">
             <h3>Autres :</h3>
             <br>
             <p></p>
@@ -85,11 +96,11 @@
             </div>
             <div class="card">
                 <label for="latitude">Quelle est la latitude de l'arbre ?</label>
-                <input type="text" id="latitude" name="latitude">
+                <input type="number" id="latitude" name="latitude">
             </div>
             <div class="card">
                 <label for="longitude">Quelle est la longitude de l'arbre ?</label>
-                <input type="text" id="longitude" name="longitude">
+                <input type="number" id="longitude" name="longitude">
             </div>
             <div class="card">
                 <label for="port">Quelle est son type d'élagage ?</label>
@@ -109,18 +120,11 @@
                 <label for="clc_nbr_diag">Combien de diagnostique</label>
                 <input type="number" id="clc_nbr_diag" name="clc_nbr_diag" min="0" max="50" value="0">
             </div>
+        </div>
 
-            <button type="submit" class="btn-submit">Soumettre</button>
-        </form>
-    </div>
-    <br>
-    <p></p>
-    <br>
-    <p></p>
-    <br>
-    <p></p>
-    <br>
-    <p></p>
+        <button type="submit" class="btn-submit">Soumettre</button>
+    </form>
+
     <footer class="footer">
         <p>St. Quentin TreeBrowser</p>
         <div class="contact">
