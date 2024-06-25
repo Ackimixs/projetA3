@@ -1,7 +1,9 @@
 // Fonction pour déballer les données
-function unpack(rows, key) {
+function unpack(rows, ...key) {
     return rows.map(function(row) {
-        return row[key];
+        return key.map(function(k) {
+            return row[k];
+        }).join(", ");
     });
 }
 
@@ -9,38 +11,25 @@ function unpack(rows, key) {
 fetch("/api/tree.php?all")
     .then(response => response.json())
     .then(rows => {
+        rows = rows.data
+
         let data = [
             {
                 type: "scattermapbox",
-                text: unpack(rows, "Globvalue"),
-                lon: unpack(rows, "Lon"),
-                lat: unpack(rows, "Lat"),
+                text: unpack(rows, "nom", "id", "age_estim", "haut_tot", "tronc_diam", "prec_estim", "clc_nbr_diag", "risque_deracinement", "etat_arbre", "pied", "port", "stade_dev", "username"),
+                lon: unpack(rows, "longitude"),
+                lat: unpack(rows, "latitude"),
                 marker: { color: "blue", size: 4 }
             }
         ];
 
+        console.log(data)
+
         let layout = {
             dragmode: "zoom",
-            mapbox: {
-                style: "white-bg",
-                layers: [
-                    {
-                        sourcetype: "raster",
-                        source: ["https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}"],
-                        below: "traces"
-                    }
-                ],
-                center: { lat: 49.85, lon: 3.30 },
-                zoom: 11
-            },
+            mapbox: { style: "open-street-map", center: { lat: 49.85, lon: 3.30 }, zoom: 11 },
             margin: { r: 10, t: 30, b: 30, l: 10 }
         };
-
-        // let layout = {
-        //     dragmode: "zoom",
-        //     mapbox: { style: "open-street-map", center: { lat: 49.85, lon: 3.30 }, zoom: 11 },
-        //     margin: { r: 10, t: 30, b: 30, l: 10 }
-        // };
 
         Plotly.newPlot("simple-visualisation", data, layout);
     })
@@ -82,7 +71,7 @@ function updateBtn1() {
 
 }
 function updateBtn2() {
-    
+
     if(btn2.value === "select"){
 
     }
@@ -114,8 +103,3 @@ function changemaptab(){
         tab_btn.style.display = 'flex';
     }
 }
-
-
-
-
- 
