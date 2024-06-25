@@ -17,7 +17,7 @@ document.querySelector(".login-form").addEventListener("submit", (e) => {
             console.log(data);
             if (data.status === "success") {
                 localStorage.setItem("user", JSON.stringify(data.data));
-                window.location.href = "/";
+                window.location.href = new URL(window.location.href).searchParams.get("redirect") ?? "/index.html";
             }
             else {
                 let err = document.querySelector("#error");
