@@ -1,0 +1,4 @@
+[submodule "IA"]
+	path = IA
+	url = https://github.com/ackimixs/projetA3
+	branch = IA
