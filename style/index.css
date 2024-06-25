@@ -16,27 +16,45 @@ header {
     padding: 0 20px;
 }
 .logo {
-    width: 50px;
-    height: 50px;
-    background-color: lightgray; /* Placeholder for logo */
+    max-width: 50%;
+    max-height: 50%;
+    
 }
 .nav {
     display: flex;
-    gap: 15px;
-    margin-right: 20px;
-    margin-left: auto;
+    gap: 60px;
+    font-size: 25px;
 }
 .nav a {
     color: white;
     text-decoration: none;
+    padding: 5px;
 }
+.nav a:hover {
+    background-color: #E27D60;
+    border-radius: 12px;
+}
+
 .btn-login {
     background-color: #E27D60;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 20px;
+    margin-right: 20px;
+
+}
+.main h1 {
+    text-align: center;
+    color: #E27D60;
+    font-size: 50px;
+}
+.main h2 {
+    text-align: center;
+    color: #41B3A3;
+    font-size: 30px;
 }
 .main {
     text-align: center;
@@ -44,23 +62,30 @@ header {
 }
 .main img {
     width: 80%;
-    max-width: 800px;
+    max-width: 80%;
     height: auto;
-    border: 5px solid lightgray;
+    border: 5px solid #41B3A3;
+    margin-top: 20px;
 }
 .main button {
     background-color: #41B3A3;
     color: white;
     border: none;
-    padding: 10px 20px;
+    font-size: large;
+    padding: 15px 60px;
     cursor: pointer;
-    margin: 20px 0;
-    border-radius: 5px;
+    margin-bottom: 20px;
+    border-radius: 8px;
 }
 .project-description {
     padding: 20px;
     background-color: #f9f9f9;
     text-align: left;
+}
+.project-description h2 {
+    color: #E27D60;
+    font-size: 40px;
+    text-align: center;
 }
 .features {
     display: flex;
@@ -91,4 +116,27 @@ header {
 .footer a {
     color: white;
     text-decoration: none;
+}
+.btn_feature {
+    background-color: #41B3A3;
+    color: white;
+    border: none;
+    font-size: large;
+    padding: 15px 30px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+.feature img {
+    min-width: 150px;
+    min-height: 150px;
+}
+.desc_proj {
+    padding-left: 80px;
+    padding-right: 80px;
+    background-color: #f9f9f9;
+    text-align: center;
+    /* mettre légerement en bold */
+    font-weight: 500;
+    font-size: large;
 }

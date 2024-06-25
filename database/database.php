@@ -1,11 +1,14 @@
 <?php
 
 namespace database;
+use PDO;
+use PDOException;
+
 extension_loaded('pdo_pgsql') or die('The PDO PostgreSQL extension is not enabled.');
-//require_once('../config.php');
+
 require_once('constants.php');
 
-class Db
+class database
 {
     static $db = null;
 

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- Google Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+    <style>
+        table {
+            border-collapse: collapse;
+            border: 2px solid rgb(140 140 140);
+            font-family: sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        caption {
+            caption-side: bottom;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        thead,
+        tfoot {
+            background-color: rgb(228 240 245);
+        }
+
+        th,
+        td {
+            border: 1px solid rgb(160 160 160);
+            padding: 8px 10px;
+        }
+
+        td:last-of-type {
+            text-align: center;
+        }
+
+        tbody > tr:nth-of-type(even) {
+            background-color: rgb(237 238 242);
+        }
+
+        .button-list {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button-list button {
+            margin: 0 10px;
+            padding: 5px 10px;
+            border: 1px solid rgb(140 140 140);
+            border-radius: 5px;
+            background-color: rgb(228 240 245);
+            cursor: pointer;
+        }
+
+        .button-list p {
+            margin: 0 10px;
+            padding: 5px 10px;
+        }
+
+        th, td {
+            width: 100px; /* Set base width */
+            height: 50px; /* Set base height */
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+    <script src="script/add_tree.js" defer></script>
+</head>
+<body>
+<table class="table-arbres">
+    <thead>
+    <tr>
+        <th data-value="id" scope="col">id</th>
+        <th data-value="haut_tronc" scope="col">Hauteur Tronc</th>
+        <th data-value="haut_tot" scope="col">Hauteur Total</th>
+        <th data-value="tronc_diam" scope="col">Diamètre du tronc</th>
+        <th data-value="prec_estim" scope="col">Precision estimé</th>
+        <th data-value="clc_nbr_diag" scope="col">Nombre de dignostic</th>
+        <th data-value="age_estim" scope="col">Age estim</th>
+        <th data-value="remarquable" scope="col">Remarquable</th>
+        <th data-value="longitude" scope="col">Longitude</th>
+        <th data-value="latitude" scope="col">Latitude</th>
+        <th data-value="risque_deracinement" scope="col">Risque deracinemet</th>
+        <th data-value="nom" scope="col">Nom</th>
+        <th data-value="etat_arbre" scope="col">Etat arbre</th>
+        <th data-value="pied" scope="col">Pied</th>
+        <th data-value="port" scope="col">Port</th>
+        <th data-value="stade_dev" scope="col">stade de developpement</th>
+        <th data-value="username" scope="col">Ajouter par</th>
+    </tr>
+    </thead>
+    <tbody class="body-table-arbre">
+    </tbody>
+</table>
+<div class="button-list">
+    <button id="prev"><</button>
+    <p id="page">0</p>
+    <button id="next">></button>
+</div>
+</body>
+</html>
