@@ -1,29 +1,45 @@
-import psycopg2
-
+import asyncio
+import asyncpg
 from pandas import read_csv
 
-csv_data = read_csv('Data_Arbre.csv')
+async def main():
+    csv_data = read_csv('Data_Arbre.csv', encoding='utf-8')
 
-try:
-    connection = psycopg2.connect(user="tree",
-                                  password="tree",
-                                  host="127.0.0.1",
-                                  port="5432",
-                                  database="tree")
+    try:
+        # Establishing a connection
+        conn = await asyncpg.connect(
+            database="tree",
+            user="tree",
+            password="tree",
+            host="127.0.0.1",
+            port=5432
+        )
 
-    cursor = connection.cursor()
+        # Iterate through each row in the CSV data
+        for i, row in csv_data.iterrows():
+            print(row)
 
-    for i, row in csv_data.iterrows():
+            # Executing the insert statement
+            await conn.execute("""
+                INSERT INTO tree (haut_tronc, haut_tot, tronc_diam, prec_estim, clc_nbr_diag, age_estim, remarquable, 
+                                  longitude, latitude, id_etat_arbre, id_pied, id_port, id_stade_dev, nom) 
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, 
+                        (SELECT id FROM etat_arbre WHERE value = $10), 
+                        (SELECT id FROM pied WHERE value = $11), 
+                        (SELECT id FROM port WHERE value = $12), 
+                        (SELECT id FROM stade_dev WHERE value = $13), $14)
+                """,
+                int(row['haut_tronc']), int(row['haut_tot']), int(row['tronc_diam']), int(row['fk_prec_estim']), int(row['clc_nbr_diag']),
+                int(row['age_estim']), True if row['remarquable'].lower() == "oui" else False, float(row['longitude']), float(row['latitude']),
+                row['fk_arb_etat'].lower(), row['fk_pied'].lower(), row['fk_port'].lower(), row['fk_stadedev'].lower(),
+                row['fk_nomtech'].lower()
+            )
 
-        cursor.execute("INSERT INTO tree (haut_tronc, haut_tot, tronc_diam, prec_estim, clc_nbr_diag, age_estim, "
-                       "remarquable, longitude, latitude, id_etat_arbre, id_pied, id_port, id_stade_dev, nom) VALUES ("
-                       "%s, %s, %s, %s, %s, %s, %s, %s, %s, (SELECT id FROM etat_arbre WHERE value = %s), (SELECT id FROM pied WHERE value = %s), (SELECT id FROM port WHERE value = %s), (SELECT id FROM stade_dev WHERE value = %s), %s)",
-                       (row['haut_tronc'], row['haut_tot'], row['tronc_diam'], row['fk_prec_estim'], row['clc_nbr_diag'], row['age_estim'], '1' if row['remarquable'].lower() == "oui" else '0', row['longitude'], row['latitude'], row['fk_arb_etat'].lower(), row['fk_pied'].lower(), row['fk_port'].lower(), row['fk_stadedev'].lower(), row['fk_nomtech'].lower()))
+        await conn.close()
 
-        connection.commit()
+    except Exception as e:
+        print(e)
 
-    cursor.close()
-
-    connection.close()
-except (Exception, psycopg2.Error) as error:
-    print(error)
+# Run the asyncio event loop with the main coroutine
+if __name__ == '__main__':
+    asyncio.run(main())
