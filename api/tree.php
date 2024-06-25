@@ -4,8 +4,9 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS"); // Allow specific me
 header("Access-Control-Allow-Headers: Content-Type, Authorization"); // Allow specific headers
 
 // Include the required class
-use database\Tree;
-require_once '../database/Tree.php';
+use database\Models\Tree;
+
+require_once '../database/Models/Tree.php';
 
 // Set the Content-Type header for the response
 header('Content-Type: application/json');
@@ -14,10 +15,10 @@ header('Content-Type: application/json');
 if (isset($_GET['id'])) {
     echo json_encode(array('status' => 'success', 'data' => Tree::getTreeById($_GET['id'])));
 } else {
-    $offset = isset($_GET['offset']) ? $_GET['offset'] : 0;
-    $limit = isset($_GET['limit']) ? $_GET['limit'] : 10;
-    $sort = isset($_GET['sort']) ? $_GET['sort'] : 'id';
-    $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
+    $offset = $_GET['offset'] ?? 0;
+    $limit = $_GET['limit'] ?? 10;
+    $sort = $_GET['sort'] ?? 'id';
+    $order = $_GET['order'] ?? 'ASC';
     $all = isset($_GET['all']) && $_GET['all'];
 
     if ($all) {

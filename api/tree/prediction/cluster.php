@@ -4,15 +4,15 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json; charset=UTF-8");
 
-use database\Tree;
+use database\Models\Tree;
 
-require_once '../../../database/Tree.php';
+require_once '../../../database/Models/Tree.php';
 
-$id = isset($_GET['id']) ? $_GET['id'] : null;
+$id = $_GET['id'] ?? null;
 
-$model = isset($_GET['model']) ? $_GET['model'] : 'Kmeans';
+$model = $_GET['model'] ?? 'Kmeans';
 
-$nb_clusters = isset($_GET['nb_clusters']) ? $_GET['nb_clusters'] : 3;
+$nb_clusters = $_GET['nb_clusters'] ?? 3;
 
 if (isset($id)) {
     $tree = Tree::getTreeById($id);
@@ -31,10 +31,10 @@ if (isset($id)) {
         echo json_encode(array('status' => 'error', 'message' => 'Tree not found'));
     }
 } else {
-    $trees = Tree::getTrees();
+    $trees = Tree::getNotNullAgeTrees();
 
     $data = array_map(function($tree) {
-        return array($tree['haut_tronc'], $tree['haut_tot'], $tree['tronc_diam'], $tree['age_estim']);
+        return array($tree['haut_tronc'], $tree['tronc_diam'], $tree['age_estim'], $tree['prec_estim']);
     }, $trees);
 
     file_put_contents('../../../IA/f1.json', json_encode($data));

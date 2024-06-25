@@ -48,12 +48,16 @@
                 <label for="espece_arbre"><span class="material-symbols-outlined">
                 nature
                 </span> Espèce de l'arbre :</label>
-                <input type="text" id="espece_arbre" name="nom">
+                <input type="text" id="espece_arbre" name="nom" list="espece_arbre_list">
+                <datalist id="espece_arbre_list">
+                </datalist>
             </div>
             <div class="card">
                 <label for="etat_arbre">Quelle est l'état de l'arbre ?</label>
                 <select id="etat_arbre" name="id_etat_arbre" data-to-fetch="1">
+<!--                    <option value="other">Autre</option>-->
                 </select>
+<!--                <input type="text" id="etat_arbre_other" name="etat_arbre_other" placeholder="Precisez l'état" hidden>-->
             </div>
             <div class="card">
                 <label for="stade_dev">Quelle est son stade de développement ?</label>

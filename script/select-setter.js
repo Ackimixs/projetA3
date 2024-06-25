@@ -1,21 +1,10 @@
 let hasError = false;
 let hasSuccess = false;
 document.querySelectorAll("select").forEach(select => {
-    select.addEventListener("click", () => {
-        if (hasError) {
-            document.querySelector("#error-message").hidden = true;
-            hasError = false;
-        }
-        if (hasSuccess) {
-            document.querySelector("#success-message").hidden = true;
-            hasSuccess = false;
-        }
-    })
-
     if (select.getAttribute("data-to-fetch") === "1") {
         id = select.id;
 
-        fetch(`/api/tree/type/${id}.php`, {
+        fetch(`/api/${id}/list.php`, {
             method: "GET"
         }).then(response => response.json())
             .then(data => {
@@ -25,7 +14,8 @@ document.querySelectorAll("select").forEach(select => {
                     option.value = item.id;
                     option.innerText = item.value.charAt(0).toUpperCase() + item.value.slice(1);
 
-                    select.appendChild(option);
+                    option.selected = true;
+                    select.insertBefore(option, select.firstChild);
                 });
             })
             .catch(err => {
@@ -33,6 +23,18 @@ document.querySelectorAll("select").forEach(select => {
             });
     }
 })
+
+fetch('/api/name/list.php')
+    .then(response => response.json())
+    .then(data => {
+        data.data.forEach(item => {
+            let option = document.createElement("option");
+            option.value = item.nom;
+            option.innerText = item.nom.charAt(0).toUpperCase() + item.nom.slice(1);
+            option.selected = true;
+            document.querySelector("#espece_arbre_list").appendChild(option);
+        });
+    })
 
 document.querySelector("#create-arbre").addEventListener("submit", (e) => {
     e.preventDefault();
@@ -68,3 +70,27 @@ document.querySelectorAll("input").forEach(input => {
         }
     })
 })
+
+document.querySelectorAll("select").forEach(select => {
+    select.addEventListener("click", () => {
+        if (hasError) {
+            document.querySelector("#error-message").hidden = true;
+            hasError = false;
+        }
+        if (hasSuccess) {
+            document.querySelector("#success-message").hidden = true;
+            hasSuccess = false;
+        }
+    })
+});
+
+/*
+document.querySelectorAll("select").forEach(select => {
+    select.addEventListener("change", () => {
+        if (select.value === "other") {
+            select.nextElementSibling.hidden = false;
+        } else if (select.nextElementSibling.hidden === false) {
+            select.nextElementSibling.hidden = true;
+        }
+    })
+})*/

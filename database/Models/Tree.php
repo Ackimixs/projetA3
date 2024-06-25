@@ -1,11 +1,12 @@
 <?php
 
-namespace database;
+namespace database\Models;
 
+use database\database;
 use PDO;
 use PDOException;
 
-require_once('database.php');
+require_once __DIR__ . '/../database.php';
 
 class Tree
 {
@@ -139,62 +140,10 @@ class Tree
         }
     }
 
-    static function listEtatArbre() {
+    static function getNotNullAgeTrees() {
         try {
             $db = database::connectionDB();
-            $request = 'SELECT * FROM "etat_arbre"';
-            $stmt = $db->prepare($request);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $exception) {
-            error_log("[" . basename(__FILE__) . "][" . __LINE__ . "] " . 'Request error: ' . $exception->getMessage());
-            return false;
-        }
-    }
-
-    static function listPied() {
-        try {
-            $db = database::connectionDB();
-            $request = 'SELECT * FROM "pied"';
-            $stmt = $db->prepare($request);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $exception) {
-            error_log("[" . basename(__FILE__) . "][" . __LINE__ . "] " . 'Request error: ' . $exception->getMessage());
-            return false;
-        }
-    }
-
-    static function listPort() {
-        try {
-            $db = database::connectionDB();
-            $request = 'SELECT * FROM "port"';
-            $stmt = $db->prepare($request);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $exception) {
-            error_log("[" . basename(__FILE__) . "][" . __LINE__ . "] " . 'Request error: ' . $exception->getMessage());
-            return false;
-        }
-    }
-
-    static function listStadeDev() {
-        try {
-            $db = database::connectionDB();
-            $request = 'SELECT * FROM "stade_dev"';
-            $stmt = $db->prepare($request);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $exception) {
-            error_log("[" . basename(__FILE__) . "][" . __LINE__ . "] " . 'Request error: ' . $exception->getMessage());
-            return false;
-        }
-    }
-
-    static function listName() {
-        try {
-            $db = database::connectionDB();
-            $request = 'SELECT t.nom FROM tree t GROUP BY t.nom;';
+            $request = 'SELECT * FROM "tree" WHERE age_estim IS NOT NULL';
             $stmt = $db->prepare($request);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);

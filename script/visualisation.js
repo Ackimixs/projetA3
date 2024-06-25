@@ -3,23 +3,40 @@ function unpack(rows, ...key) {
     return rows.map(function(row) {
         return key.map(function(k) {
             return row[k];
-        }).join(", ");
+        }).join("+");
     });
 }
 
+function unpackColor(rows) {
+    return rows.map(function(row) {
+        return row.cluster === 0 ? "blue" : row.cluster === 1 ? "red" : "green";
+    });
+}
+
+async function getClusters(method = "Kmeans", nb_clusters = 3) {
+    let response = await fetch(`/api/tree/prediction/cluster.php?method=${method}&nb_clusters=${nb_clusters}`);
+    return response.json();
+}
+
+let clustering = true;
+
 // Utilisation de fetch pour récupérer les données JSON
-fetch("/api/tree.php?all")
+fetch("/api/tree.php?all=true")
     .then(response => response.json())
-    .then(rows => {
+    .then(async rows => {
         rows = rows.data
 
         let data = [
             {
                 type: "scattermapbox",
-                text: unpack(rows, "nom", "id", "age_estim", "haut_tot", "tronc_diam", "prec_estim", "clc_nbr_diag", "risque_deracinement", "etat_arbre", "pied", "port", "stade_dev", "username"),
+                text: unpack(rows, "nom"),
                 lon: unpack(rows, "longitude"),
                 lat: unpack(rows, "latitude"),
-                marker: { color: "blue", size: 4 }
+                hoverinfo: unpack(rows, "nom", "haut_tronc", "haut_tot"),
+                marker: {
+                    color: clustering ? unpackColor(await getClusters()) : "blue",
+                    size: 12
+                }
             }
         ];
 

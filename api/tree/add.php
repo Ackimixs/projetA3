@@ -4,9 +4,9 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json; charset=UTF-8");
 
-use database\Tree;
+use database\Models\Tree;
 
-require_once '../../database/Tree.php';
+require_once '../../database/Models/Tree.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
