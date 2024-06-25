@@ -171,4 +171,17 @@ class Tree
             return false;
         }
     }
+
+    static function listName() {
+        try {
+            $db = database::connectionDB();
+            $request = 'SELECT t.nom FROM tree t GROUP BY t.nom;';
+            $stmt = $db->prepare($request);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $exception) {
+            error_log("[" . basename(__FILE__) . "][" . __LINE__ . "] " . 'Request error: ' . $exception->getMessage());
+            return false;
+        }
+    }
 }
