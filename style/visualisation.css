@@ -5,7 +5,7 @@ body {
     
 }
 header {
-    background-color: #41B3A3;
+    background: linear-gradient(45deg, #2aa696, #41B3A3);
     color: white;
     padding: 10px 0;
     text-align: center;
@@ -19,17 +19,24 @@ header {
 .logo {
     max-width: 50%;
     max-height: 50%;
-    background-color: lightgray; /* Placeholder for logo */
+    
 }
 .nav {
     display: flex;
-    gap: 15px;
-    margin-right: 20px;
-    margin-left: auto;
+    gap: 60px;
+    font-size: 25px;
 }
 .nav a {
     color: white;
     text-decoration: none;
+    padding: 5px;
+    transition: background-color 0.3s ease, border-radius 0.3s ease;
+    border-radius: 9px;
+}
+
+.nav a:hover {
+    background-color: #E27D60;
+    border-radius: 9px;
 }
 .btn-login {
     background-color: #E27D60;
@@ -125,8 +132,14 @@ header {
 .choose-container{
 display: flex;
 flex-direction: row;
-margin: 10px;
-margin-left: 6%;
+margin-top: 50px;
+margin-left: 5.5%;
+}
+.title {
+    margin-left: 5.5%;
+    color: #41B3A3;
+    margin-top: 2%;
+    font-size: 1.8rem;
 }
 
 #btn-choise-map {
@@ -135,13 +148,9 @@ margin-left: 6%;
     padding: 10px 25px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px ;
-    
-
-
     background-color: #C38D9E;
     color: white;
     border: none;
-    
     cursor: pointer;
 }
 
