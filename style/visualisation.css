@@ -2,8 +2,15 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    
+
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+/* ---------------------- HEADER ---------------------- */
+
 header {
     background: linear-gradient(45deg, #2aa696, #41B3A3);
     color: white;
@@ -30,6 +37,7 @@ header {
     color: white;
     text-decoration: none;
     padding: 5px;
+<<<<<<< HEAD
     transition: background-color 0.3s ease, border-radius 0.3s ease;
     border-radius: 9px;
 }
@@ -37,59 +45,34 @@ header {
 .nav a:hover {
     background-color: #E27D60;
     border-radius: 9px;
+=======
+>>>>>>> 22820aa0b4f8d4eb66192e29b96acf6497081f49
 }
+.nav a:hover {
+    background-color: #E27D60;
+    border-radius: 12px;
+}
+
 .btn-login {
     background-color: #E27D60;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 20px;
+    margin-right: 20px;
+
 }
-.main {
-    text-align: center;
-    padding: 20px;
-}
-.main img {
-    width: 80%;
-    max-width: 800px;
-    height: auto;
-    border: 5px solid lightgray;
-}
-.main button {
-    background-color: #41B3A3;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin: 20px 0;
-    border-radius: 5px;
-}
-.project-description {
-    padding: 20px;
-    background-color: #f9f9f9;
-    text-align: left;
-}
-.features {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-    background-color: #eef5f9;
-}
-.feature {
-    text-align: center;
-    width: 30%;
-}
-.feature img {
-    width: 50px;
-    height: 50px;
-}
+
+/* ---------------------- FIN HEADER ---------------------- */
+/* ------------------ FOOTER ------------------ */
+
 .footer {
     background-color: #41B3A3;
     color: white;
     text-align: center;
     padding: 10px 0;
-    
 }
 .footer .contact {
     display: flex;
@@ -102,33 +85,34 @@ header {
     text-decoration: none;
 }
 
+/* ---------------------- FIN FOOTER ---------------------- */
+
 /*=======================================================*/
 
-
-
-
-
-
-
-
-
 #simple-visualisation{
-    margin-top: 50px;
-    margin-bottom: 50px;
-    height: 90%;
+    height: 100%;
     width: 90%;
+    padding: 0px;
+    margin: 0px;
 }
 
 #simple-tab{
     display: none;
     margin-top: 2px;
 }
+
+#tab-btn{
+    display: none;
+    margin-top: 2px;
+}
+
 .map-tab-container{
     display: flex;
     flex-direction: column;
     justify-content:center;
     align-items: center;
 }
+
 .choose-container{
 display: flex;
 flex-direction: row;
@@ -148,6 +132,10 @@ margin-left: 5.5%;
     padding: 10px 25px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px ;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 22820aa0b4f8d4eb66192e29b96acf6497081f49
     background-color: #C38D9E;
     color: white;
     border: none;
@@ -216,6 +204,7 @@ tbody {
 
 .button-list {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     margin: 10px;
 }

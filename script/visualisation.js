@@ -1,39 +1,43 @@
-d3.csv(
-	"https://raw.githubusercontent.com/plotly/datasets/master/2015_06_30_precipitation.csv",
-	function(err, rows) {
-		function unpack(rows, key) {
-			return rows.map(function(row) {
-				return row[key];
-			});
-		}
 
-		let data = [
-			{
-				type: "scattermapbox",
-				text: unpack(rows, "Globvalue"),
-				lon: unpack(rows, "Lon"),
-				lat: unpack(rows, "Lat"),
-				marker: { color: "bleue", size: 4 }
-			}
-		];
+        // Fonction pour déballer les données
+        function unpack(rows, key) {
+            return rows.map(function(row) {
+                return row[key];
+            });
+        }
 
-		let layout = {
-			dragmode: "zoom",
-			mapbox: { style: "open-street-map", center: { lat: 38, lon: -90 }, zoom: 3 },
-			margin: { r: 10, t: 30, b: 30, l: 10 }
-        
-		};
+        // Utilisation de fetch pour récupérer les données JSON
+        fetch("/api/tree.php?all")
+            .then(response => response.json())
+            .then(rows => {
+                let data = [
+                    {
+                        type: "scattermapbox",
+                        text: unpack(rows, "Globvalue"),
+                        lon: unpack(rows, "Lon"),
+                        lat: unpack(rows, "Lat"),
+                        marker: { color: "blue", size: 4 }
+                    }
+                ];
 
-		Plotly.newPlot("simple-visualisation", data, layout);
-	}
-);
+                let layout = {
+                    dragmode: "zoom",
+                    mapbox: { style: "open-street-map", center: { lat: 49.85, lon: 3.30 }, zoom: 11 },
+                    margin: { r: 10, t: 30, b: 30, l: 10 }
+                };
+
+                Plotly.newPlot("simple-visualisation", data, layout);
+            })
+            .catch(error => console.error('Error fetching the JSON data:', error));
 
 
 
 var btn1 = document.getElementById('btn-choise-map');
 var btn2 = document.getElementById('btn-choise-tab');
+
 var map = document.getElementById('simple-visualisation');
 var tab = document.getElementById('simple-tab');
+var tab_btn = document.getElementById('tab-btn');
 
 
 btn1.addEventListener("click", updateBtn1);
@@ -52,6 +56,7 @@ function updateBtn1() {
         btn1.value = "select"
         map.setAttribute('data-status', 'visible');
         tab.setAttribute('data-status', 'hidden');
+        tab_btn.setAttribute('data-status', 'hidden');
 
         btn2.style.backgroundColor = 'lightgray';
         btn2.style.color = 'black';
@@ -61,6 +66,7 @@ function updateBtn1() {
 
 }
 function updateBtn2() {
+    
     if(btn2.value === "select"){
 
     }
@@ -69,7 +75,9 @@ function updateBtn2() {
         btn2.style.color = 'white';
         btn2.value = "select"
         tab.setAttribute('data-status', 'visible');
+        tab_btn.setAttribute('data-status', 'hidden');
         map.setAttribute('data-status', 'hidden');
+        console.log("changé")
 
         btn1.style.backgroundColor = 'lightgray';
         btn1.style.color = 'black';
@@ -82,10 +90,12 @@ function changemaptab(){
     if (map.getAttribute('data-status') === 'visible'){
         map.style.display = 'block';
         tab.style.display = 'none';
+        tab_btn.style.display = 'none';
     }
     else{
         map.style.display = 'none';
         tab.style.display = 'block';
+        tab_btn.style.display = 'flex';
     }
 }
 

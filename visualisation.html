@@ -22,18 +22,30 @@
     <header>
         <div class="header-container">
             <div class="container_logo">
+<<<<<<< HEAD
                 <a href="index.html">
                     <img class= "logo" src="/images/Logo site web.png" alt="Main image placeholder">
                 </a>
+=======
+                <img class= "logo" src="/images/Logo site web.png" alt="Main image placeholder" href="index.html">
+>>>>>>> 22820aa0b4f8d4eb66192e29b96acf6497081f49
             </div>
             
             <nav class="nav">
                 <a href="insert.html">Insérer un arbre</a>
+<<<<<<< HEAD
                 <a href="visualisation.html">Carte / Tableau</a>
                 <a href="#">Prédictions</a>
             </nav>
             <a href="auth.html" class="btn-login"><span class="material-symbols-outlined">
                 logout
+=======
+                <a href="#">Carte / Tableau</a>
+                <a href="#">Prédictions</a>
+            </nav>
+            <a href="auth.html" class="btn-login"><span class="material-symbols-outlined">
+                person
+>>>>>>> 22820aa0b4f8d4eb66192e29b96acf6497081f49
                 </span>
             </a>
         </div>
@@ -47,9 +59,9 @@
     </div>
 
     <div class="map-tab-container">
-        <div id='simple-visualisation' data-status="no-hidden"><!-- Plotly chart will be drawn inside this DIV --></div>
+        <div id='simple-visualisation' data-status="visible"><!-- Plotly chart will be drawn inside this DIV --></div>
 
-        <div class="button-list">
+        <div id='tab-btn' class="button-list " data-status="hidden">
             <button id="prev"><</button>
             <p id="page">0</p>
             <button id="next">></button>
