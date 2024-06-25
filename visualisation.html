@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   <meta charset="utf-8">
+   <title> index </title>
+
+   <link href="style/visualisation.css" rel="stylesheet">
+   <script src='https://cdn.plot.ly/plotly-2.32.0.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+
+    <script src="script/add_tree.js" defer></script>
+   <script type="module" src="script/visualisation.js" defer></script>
+
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="container-logo">
+                <img class="logo"src="/frontend/images/Logo site web.png" alt="Main image placeholder">
+            </div>
+            
+            <nav class="nav">
+                <a href="#">Insérer un arbre</a>
+                <a href="#">Carte/tableau</a>
+                <a href="#">Prédictions</a>
+            </nav>
+            <button class="btn-login">Se connecter</button>
+        </div>
+    </header>
+
+    <div class="choose-container">
+        <button id='btn-choise-map' value="select">Carte</button>
+        <button id='btn-choise-tab' value="not-select">Tableau</button>
+    </div>
+
+    <div class="map-tab-container">
+        <div id='simple-visualisation' data-status="no-hidden"><!-- Plotly chart will be drawn inside this DIV --></div>
+
+        <table id='simple-tab' class="table-arbres" data-status="hidden">
+            <thead>
+            <tr>
+                <th data-value="id" scope="col">id</th>
+                <th data-value="haut_tronc" scope="col">Hauteur Tronc</th>
+                <th data-value="haut_tot" scope="col">Hauteur Total</th>
+                <th data-value="tronc_diam" scope="col">Diamètre du tronc</th>
+                <th data-value="prec_estim" scope="col">Precision estimé</th>
+                <th data-value="clc_nbr_diag" scope="col">Nombre de dignostic</th>
+                <th data-value="age_estim" scope="col">Age estim</th>
+                <th data-value="remarquable" scope="col">Remarquable</th>
+                <th data-value="longitude" scope="col">Longitude</th>
+                <th data-value="latitude" scope="col">Latitude</th>
+                <th data-value="risque_deracinement" scope="col">Risque deracinemet</th>
+                <th data-value="nom" scope="col">Nom</th>
+                <th data-value="etat_arbre" scope="col">Etat arbre</th>
+                <th data-value="pied" scope="col">Pied</th>
+                <th data-value="port" scope="col">Port</th>
+                <th data-value="stade_dev" scope="col">stade de developpement</th>
+                <th data-value="username" scope="col">Ajouter par</th>
+            </tr>
+            </thead>
+            <tbody class="body-table-arbre">
+            </tbody>
+        </table>
+        <div class="button-list">
+            <button id="prev"><</button>
+            <p id="page">0</p>
+            <button id="next">></button>
+        </div>
+
+    </div>
+
+    
+
+    <footer class="footer">
+        <p>St. Quentin TreeBrowser</p>
+        <div class="contact">
+            <a href="mailto:mathis.meunier@isen-ouest.yncrea.fr">mathis.meunier@isen-ouest.yncrea.fr</a>
+            <a href="mailto:killian.guichet@isen-ouest.yncrea.fr">killian.guichet@isen-ouest.yncrea.fr</a>
+            <a href="mailto:esteban.fanjul@isen-ouest.yncrea.fr">esteban.fanjul@isen-ouest.yncrea.fr</a>
+        </div>
+    </footer>
+</body>
+</html>
