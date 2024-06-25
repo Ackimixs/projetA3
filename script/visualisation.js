@@ -47,7 +47,7 @@ function updateBtn1() {
 
     }
     else{
-        btn1.style.backgroundColor = 'blue';
+        btn1.style.backgroundColor = '#C38D9E';
         btn1.style.color = 'white';
         btn1.value = "select"
         map.setAttribute('data-status', 'visible');
@@ -65,7 +65,7 @@ function updateBtn2() {
 
     }
     else{
-        btn2.style.backgroundColor = 'blue';
+        btn2.style.backgroundColor ='#C38D9E';
         btn2.style.color = 'white';
         btn2.value = "select"
         tab.setAttribute('data-status', 'visible');
