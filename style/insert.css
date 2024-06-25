@@ -156,3 +156,19 @@ form {
 }
 
 /* ---------------------- FIN FOOTER ---------------------- */
+
+.error-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+}
+
+p#error {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
