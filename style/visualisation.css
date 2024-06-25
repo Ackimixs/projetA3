@@ -158,3 +158,71 @@ margin-left: 6%;
     
     cursor: pointer;
 }
+
+
+
+
+
+table {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 90%;
+    width: 90%;
+    border-collapse: collapse;
+    border: 2px solid rgb(140 140 140);
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+caption {
+    caption-side: bottom;
+    padding: 10px;
+    font-weight: bold;
+}
+
+thead,
+tfoot {
+    background-color: rgb(228 240 245);
+}
+
+th,
+td {
+    border: 1px solid rgb(160 160 160);
+    padding: 8px 10px;
+}
+
+td:last-of-type {
+    text-align: center;
+}
+
+tbody > tr:nth-of-type(even) {
+    background-color: rgb(237 238 242);
+}
+
+.button-list {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.button-list button {
+    margin: 0 10px;
+    padding: 5px 10px;
+    border: 1px solid rgb(140 140 140);
+    border-radius: 5px;
+    background-color: rgb(228 240 245);
+    cursor: pointer;
+}
+
+.button-list p {
+    margin: 0 10px;
+    padding: 5px 10px;
+}
+
+th, td {
+    width: 100px; /* Set base width */
+    height: 50px; /* Set base height */
+    border: 1px solid black;
+    text-align: center;
+}
