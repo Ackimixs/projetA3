@@ -1,4 +1,13 @@
+let hasError = false;
+
 document.querySelectorAll("select").forEach(select => {
+    select.addEventListener("click", () => {
+        if (hasError) {
+            document.querySelector("#error").hidden = true;
+            hasError = false;
+        }
+    })
+
     if (select.getAttribute("data-to-fetch") === "1") {
         id = select.id;
 
@@ -19,8 +28,6 @@ document.querySelectorAll("select").forEach(select => {
                 console.log(err);
             });
     }
-
-    console.log(id);
 })
 
 document.querySelector("#create-arbre").addEventListener("submit", (e) => {
@@ -32,14 +39,22 @@ document.querySelector("#create-arbre").addEventListener("submit", (e) => {
         body: formData
     }).then(response => response.json())
         .then(data => {
-            console.log(data);
             if (data.status === "success") {
                 window.location.href = "/index.html";
             }
             else {
-                document.querySelector("#error-message").innerText = data.message;
+                document.querySelector("#error").innerText = data.message;
                 document.querySelector("#error").hidden = false;
                 hasError = true;
             }
         });
+})
+
+document.querySelectorAll("input").forEach(input => {
+    input.addEventListener("click", () => {
+        if (hasError) {
+            document.querySelector("#error").hidden = true;
+            hasError = false;
+        }
+    })
 })
