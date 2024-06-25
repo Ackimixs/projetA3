@@ -17,7 +17,6 @@ async def main():
 
         # Iterate through each row in the CSV data
         for i, row in csv_data.iterrows():
-            print(row)
 
             # Executing the insert statement
             await conn.execute("""
