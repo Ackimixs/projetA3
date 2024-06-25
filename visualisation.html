@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   <meta charset="utf-8">
+   <title> index </title>
+
+   <link href="style/visualisation.css" rel="stylesheet">
+   <script src='https://cdn.plot.ly/plotly-2.32.0.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+   <script type="module" src="script/visualisation.js" defer></script>
+
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="container-logo">
+                <img class="logo"src="/frontend/images/Logo site web.png" alt="Main image placeholder">
+            </div>
+            
+            <nav class="nav">
+                <a href="#">Insérer un arbre</a>
+                <a href="#">Carte/tableau</a>
+                <a href="#">Prédictions</a>
+            </nav>
+            <button class="btn-login">Se connecter</button>
+        </div>
+    </header>
+
+    <div class="choose-container">
+        <button id='btn-choise-map' value="select">Carte</button>
+        <button id='btn-choise-tab' value="not-select">Tableau</button>
+    </div>
+
+    <div class="map-tab-container">
+        <div id='simple-visualisation' data-status="no-hidden"><!-- Plotly chart will be drawn inside this DIV --></div>
+        <div id='simple-tab' data-status="hidden">tableau</div>
+    </div>
+
+
+    <footer class="footer">
+        <p>St. Quentin TreeBrowser</p>
+        <div class="contact">
+            <a href="mailto:mathis.meunier@isen-ouest.yncrea.fr">mathis.meunier@isen-ouest.yncrea.fr</a>
+            <a href="mailto:killian.guichet@isen-ouest.yncrea.fr">killian.guichet@isen-ouest.yncrea.fr</a>
+            <a href="mailto:esteban.fanjul@isen-ouest.yncrea.fr">esteban.fanjul@isen-ouest.yncrea.fr</a>
+        </div>
+    </footer>
+</body>
+</html>
