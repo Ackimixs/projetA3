@@ -32,6 +32,9 @@ d3.csv(
 
 var btn1 = document.getElementById('btn-choise-map');
 var btn2 = document.getElementById('btn-choise-tab');
+var map = document.getElementById('simple-visualisation');
+var tab = document.getElementById('simple-tab');
+
 
 btn1.addEventListener("click", updateBtn1);
 btn2.addEventListener("click", updateBtn2);
@@ -47,6 +50,25 @@ function updateBtn1() {
         btn2.style.backgroundColor = 'blue';
         btn2.style.color = 'white';
         btn2.value = "select"*/
+        if (map.getAttribute('data-status') === 'hidden') {
+            map.style.display = 'block';
+            map.setAttribute('data-status', 'visible');
+            console.log("La div est maintenant visible.");
+        } else {
+            map.style.display = 'none';
+            map.setAttribute('data-status', 'hidden');
+            console.log("La div est maintenant cachée.");
+        }
+
+        if (tab.getAttribute('data-status') === 'hidden') {
+            tab.style.display = 'block';
+            tab.setAttribute('data-status', 'visible');
+            console.log("La div est maintenant visible.");
+        } else {
+            tab.style.display = 'none';
+            tab.setAttribute('data-status', 'hidden');
+            console.log("La div est maintenant cachée.");
+        }
     }
     else{
         console.log("btn1");
@@ -57,6 +79,26 @@ function updateBtn1() {
         btn2.style.backgroundColor = 'lightgray';
         btn2.style.color = 'black';
         btn2.value = "not-select"
+
+        if (map.getAttribute('data-status') === 'hidden') {
+            map.style.display = 'block';
+            map.setAttribute('data-status', 'visible');
+            console.log("La div est maintenant visible.");
+        } else {
+            map.style.display = 'none';
+            map.setAttribute('data-status', 'hidden');
+            console.log("La div est maintenant cachée.");
+        }
+
+        if (tab.getAttribute('data-status') === 'hidden') {
+            tab.style.display = 'block';
+            tab.setAttribute('data-status', 'visible');
+            console.log("La div est maintenant visible.");
+        } else {
+            tab.style.display = 'none';
+            tab.setAttribute('data-status', 'hidden');
+            console.log("La div est maintenant cachée.");
+        }
     }
 
 }
@@ -69,6 +111,25 @@ function updateBtn2() {
         btn1.style.backgroundColor = 'blue';
         btn1.style.color = 'white';
         btn1.value = "select"*/
+        if (map.getAttribute('data-status') === 'hidden') {
+            map.style.display = 'block';
+            map.setAttribute('data-status', 'visible');
+            console.log("La div est maintenant visible.");
+        } else {
+            map.style.display = 'none';
+            map.setAttribute('data-status', 'hidden');
+            console.log("La div est maintenant cachée.");
+        }
+
+        if (tab.getAttribute('data-status') === 'hidden') {
+            tab.style.display = 'block';
+            tab.setAttribute('data-status', 'visible');
+            console.log("La div est maintenant visible.");
+        } else {
+            tab.style.display = 'none';
+            tab.setAttribute('data-status', 'hidden');
+            console.log("La div est maintenant cachée.");
+        }
     }
     else{
         btn2.style.backgroundColor = 'blue';
@@ -78,5 +139,29 @@ function updateBtn2() {
         btn1.style.backgroundColor = 'lightgray';
         btn1.style.color = 'black';
         btn1.value = "not-select"
+        if (map.getAttribute('data-status') === 'hidden') {
+            map.style.display = 'block';
+            map.setAttribute('data-status', 'visible');
+            console.log("La div est maintenant visible.");
+        } else {
+            map.style.display = 'none';
+            map.setAttribute('data-status', 'hidden');
+            console.log("La div est maintenant cachée.");
+        }
+
+        if (tab.getAttribute('data-status') === 'hidden') {
+            tab.style.display = 'block';
+            tab.setAttribute('data-status', 'visible');
+            console.log("La div est maintenant visible.");
+        } else {
+            tab.style.display = 'none';
+            tab.setAttribute('data-status', 'hidden');
+            console.log("La div est maintenant cachée.");
+        }
     }
 }
+
+
+
+
+ 
