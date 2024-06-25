@@ -1,43 +1,59 @@
+// Fonction pour déballer les données
+function unpack(rows, key) {
+    return rows.map(function(row) {
+        return row[key];
+    });
+}
 
-        // Fonction pour déballer les données
-        function unpack(rows, key) {
-            return rows.map(function(row) {
-                return row[key];
-            });
-        }
+// Utilisation de fetch pour récupérer les données JSON
+fetch("/api/tree.php?all")
+    .then(response => response.json())
+    .then(rows => {
+        let data = [
+            {
+                type: "scattermapbox",
+                text: unpack(rows, "Globvalue"),
+                lon: unpack(rows, "Lon"),
+                lat: unpack(rows, "Lat"),
+                marker: { color: "blue", size: 4 }
+            }
+        ];
 
-        // Utilisation de fetch pour récupérer les données JSON
-        fetch("/api/tree.php?all")
-            .then(response => response.json())
-            .then(rows => {
-                let data = [
+        let layout = {
+            dragmode: "zoom",
+            mapbox: {
+                style: "white-bg",
+                layers: [
                     {
-                        type: "scattermapbox",
-                        text: unpack(rows, "Globvalue"),
-                        lon: unpack(rows, "Lon"),
-                        lat: unpack(rows, "Lat"),
-                        marker: { color: "blue", size: 4 }
+                        sourcetype: "raster",
+                        source: ["https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}"],
+                        below: "traces"
                     }
-                ];
+                ],
+                center: { lat: 49.85, lon: 3.30 },
+                zoom: 11
+            },
+            margin: { r: 10, t: 30, b: 30, l: 10 }
+        };
 
-                let layout = {
-                    dragmode: "zoom",
-                    mapbox: { style: "open-street-map", center: { lat: 49.85, lon: 3.30 }, zoom: 11 },
-                    margin: { r: 10, t: 30, b: 30, l: 10 }
-                };
+        // let layout = {
+        //     dragmode: "zoom",
+        //     mapbox: { style: "open-street-map", center: { lat: 49.85, lon: 3.30 }, zoom: 11 },
+        //     margin: { r: 10, t: 30, b: 30, l: 10 }
+        // };
 
-                Plotly.newPlot("simple-visualisation", data, layout);
-            })
-            .catch(error => console.error('Error fetching the JSON data:', error));
+        Plotly.newPlot("simple-visualisation", data, layout);
+    })
+    .catch(error => console.error('Error fetching the JSON data:', error));
 
 
 
-var btn1 = document.getElementById('btn-choise-map');
-var btn2 = document.getElementById('btn-choise-tab');
+let btn1 = document.getElementById('btn-choise-map');
+let btn2 = document.getElementById('btn-choise-tab');
 
-var map = document.getElementById('simple-visualisation');
-var tab = document.getElementById('simple-tab');
-var tab_btn = document.getElementById('tab-btn');
+let map = document.getElementById('simple-visualisation');
+let tab = document.getElementById('simple-tab');
+let tab_btn = document.getElementById('tab-btn');
 
 
 btn1.addEventListener("click", updateBtn1);
