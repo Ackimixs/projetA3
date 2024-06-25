@@ -80,22 +80,29 @@ header {
 /*=======================================================*/
 
 #simple-visualisation{
-    margin-top: 50px;
-    margin-bottom: 50px;
-    height: 90%;
+    height: 100%;
     width: 90%;
+    padding: 0px;
+    margin: 0px;
 }
 
 #simple-tab{
     display: none;
     margin-top: 2px;
 }
+
+#tab-btn{
+    display: none;
+    margin-top: 2px;
+}
+
 .map-tab-container{
     display: flex;
     flex-direction: column;
     justify-content:center;
     align-items: center;
 }
+
 .choose-container{
 display: flex;
 flex-direction: row;
@@ -109,8 +116,6 @@ margin-left: 6%;
     padding: 10px 25px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px ;
-    
-
 
     background-color: #C38D9E;
     color: white;
@@ -181,6 +186,7 @@ tbody {
 
 .button-list {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     margin: 10px;
 }
