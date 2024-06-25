@@ -33,6 +33,11 @@ if (isset($_GET['id'])) {
     $limit = isset($_GET['limit']) ? $_GET['limit'] : 10;
     $sort = isset($_GET['sort']) ? $_GET['sort'] : 'id';
     $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
+    $all = isset($_GET['all']) && $_GET['all'];
 
-    echo json_encode(array('status' => 'success', 'data' => Tree::getTrees($limit, $offset, $sort, $order)));
+    if ($all) {
+        echo json_encode(array('status' => 'success', 'data' => Tree::getAllTrees()));
+    } else {
+        echo json_encode(array('status' => 'success', 'data' => Tree::getTrees($limit, $offset, $sort, $order)));
+    }
 }
