@@ -7,6 +7,7 @@
     <link href="style/account.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" /></head>
 <!--    <script src="script/need-to-signin.js" defer></script>-->
+    <script src="script/account.js" defer></script>
 <body>
     <header>
         <div class="header-container">
@@ -33,24 +34,24 @@
     </header>
 
     <div class="welcome_title">
-        <h1>Bienvenue, [nom d'utilisateur] !</h1>
+        <h1>Bienvenue, <span id="username-text"></span></h1>
     </div>
 
     <section class="modify_username">
         <h2>Nom d'utilisateur</h2>
-        <label class="label1" for="modify">Modifier mon nom d'utilisateur :</label>
-        <input type="text" id="modify" name="tree-id">
-        <button class="btn-modify">Modifier</button>
+        <label class="label1" for="modify-username">Modifier mon nom d'utilisateur :</label>
+        <input type="text" id="modify-username" name="tree-id">
+        <button class="btn-modify btn-username">Modifier</button>
     </section>
 
     <section class="modify_password">
         <h2>Mot de passe</h2>
-        <label class="label2" for="modify">Entrez l'ancien mot de passe :</label>
-        <input type="text" id="modify" name="tree-id">
+        <label class="label2" for="modify-password">Entrez l'ancien mot de passe :</label>
+        <input type="password" id="modify-password" name="tree-id">
         <br>
-        <label for="modify">Entrez le nouveau mot de passe :</label>
-        <input type="text" id="modify" name="tree-id">
-        <button class="btn-modify">Modifier</button>
+        <label for="modify-password-check">Entrez le nouveau mot de passe :</label>
+        <input type="password" id="modify-password-check" name="tree-id">
+        <button class="btn-modify btn-password">Modifier</button>
     </section>
 
     <div class="arbres_inserted">
