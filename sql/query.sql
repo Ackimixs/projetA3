@@ -7,4 +7,4 @@
 -- ORDER BY id
 -- LIMIT :limit OFFSET :offset;
 
-SELECT t.nom FROM tree t GROUP BY t.nom;
+SELECT * FROM tree where age_estim NOTNULL;

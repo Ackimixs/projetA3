@@ -1,43 +1,75 @@
+// Fonction pour déballer les données
+function unpack(rows, ...key) {
+    return rows.map(function(row) {
+        return key.map(function(k) {
+            return row[k];
+        }).join("+");
+    });
+}
 
-        // Fonction pour déballer les données
-        function unpack(rows, key) {
-            return rows.map(function(row) {
-                return row[key];
-            });
-        }
+function unpackColor(rows) {
+    return rows.map(function(row) {
+        return row.cluster === -1 ? "black" : row.cluster === 0 ? "blue" : row.cluster === 1 ? "red" : "green";
+    });
+}
 
-        // Utilisation de fetch pour récupérer les données JSON
-        fetch("/api/tree.php?all")
-            .then(response => response.json())
-            .then(rows => {
-                let data = [
-                    {
-                        type: "scattermapbox",
-                        text: unpack(rows, "Globvalue"),
-                        lon: unpack(rows, "Lon"),
-                        lat: unpack(rows, "Lat"),
-                        marker: { color: "blue", size: 4 }
+async function getClusters(method = "Kmeans", nb_clusters = 3) {
+    let response = await fetch(`/api/tree/prediction/cluster.php?method=${method}&nb_clusters=${nb_clusters}`);
+    return response.json();
+}
+
+function drawMap(clustering = false) {
+    // Utilisation de fetch pour récupérer les données JSON
+    fetch("/api/tree.php?all=true")
+        .then(response => response.json())
+        .then(async rows => {
+            rows = rows.data
+
+            const clusteredData = (await getClusters());
+
+            let j = 0;
+            for (let i = 0; i < rows.length; i++) {
+                if (rows[i].id === clusteredData[j]?.tree.id) {
+                    rows[i].cluster = clusteredData[j].cluster;
+                } else {
+                    rows[i].cluster = -1;
+                    j--;
+                }
+
+                j++;
+            }
+
+            let data = [
+                {
+                    type: "scattermapbox",
+                    text: unpack(rows, "nom"),
+                    lon: unpack(rows, "longitude"),
+                    lat: unpack(rows, "latitude"),
+                    hoverinfo: unpack(rows, "nom", "haut_tronc", "haut_tot"),
+                    marker: {
+                        color: clustering ? unpackColor(rows) : "blue",
+                        size: 12
                     }
-                ];
+                }
+            ];
 
-                let layout = {
-                    dragmode: "zoom",
-                    mapbox: { style: "open-street-map", center: { lat: 49.85, lon: 3.30 }, zoom: 11 },
-                    margin: { r: 10, t: 30, b: 30, l: 10 }
-                };
+            let layout = {
+                dragmode: "zoom",
+                mapbox: { style: "open-street-map", center: { lat: 49.85, lon: 3.30 }, zoom: 11 },
+                margin: { r: 10, t: 30, b: 30, l: 10 }
+            };
 
-                Plotly.newPlot("simple-visualisation", data, layout);
-            })
-            .catch(error => console.error('Error fetching the JSON data:', error));
+            Plotly.newPlot("simple-visualisation", data, layout);
+        })
+        .catch(error => console.error('Error fetching the JSON data:', error));
+}
 
+let btn1 = document.getElementById('btn-choise-map');
+let btn2 = document.getElementById('btn-choise-tab');
 
-
-var btn1 = document.getElementById('btn-choise-map');
-var btn2 = document.getElementById('btn-choise-tab');
-
-var map = document.getElementById('simple-visualisation');
-var tab = document.getElementById('simple-tab');
-var tab_btn = document.getElementById('tab-btn');
+let map = document.getElementById('simple-visualisation');
+let tab = document.getElementById('simple-tab');
+let tab_btn = document.getElementById('tab-btn');
 
 
 btn1.addEventListener("click", updateBtn1);
@@ -66,7 +98,7 @@ function updateBtn1() {
 
 }
 function updateBtn2() {
-    
+
     if(btn2.value === "select"){
 
     }
@@ -99,7 +131,4 @@ function changemaptab(){
     }
 }
 
-
-
-
- 
+drawMap();

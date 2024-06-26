@@ -22,6 +22,7 @@ header {
 .header-container {
     display: flex;
     justify-content: space-between;
+    align-content: center;
     align-items: center;
     padding: 0 20px;
 }
@@ -30,22 +31,80 @@ header {
     max-height: 50%;
     
 }
-.nav {
-    display: flex;
-    gap: 60px;
-    font-size: 25px;
+
+.header-container nav {
+	margin: 0;
+
+	position: relative;
+	width: 590px;
+	height: 50px;
+	background-color: #41B3A3;
+	border-radius: 8px;
+	font-size: 0;
 }
-.nav a {
-    color: white;
-    text-decoration: none;
-    padding: 5px;
-    transition: background-color 0.3s ease, border-radius 0.3s ease;
-    border-radius: 9px;
+.header-container nav a {
+	line-height: 50px;
+	height: 100%;
+	font-size: 15px;
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: center;
+	color: white;
+	cursor: pointer;
+}
+.header-container nav .animation {
+	position: absolute;
+	height: 100%;
+	top: 0;
+	z-index: 0;
+	transition: all .5s ease 0s;
+	border-radius: 8px;
 }
 
-.nav a:hover {
-    background-color: #E27D60;
-    border-radius: 9px;
+/*Pour la taille des boutons*/
+a:nth-child(1) {
+	width: 100px;
+}
+a:nth-child(2) {
+	width: 110px;
+}
+a:nth-child(3) {
+	width: 100px;
+}
+a:nth-child(4) {
+	width: 160px;
+}
+a:nth-child(5) {
+	width: 120px;
+}
+
+.header-container nav .start-home, a:nth-child(1):hover~.animation {
+	width: 100px;
+	left: 0;
+	background-color: #55B4DD;
+}
+.header-container nav .start-inser, a:nth-child(2):hover~.animation {
+	width: 110px;
+	left: 100px;
+	background-color: #55B4DD;
+}
+.header-container nav .start-map, a:nth-child(3):hover~.animation {
+	width: 100px;
+	left: 210px;
+	background-color: #55B4DD;
+}
+.header-container nav .start-predict, a:nth-child(4):hover~.animation {
+	width: 160px;
+	left: 310px;
+	background-color: #55B4DD;
+}
+.header-container nav .start-account, a:nth-child(5):hover~.animation {
+	width: 120px;
+	left: 470px;
+	background-color: #55B4DD;
 }
 
 .btn-login {
@@ -62,25 +121,24 @@ header {
 
 /* ---------------------- FIN HEADER ---------------------- */
 
-.form-container {
-    width: 100%;
-    max-width: 1200px; /* Augmentez la largeur maximale pour s'adapter à 3 cards par ligne */
+.card-list {
+    width: 70%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    margin-left: 10%;
 }
 
 form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
-    display: contents;
 }
 
-.form-container h3 {
+.card-list h3 {
     color: #41B3A3;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .card {
@@ -89,7 +147,7 @@ form {
     border-radius: 12px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     margin-left: 10px;
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 .card label {
@@ -102,20 +160,19 @@ form {
 }
 
 .card input {
-    width: 87%;
+    width: 80%;
     padding: 7px 5px;
     border: 2px solid;
     border-image-source: linear-gradient(45deg, #F18E67, #C35360);
     border-image-slice: 1;
     border-radius: 12px;
     outline: none;
-    margin-left: 20px;
-    margin-bottom: 15px;
+    margin: 0 20px;
 }
 
 .card select {
     padding: 8px 135px;
-    margin-left: 20px;
+    margin: 0 20px;
     border: #E27D60 2px solid;
 }
 
@@ -124,9 +181,8 @@ form {
     color: white;
     border: none;
     width: 300px;
-    margin-left: 50px;
-    padding: 20px 10px;
-    font-size: larger;
+    margin: 2rem;
+    padding: 1.5rem;
     cursor: pointer;
     border-radius: 5px;
     align-self: center;
@@ -160,3 +216,33 @@ form {
 }
 
 /* ---------------------- FIN FOOTER ---------------------- */
+
+.error-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+p#error-message {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.success-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+p#success-message {
+    color: forestgreen;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}

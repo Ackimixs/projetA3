@@ -14,24 +14,31 @@
    <script src='https://cdn.plot.ly/plotly-2.32.0.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
 
-    <script src="script/add_tree.js" defer></script>
+    <script src="script/display_tree.js" defer></script>
    <script type="module" src="script/visualisation.js" defer></script>
+<!--    <script src="script/need-to-signin.js" defer></script>-->
 
 </head>
 <body>
     <header>
         <div class="header-container">
             <div class="container_logo">
-                <img class= "logo" src="/images/Logo site web.png" alt="Main image placeholder" href="index.html">
+                <a href="index.html">
+                    <img class= "logo" src="/images/Logo site web.png" alt="Main image placeholder">
+                </a>
             </div>
             
-            <nav class="nav">
-                <a href="insert.html">Insérer un arbre</a>
-                <a href="visualisation.html">Carte / Tableau</a>
+            <nav>
+                <a href="index.html">Acceuil</a>
+                <a href="insert.html">Insérer</a>
+                <a href="visualisation.html">Carte</a>
                 <a href="#">Prédictions</a>
+                <a href="#">Compte</a>
+                <div class="animation start-map"></div>
             </nav>
+
             <a href="auth.html" class="btn-login"><span class="material-symbols-outlined">
-                person
+                logout
                 </span>
             </a>
         </div>

@@ -7,8 +7,6 @@ let order = "ASC"
 function display_tree(limit = 10, offset = 0, sort = 'id', order = 'ASC') {
     console.log(limit, offset, sort, order)
 
-    body_table.innerHTML = ""
-
     fetch(`/api/tree.php?limit=${limit}&offset=${offset}&sort=${sort}&order=${order}`, {
         method: "GET",
         headers: {
@@ -17,6 +15,8 @@ function display_tree(limit = 10, offset = 0, sort = 'id', order = 'ASC') {
     })
         .then(response => response.json())
         .then(data => {
+            body_table.innerHTML = ""
+
             data.data.forEach(tree => {
                 let child = document.createElement("tr");
 
