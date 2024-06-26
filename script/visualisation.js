@@ -7,6 +7,15 @@ function unpack(rows, ...key) {
     });
 }
 
+function unpackWithKeys(rows, ...key) {
+    return rows.map(function(row) {
+        return key.map(function(k) {
+            return k + ": " + row[k];
+        }).join("<br>");
+    });
+}
+
+
 function unpackColor(rows) {
     return rows.map(function(row) {
         return row.cluster === -1 ? "black" : row.cluster === 0 ? "blue" : row.cluster === 1 ? "red" : "green";
@@ -42,7 +51,7 @@ function drawMap(clustering = false, method = "Kmeans", nb_clusters = 3) {
             let data = [
                 {
                     type: "scattermapbox",
-                    text: unpack(rows, "nom", "haut_tronc", "haut_tot"),
+                    text: unpackWithKeys(rows, "nom", "haut_tronc", "haut_tot"),
                     lon: unpack(rows, "longitude"),
                     lat: unpack(rows, "latitude"),
                     hoverinfo: unpack(rows, "nom", "haut_tronc", "haut_tot"),
