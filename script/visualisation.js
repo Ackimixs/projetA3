@@ -3,7 +3,7 @@ function unpack(rows, ...key) {
     return rows.map(function(row) {
         return key.map(function(k) {
             return row[k];
-        }).join("+");
+        }).join(",");
     });
 }
 
@@ -42,7 +42,7 @@ function drawMap(clustering = false) {
             let data = [
                 {
                     type: "scattermapbox",
-                    text: unpack(rows, "nom"),
+                    text: (unpack(rows, "nom"),"ok ", unpack(rows, "id")),
                     lon: unpack(rows, "longitude"),
                     lat: unpack(rows, "latitude"),
                     hoverinfo: unpack(rows, "nom", "haut_tronc", "haut_tot"),
