@@ -140,6 +140,33 @@ function changemaptab(){
     }
 }
 
-
-
-drawMap(true,"Birch", 3);
+let select = document.getElementById('options');
+select.addEventListener("change", clustermap);
+drawMap(true,"Kmeans", 2);
+function clustermap(){
+    console.log(select.value)
+    if(select.value === "nc"){
+        console.log(select.value)
+        drawMap(false);
+    }
+    else if(select.value === "Km2")
+    {
+        console.log(select.value)
+        drawMap(true,"Kmeans", 2);
+    }
+    else if(select.value === "Km3")
+    {
+        console.log(select.value)
+        drawMap(true,"Kmeans", 3);
+    }
+    else if(select.value === "B2")
+    {
+        console.log(select.value)
+        drawMap(true,"Birch", 2);
+    }
+    else if(select.value === "B3")
+    {
+        console.log(select.value)
+        drawMap(true,"Birch", 3);
+    }
+}

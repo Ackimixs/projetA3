@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/pred.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" /></head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>Prédiction des caractéristiques des arbres</title>
+
+    <script src="script/pred.js" defer></script>
 </head>
 <body>
     <header>
@@ -37,51 +39,55 @@
         
         <section class="search-section">
             <label for="tree-id">Rechercher un arbre par son ID :</label>
-            <input type="text" id="tree-id" name="tree-id">
-            <button class="btn-search">Rechercher</button>
+            <input type="number" id="tree-id" name="tree-id" min="1">
+            <button class="btn-search" id="btn-search-id">Rechercher</button>
         </section>
 
         <section class="results-section">
             <div class="results-card">
-                <p>ID Arbre :</p>
-                <p>Espèce :</p>
-                <p>Etat de l'arbre :</p>
-                <p>Stade de développement :</p>
-                <p>Remarquable :</p>
+                <p>ID Arbre : <span id="id"></span></p>
+                <p>Espèce : <span id="nom"></span></p>
+                <p>Etat de l'arbre : <span id="etat_arbre"></span></p>
+                <p>Stade de développement : <span id="stade_dev"></span></p>
+                <p>Remarquable : <span id="remarquable"></span></p>
             </div>
             <div class="results-card">
-                <p>Hauteur totale :</p>
-                <p>Hauteur tronc :</p>
-                <p>Diamètre tronc :</p>
-                <p>Latitude :</p>
-                <p>Longitude :</p>
+                <p>Hauteur totale : <span id="haut_tot"></span></p>
+                <p>Hauteur tronc : <span id="haut_tronc"></span></p>
+                <p>Diamètre tronc : <span id="tronc_diam"></span></p>
+                <p>Latitude : <span id="latitude"></span></p>
+                <p>Longitude : <span id="longitude"></span></p>
             </div>
             <div class="results-card">
-                <p>Type d'élagage :</p>
-                <p>Sol de pousse :</p>
-                <p>Précision estimé de l'âge :</p>
-                <p>Nb diagnostics :</p>
+                <p>Type d'élagage : <span id="port"></span></p>
+                <p>Sol de pousse : <span id="pied"></span></p>
+                <p>Précision estimé de l'âge : <span id="prec_estim"></span></p>
+                <p>Nb diagnostics : <span id="clc_nbr_diag"></span></p>
             </div>
         </section>
         
         <section class="prediction-section">
             <div class="prediction-card">
                 <label for="predict-age">Prédire l'âge :</label>
-                <input type="number" id="predict-age" name="predict-age" readonly="readonly">
+                <input type="text" id="predict-age" name="predict-age" readonly="readonly">
             </div>
             <div class="prediction-card">
                 <label for="predict-uproot">Prédire le déracinement :</label>
-                <input type="number" id="predict-uproot" name="predict-uproot" readonly="readonly">
+                <input type="text" id="predict-uproot" name="predict-uproot" readonly="readonly">
             </div>
         </section>
         
         <section class="model-section">
             <select name="prediction-model" id="prediction-model">
                 <option value="" disabled selected>Choisir le modèle de prédiction</option>
-                <option value="model1">Modèle 1</option>
-                <option value="model2">Modèle 2</option>
+                <option value="MLPClassifier">MLP</option>
+                <option value="RandomForestClassifier">RandomForest</option>
+                <option value="SGDClassifier">SGD</option>
+                <option value="MLPClassifier-gridSearch">MLP - grid search</option>
+                <option value="RandomForestClassifier-gridSearch">RandomForest - grid search</option>
+                <option value="SGDClassifier-gridSearch">SGD - grid search</option>
             </select>
-            <button class="btn-predict">Prédire</button>
+            <button class="btn-predict" id="btn-predict">Prédire</button>
         </section>
     </main>
     
