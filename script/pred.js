@@ -22,6 +22,7 @@ async function loadData(id) {
 document.querySelector("#btn-search-id").addEventListener("click", async () => {
     const id = document.querySelector("#tree-id").value;
     await loadData(id);
+    window.location.search = `?id=${id}`;
 })
 
 document.querySelector("#btn-predict").addEventListener("click", (e) => {

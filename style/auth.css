@@ -1,4 +1,4 @@
-/* Reset and global styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -19,7 +19,6 @@ body::-webkit-scrollbar{
     display: none;
 }
 
-/* Header styles */
 header {
     background-color: #41B3A3;
     color: white;
@@ -31,7 +30,7 @@ header h1 {
     margin: 0;
 }
 
-/* Main content styles */
+
 main {
     display: flex;
     flex-direction: column;
@@ -90,7 +89,7 @@ form input {
     background: #E27D60;
 }
 
-/* Footer styles */
+
 footer {
     background-color: #41B3A3;
     color: white;
