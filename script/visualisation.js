@@ -3,7 +3,7 @@ function unpack(rows, ...key) {
     return rows.map(function(row) {
         return key.map(function(k) {
             return row[k];
-        }).join(",");
+        }).join(", ");
     });
 }
 
@@ -18,14 +18,14 @@ async function getClusters(method = "Kmeans", nb_clusters = 3) {
     return response.json();
 }
 
-function drawMap(clustering = false) {
+function drawMap(clustering = false, method = "Kmeans", nb_clusters = 3) {
     // Utilisation de fetch pour récupérer les données JSON
     fetch("/api/tree.php?all=true")
         .then(response => response.json())
         .then(async rows => {
             rows = rows.data
 
-            const clusteredData = (await getClusters());
+            const clusteredData = (await getClusters(method, nb_clusters));
 
             let j = 0;
             for (let i = 0; i < rows.length; i++) {
@@ -42,7 +42,7 @@ function drawMap(clustering = false) {
             let data = [
                 {
                     type: "scattermapbox",
-                    text: (unpack(rows, "nom"),"ok ", unpack(rows, "id")),
+                    text: unpack(rows, "nom", "haut_tronc", "haut_tot"),
                     lon: unpack(rows, "longitude"),
                     lat: unpack(rows, "latitude"),
                     hoverinfo: unpack(rows, "nom", "haut_tronc", "haut_tot"),
@@ -131,4 +131,4 @@ function changemaptab(){
     }
 }
 
-drawMap();
+drawMap(true);
