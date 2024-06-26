@@ -142,6 +142,7 @@ a:nth-child(5) {
 }
 
 input[type="text"],
+input[type="password"],
 input[type="number"],
 select {
     padding: 10px;

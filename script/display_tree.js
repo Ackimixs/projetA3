@@ -41,6 +41,10 @@ function display_tree(limit = 10, offset = 0, sort = 'id', order = 'ASC') {
                 `
 
                 body_table.appendChild(child)
+
+                child.addEventListener("click", () => {
+                    window.location.href = `/pred.html?id=${tree.id}`
+                })
             })
         })
 }
