@@ -15,6 +15,9 @@ body {
     flex-direction: column;
     justify-content: space-between;
 }
+body::-webkit-scrollbar{
+    display: none;
+}
 
 /* Header styles */
 header {

@@ -5,6 +5,9 @@ body {
     padding: 0;
     background-color: #ffffff;
 }
+body::-webkit-scrollbar{
+    display: none;
+}
 
 header {
     background: linear-gradient(45deg, #2aa696, #41B3A3);

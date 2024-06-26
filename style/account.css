@@ -7,6 +7,9 @@ body {
     display: flex;
     flex-direction: column;
 }
+body::-webkit-scrollbar{
+    display: none;
+}
 
 
 /* ---------------------- HEADER ---------------------- */
@@ -258,13 +261,22 @@ tbody {
 }
 .footer .contact {
     display: flex;
-    justify-content: center;
-    gap: 100px;
-    padding: 10px 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 10px;
 }
 .footer a {
     color: white;
     text-decoration: none;
+    min-width: 300px;
+    padding: 5px;
+}
+.footer .twoc {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-around;
 }
 
 /* ---------------------- FIN FOOTER ---------------------- */
