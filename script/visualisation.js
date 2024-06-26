@@ -29,7 +29,9 @@ async function getClusters(method = "Kmeans", nb_clusters = 3) {
 
 function drawMap(clustering = false, method = "Kmeans", nb_clusters = 3) {
     // Utilisation de fetch pour récupérer les données JSON
-    fetch("/api/tree.php?all=true")
+    fetch("/api/tree.php?all=true", {
+        method: "GET"
+    })
         .then(response => response.json())
         .then(async rows => {
             rows = rows.data
@@ -142,31 +144,27 @@ function changemaptab(){
 
 let select = document.getElementById('options');
 select.addEventListener("change", clustermap);
-drawMap(true,"Kmeans", 2);
+
 function clustermap(){
-    console.log(select.value)
     if(select.value === "nc"){
-        console.log(select.value)
         drawMap(false);
     }
     else if(select.value === "Km2")
     {
-        console.log(select.value)
         drawMap(true,"Kmeans", 2);
     }
     else if(select.value === "Km3")
     {
-        console.log(select.value)
         drawMap(true,"Kmeans", 3);
     }
     else if(select.value === "B2")
     {
-        console.log(select.value)
         drawMap(true,"Birch", 2);
     }
     else if(select.value === "B3")
     {
-        console.log(select.value)
         drawMap(true,"Birch", 3);
     }
 }
+
+drawMap(false);
