@@ -80,6 +80,10 @@ fetch('/api/tree/user.php?id=' + JSON.parse(localStorage.getItem('user')).id, {
                     <td>${tree.username ?? "Admin"}</td>
                 `
 
+            child.addEventListener("click", () => {
+                window.location.href = `/pred.html?id=${tree.id}`
+            })
+
             body_table.appendChild(child)
         })
     })
