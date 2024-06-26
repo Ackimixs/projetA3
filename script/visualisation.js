@@ -10,11 +10,10 @@ function unpack(rows, ...key) {
 function unpackWithKeys(rows, ...key) {
     return rows.map(function(row) {
         return key.map(function(k) {
-            return k[1] + ": " + row[k[0]];
+            return k[1] + " : " + row[k[0]];
         }).join("<br>");
     });
 }
-
 
 function unpackColor(rows) {
     return rows.map(function(row) {
@@ -31,7 +30,7 @@ function drawMap(clustering = false, method = "Kmeans", nb_clusters = 3) {
     // Utilisation de fetch pour récupérer les données JSON
     fetch("/api/tree.php?all=true")
         .then(response => response.json())
-        .then(async rows => {
+        .then(async (rows) => {
             rows = rows.data
 
             const clusteredData = (await getClusters(method, nb_clusters));
@@ -140,6 +139,5 @@ function changemaptab(){
     }
 }
 
-
-
 drawMap(true,"Birch", 3);
+drawMap(true,"Birch", 2);
