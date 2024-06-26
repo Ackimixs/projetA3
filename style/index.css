@@ -26,14 +26,19 @@ header {
 .logo {
     max-width: 50%;
     max-height: 50%;
-    
+    transition: filter 1s ease, transform 1s ease;
 }
+.logo:hover {
+    filter: invert(100%);
+    transform: scale(1.05);
+}
+
 
 .header-container nav {
 	margin: 0;
 
 	position: relative;
-	width: 590px;
+	width: 650px;
 	height: 50px;
 	background-color: #41B3A3;
 	border-radius: 8px;
@@ -69,7 +74,7 @@ a:nth-child(2) {
 	width: 110px;
 }
 a:nth-child(3) {
-	width: 100px;
+	width: 160px;
 }
 a:nth-child(4) {
 	width: 160px;
@@ -89,18 +94,18 @@ a:nth-child(5) {
 	background-color: #55B4DD;
 }
 .header-container nav .start-map, a:nth-child(3):hover~.animation {
-	width: 100px;
+	width: 160px;
 	left: 210px;
 	background-color: #55B4DD;
 }
 .header-container nav .start-predict, a:nth-child(4):hover~.animation {
 	width: 160px;
-	left: 310px;
+	left: 370px;
 	background-color: #55B4DD;
 }
 .header-container nav .start-account, a:nth-child(5):hover~.animation {
 	width: 120px;
-	left: 470px;
+	left: 530px;
 	background-color: #55B4DD;
 }
 

@@ -81,7 +81,7 @@ let btn2 = document.getElementById('btn-choise-tab');
 let map = document.getElementById('simple-visualisation');
 let tab = document.getElementById('simple-tab');
 let tab_btn = document.getElementById('tab-btn');
-
+let choix = document.getElementById('choose');
 
 btn1.addEventListener("click", updateBtn1);
 btn2.addEventListener("click", updateBtn2);
@@ -98,6 +98,7 @@ function updateBtn1() {
         btn1.style.color = 'white';
         btn1.value = "select"
         map.setAttribute('data-status', 'visible');
+        choix.setAttribute('data-status', 'visible');
         tab.setAttribute('data-status', 'hidden');
         tab_btn.setAttribute('data-status', 'hidden');
 
@@ -120,6 +121,7 @@ function updateBtn2() {
         tab.setAttribute('data-status', 'visible');
         tab_btn.setAttribute('data-status', 'hidden');
         map.setAttribute('data-status', 'hidden');
+        choix.setAttribute('data-status', 'hidden');
         console.log("changé")
 
         btn1.style.backgroundColor = 'lightgray';
@@ -132,11 +134,13 @@ function updateBtn2() {
 function changemaptab(){
     if (map.getAttribute('data-status') === 'visible'){
         map.style.display = 'block';
+        choix.style.display = 'flex';
         tab.style.display = 'none';
         tab_btn.style.display = 'none';
     }
     else{
         map.style.display = 'none';
+        choix.style.display = 'none';
         tab.style.display = 'block';
         tab_btn.style.display = 'flex';
     }

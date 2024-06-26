@@ -31,7 +31,7 @@
             <nav>
                 <a href="index.html">Acceuil</a>
                 <a href="insert.html">Insérer</a>
-                <a href="visualisation.html">Carte</a>
+                <a href="visualisation.html">Carte / tableau</a>
                 <a href="pred.html">Prédictions</a>
                 <a href="account.html">Compte</a>
                 <div class="animation start-map"></div>
@@ -50,26 +50,27 @@
             <button id='btn-choise-tab' value="not-select">Tableau</button>
         </div>
     
-        <div class="select-container">
+        <div id='choose' class="select-container">
             <label for="options">Choisissez une option :</label>
             <select id="options" name="options">
-                <option value="nc" selected>Aucun cluster</option>
-                <option value="Km2">Kmeans 2 clusters</option>
-                <option value="Km3">Kmeans 3 clusters</option>
-                <option value="B2">Birch 2 clusters</option>
-                <option value="B3">Birch 3 clusters</option>
+                <option value="nc" data-status="visible" selected>Aucun cluster</option>
+                <option value="Km2" data-status="hidden">Kmeans 2 clusters</option>
+                <option value="Km3" data-status="hidden">Kmeans 3 clusters</option>
+                <option value="B2" data-status="hidden">Birch 2 clusters</option>
+                <option value="B3" data-status="hidden">Birch 3 clusters</option>
             </select>
         </div>
-    </div>
-
-    <div class="map-tab-container">
-        <div id='simple-visualisation' data-status="visible"><!-- Plotly chart will be drawn inside this DIV --></div>
 
         <div id='tab-btn' class="button-list " data-status="hidden">
             <button id="prev"><</button>
             <p id="page">0</p>
             <button id="next">></button>
         </div>
+    </div>
+
+    <div class="map-tab-container">
+        <div id='simple-visualisation' data-status="visible"><!-- Plotly chart will be drawn inside this DIV --></div>
+
 
         <table id='simple-tab' class="table-arbres" data-status="hidden">
             <thead>
@@ -98,8 +99,6 @@
         </table>
 
     </div>
-
-    
 
     <footer class="footer">
         <h2>St. Quentin TreeBrowser</h2>
