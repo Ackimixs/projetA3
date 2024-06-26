@@ -1,24 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-   <meta charset="utf-8">
-   <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-
-
-   <title> index </title>
-
-   <link href="style/visualisation.css" rel="stylesheet">
-   <script src='https://cdn.plot.ly/plotly-2.32.0.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
-
-    <script src="script/display_tree.js" defer></script>
-   <script type="module" src="script/visualisation.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Quentin TreeBrowser</title>
+    <link href="style/account.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" /></head>
 <!--    <script src="script/need-to-signin.js" defer></script>-->
-
-</head>
 <body>
     <header>
         <div class="header-container">
@@ -34,9 +22,9 @@
                 <a href="visualisation.html">Carte</a>
                 <a href="pred.html">Prédictions</a>
                 <a href="account.html">Compte</a>
-                <div class="animation start-map"></div>
+                <div class="animation start-account"></div>
             </nav>
-
+            
             <a href="auth.html" class="btn-login"><span class="material-symbols-outlined">
                 logout
                 </span>
@@ -44,20 +32,27 @@
         </div>
     </header>
 
-    <div class="choose-container">
-        <button id='btn-choise-map' value="select">Carte</button>
-        <button id='btn-choise-tab' value="not-select">Tableau</button>
+    <div class="welcome_title">
+        <h1>Bienvenue, [nom d'utilisateur] !</h1>
+    </div>
+
+    <section class="modify_username">
+        <label for="modify">Modifier mon nom d'utilisateur :</label>
+        <input type="text" id="modify" name="tree-id">
+        <button class="btn-modify">Rechercher</button>
+    </section>
+
+    <section class="modify_password">
+        <label for="modify">Modifier mon mot de passe :</label>
+        <input type="text" id="modify" name="tree-id">
+        <button class="btn-modify">Rechercher</button>
+    </section>
+
+    <div class="arbres_inserted">
+        <h1>Arbres insérés par l'utilisateur : </h1>
     </div>
 
     <div class="map-tab-container">
-        <div id='simple-visualisation' data-status="visible"><!-- Plotly chart will be drawn inside this DIV --></div>
-
-        <div id='tab-btn' class="button-list " data-status="hidden">
-            <button id="prev"><</button>
-            <p id="page">0</p>
-            <button id="next">></button>
-        </div>
-
         <table id='simple-tab' class="table-arbres" data-status="hidden">
             <thead>
             <tr>
@@ -83,14 +78,21 @@
             <tbody class="body-table-arbre">
             </tbody>
         </table>
-
     </div>
 
-    
+    <!-- Section pour les arbres insérés par l'utilisateur -->
+
+    <div class="suppr-compte">
+        <button class="suppr-btn">Supprimer mon compte</button>
+    </div>
+
 
     <footer class="footer">
         <p>St. Quentin TreeBrowser</p>
         <div class="contact">
+            <span class="material-symbols-outlined">
+                mail
+                </span>
             <a href="mailto:mathis.meunier@isen-ouest.yncrea.fr">mathis.meunier@isen-ouest.yncrea.fr</a>
             <a href="mailto:killian.guichet@isen-ouest.yncrea.fr">killian.guichet@isen-ouest.yncrea.fr</a>
             <a href="mailto:esteban.fanjul@isen-ouest.yncrea.fr">esteban.fanjul@isen-ouest.yncrea.fr</a>
