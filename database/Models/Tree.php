@@ -143,7 +143,7 @@ class Tree
     static function getNotNullAgeTrees() {
         try {
             $db = database::connectionDB();
-            $request = 'SELECT * FROM "tree" WHERE age_estim IS NOT NULL';
+            $request = 'SELECT * FROM "tree" WHERE age_estim IS NOT NULL ORDER BY id';
             $stmt = $db->prepare($request);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
