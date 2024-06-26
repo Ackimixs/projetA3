@@ -131,4 +131,6 @@ function changemaptab(){
     }
 }
 
-drawMap(true);
+
+
+drawMap(true,"Birch", 3);
