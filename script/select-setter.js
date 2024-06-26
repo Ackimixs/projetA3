@@ -29,8 +29,9 @@ fetch('/api/name/list.php')
     .then(data => {
         data.data.forEach(item => {
             let option = document.createElement("option");
-            option.value = item.nom;
-            option.innerText = item.nom.charAt(0).toUpperCase() + item.nom.slice(1);
+            console.log(item);
+            option.value = item.value;
+            option.innerText = item.value.charAt(0).toUpperCase() + item.value.slice(1);
             option.selected = true;
             document.querySelector("#espece_arbre_list").appendChild(option);
         });

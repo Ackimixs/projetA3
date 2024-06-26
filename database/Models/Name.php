@@ -13,7 +13,7 @@ class Name
     static function list() {
         try {
             $db = database::connectionDB();
-            $request = 'SELECT nom FROM "tree" GROUP BY nom';
+            $request = 'SELECT nom as value FROM "tree" GROUP BY nom';
             $stmt = $db->prepare($request);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
