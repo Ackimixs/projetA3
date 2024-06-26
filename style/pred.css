@@ -1,10 +1,10 @@
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f5f5f5;
 }
-
-/* ---------------------- HEADER ---------------------- */
 
 header {
     background: linear-gradient(45deg, #2aa696, #41B3A3);
@@ -104,7 +104,7 @@ a:nth-child(5) {
     background-color: #E27D60;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 0px;
     cursor: pointer;
     border-radius: 8px;
     font-size: 20px;
@@ -112,95 +112,72 @@ a:nth-child(5) {
 
 }
 
-/* ---------------------- FIN HEADER ---------------------- */
-
-.main h1 {
-    text-align: center;
-    color: #E27D60;
-    font-size: 50px;
-}
-.main h2 {
-    text-align: center;
-    color: #41B3A3;
-    font-size: 30px;
-}
-.main {
-    text-align: center;
+main {
     padding: 20px;
+    text-align: center;
 }
-.main img {
-    width: 70%;
-    max-width: 70%;
-    height: auto;
-    border: 5px solid #41B3A3;
-    margin-top: 20px;
+
+h1 {
+    color: #E27D60;
 }
-.main button {
-    background: linear-gradient(45deg, #0b8776, #41B3A3);
+
+.search-section,
+.prediction-section,
+.model-section {
+    margin: 20px 0;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    padding: 10px;
+    border: 2px solid #C35360;
+    border-radius: 8px;
+    margin: 10px 0;
+    width: calc(100% - 24px); /* Full width minus padding and border */
+    max-width: 300px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #E27D60;
     color: white;
     border: none;
-    font-size: large;
-    padding: 15px 60px;
-    cursor: pointer;
-    margin-bottom: 20px;
     border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-.project-description {
-    padding: 20px;
-    background-color: #f9f9f9;
-    text-align: left;
+
+button:hover {
+    background-color: #F18E67;
 }
-.project-description h2 {
-    color: #E27D60;
-    font-size: 40px;
-    text-align: center;
-}
-.features {
+
+.results-section {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.results-card {
+    background-color: white;
     padding: 20px;
-    background-color: #eef5f9;
-}
-.feature {
-    text-align: center;
-    width: 30%;
-}
-.feature img {
-    width: 50px;
-    height: 50px;
-}
-
-.btn_feature {
-    background: linear-gradient(45deg, #0b8776, #41B3A3);
-    color: white;
-    border: none;
-    font-size: large;
-    padding: 15px 30px;
-    cursor: pointer;
-    margin-bottom: 20px;
     border-radius: 8px;
-}
-.feature img {
-    min-width: 150px;
-    min-height: 150px;
-}
-.desc_proj {
-    padding-left: 80px;
-    padding-right: 80px;
-    background-color: #f9f9f9;
-    text-align: center;
-    /* mettre légerement en bold */
-    font-weight: 500;
-    font-size: large;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    width: 300px;
+    max-width: 100%;
 }
 
-/* ------------------ FOOTER ------------------ */
+/* ---------------------- FOOTER ---------------------- */
 
 .footer {
     background-color: #41B3A3;
     color: white;
     text-align: center;
-    padding: 10px 0;
+    padding: 5px 30%;
+    bottom: 0;
+    margin-top: 30px;
 }
 .footer .contact {
     display: flex;
@@ -214,4 +191,3 @@ a:nth-child(5) {
 }
 
 /* ---------------------- FIN FOOTER ---------------------- */
-

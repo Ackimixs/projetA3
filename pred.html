@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/pred.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" /></head>
+    <title>Prédiction des caractéristiques des arbres</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="container_logo">
+                <a href="index.html">
+                    <img class= "logo" src="/images/Logo site web.png" alt="Main image placeholder">
+                </a>
+            </div>
+            
+            <nav>
+                <a href="index.html">Acceuil</a>
+                <a href="insert.html">Insérer</a>
+                <a href="visualisation.html">Carte</a>
+                <a href="#">Prédictions</a>
+                <a href="#">Compte</a>
+                <div class="animation start-home"></div>
+            </nav>
+            
+            <a href="auth.html" class="btn-login"><span class="material-symbols-outlined">
+                logout
+                </span>
+            </a>
+        </div>
+    </header>
+    
+    <main>
+        <h1>Prédiction des caractéristiques des arbres</h1>
+        
+        <section class="search-section">
+            <label for="tree-id">Rechercher un arbre par son ID :</label>
+            <input type="text" id="tree-id" name="tree-id">
+            <button class="btn-search">Rechercher</button>
+        </section>
+
+        <section class="results-section">
+            <div class="results-card">
+                <p>ID Arbre :</p>
+                <p>Espèce :</p>
+                <p>Etat de l'arbre :</p>
+                <p>Stade de développement :</p>
+                <p>Remarquable :</p>
+            </div>
+            <div class="results-card">
+                <p>Hauteur totale :</p>
+                <p>Hauteur tronc :</p>
+                <p>Diamètre tronc :</p>
+                <p>Latitude :</p>
+                <p>Longitude :</p>
+            </div>
+            <div class="results-card">
+                <p>Type d'élagage :</p>
+                <p>Sol de pousse :</p>
+                <p>Précision estimé de l'âge :</p>
+                <p>Nb diagnostics :</p>
+            </div>
+        </section>
+        
+        <section class="prediction-section">
+            <div class="prediction-card">
+                <label for="predict-age">Prédire l'âge :</label>
+                <input type="number" id="predict-age" name="predict-age" readonly="readonly">
+            </div>
+            <div class="prediction-card">
+                <label for="predict-uproot">Prédire le déracinement :</label>
+                <input type="number" id="predict-uproot" name="predict-uproot" readonly="readonly">
+            </div>
+        </section>
+        
+        <section class="model-section">
+            <select name="prediction-model" id="prediction-model">
+                <option value="" disabled selected>Choisir le modèle de prédiction</option>
+                <option value="model1">Modèle 1</option>
+                <option value="model2">Modèle 2</option>
+            </select>
+            <button class="btn-predict">Prédire</button>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p>St. Quentin TreeBrowser</p>
+        <div class="contact">
+            <a href="mailto:mathis.meunier@isen-ouest.yncrea.fr">mathis.meunier@isen-ouest.yncrea.fr</a>
+            <a href="mailto:killian.guichet@isen-ouest.yncrea.fr">killian.guichet@isen-ouest.yncrea.fr</a>
+            <a href="mailto:esteban.fanjul@isen-ouest.yncrea.fr">esteban.fanjul@isen-ouest.yncrea.fr</a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -129,8 +129,8 @@ a:nth-child(5) {
 .footer .contact {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    padding: 10px 0;
+    gap: 100px;
+    padding: 10px 200px;
 }
 .footer a {
     color: white;

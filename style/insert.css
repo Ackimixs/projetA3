@@ -186,7 +186,7 @@ form {
     cursor: pointer;
     border-radius: 5px;
     align-self: center;
-    margin-left: 118%;
+    margin-left: 8%;
     margin-top: 20px;
 }
 
@@ -207,8 +207,8 @@ form {
 .footer .contact {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    padding: 10px 0;
+    gap: 100px;
+    padding: 10px 200px;
 }
 .footer a {
     color: white;
