@@ -14,18 +14,24 @@ $model = $_GET['model'] ?? 'MLPClassifier';
 
 $tree = Tree::getTreeById($id);
 
+$gridSearch = isset($_GET['gridSearch']) && $_GET['gridSearch'];
+
 if ($tree) {
     $data = [array('haut_tronc' => $tree['haut_tronc'], 'tronc_diam' => $tree['tronc_diam'], 'haut_tot' => $tree['haut_tot'], 'age_estim' => $tree['age_estim'])];
 
     file_put_contents('../../../IA/f3.json', json_encode($data));
 
-    exec('cd ../../../IA && python3 load_models.py --model '. $model .' --f3 --input_json f3.json');
+    if ($gridSearch) {
+        exec('cd ../../../IA && python3 load_models.py --model '. $model .' --f3 --input_json f3.json --grid_search');
+    } else {
+        exec('cd ../../../IA && python3 load_models.py --model '. $model .' --f3 --input_json f3.json');
+    }
 
     $out = json_decode(file_get_contents('../../../IA/output.json'))[0];
 
     Tree::updateDeracinement($id, $out->class);
 
-    echo json_encode($out);
+    echo json_encode(array('status' => 'success', 'deracinement' => $out->class));
 } else {
     echo json_encode(array('status' => 'error', 'message' => 'Tree not found'));
 }

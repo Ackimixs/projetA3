@@ -142,7 +142,7 @@ function changemaptab(){
 
 let select = document.getElementById('options');
 select.addEventListener("change", clustermap);
-
+drawMap(true,"Kmeans", 2);
 function clustermap(){
     console.log(select.value)
     if(select.value === "nc"){
@@ -170,4 +170,3 @@ function clustermap(){
         drawMap(true,"Birch", 3);
     }
 }
-
