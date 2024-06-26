@@ -1,17 +1,10 @@
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    min-height: 100vh;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    background-color: #ffffff;
 }
-
-
-/* ---------------------- HEADER ---------------------- */
-
 
 header {
     background: linear-gradient(45deg, #2aa696, #41B3A3);
@@ -116,81 +109,64 @@ a:nth-child(5) {
     border-radius: 8px;
     font-size: 20px;
     margin-right: 20px;
+
 }
 
-/* ---------------------- FIN HEADER ---------------------- */
-
-.card-list {
-    width: 70%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+main {
+    padding: 20px;
+    text-align: center;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+h1 {
+    color: #E27D60;
 }
 
-.card-list h3 {
-    color: #41B3A3;
-    margin-bottom: 0;
+.search-section,
+.prediction-section,
+.model-section {
+    margin: 20px 0;
 }
 
-.card {
-    background-color: white;
-    padding: 10px 10px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    margin-left: 10px;
-    margin-top: 0;
+input[type="text"],
+input[type="number"],
+select {
+    padding: 10px;
+    border: 2px solid #C35360;
+    border-radius: 8px;
+    margin: 10px 0;
+    width: calc(100% - 24px); /* Full width minus padding and border */
+    max-width: 300px;
 }
 
-.card label {
-    display: block;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    margin-left: 20px;
-    color: #41B3A3;
-    font-weight: bold;
-}
-
-.card input {
-    width: 80%;
-    padding: 7px 5px;
-    border: 2px solid;
-    border-image-source: linear-gradient(45deg, #F18E67, #C35360);
-    border-image-slice: 1;
-    border-radius: 12px;
-    outline: none;
-    margin: 0 20px;
-}
-
-.card select {
-    padding: 8px 135px;
-    margin: 0 20px;
-    border: #E27D60 2px solid;
-}
-
-.btn-submit {
-    background: linear-gradient(45deg, #F18E67, #C35360);
+button {
+    padding: 10px 20px;
+    background-color: #E27D60;
     color: white;
     border: none;
-    width: 300px;
-    margin: 2rem;
-    padding: 1.5rem;
+    border-radius: 8px;
     cursor: pointer;
-    border-radius: 5px;
-    align-self: center;
-    margin-left: 8%;
-    margin-top: 20px;
+    transition: background-color 0.3s ease;
 }
 
-.btn-submit:hover {
-    background: #E27D60;
+button:hover {
+    background-color: #F18E67;
+}
+
+.results-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.results-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    width: 300px;
+    max-width: 100%;
 }
 
 /* ---------------------- FOOTER ---------------------- */
@@ -215,33 +191,3 @@ form {
 }
 
 /* ---------------------- FIN FOOTER ---------------------- */
-
-.error-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-}
-
-p#error-message {
-    color: red;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.success-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-}
-
-p#success-message {
-    color: forestgreen;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 20px;
-}

@@ -2,14 +2,15 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-
     min-height: 100vh;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
+
+
 /* ---------------------- HEADER ---------------------- */
+
 
 header {
     background: linear-gradient(45deg, #2aa696, #41B3A3);
@@ -114,98 +115,78 @@ a:nth-child(5) {
     border-radius: 8px;
     font-size: 20px;
     margin-right: 20px;
-
 }
 
 /* ---------------------- FIN HEADER ---------------------- */
-/* ------------------ FOOTER ------------------ */
 
-.footer {
-    background-color: #41B3A3;
+.welcome_title h1 {
+    margin-top: 40px;
+    margin-left: 5%;
+    color: #E27D60;
+    font-size: 35px;    
+}
+
+.modify_username {
+    margin: 20px 0;
+    margin-left: 5%;
+    margin-bottom: 1px;
+}
+
+.modify_password {
+    margin: 20px 0;
+    margin-top: 1px;
+    margin-left: 5%;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    padding: 10px;
+    border: 2px solid #C35360;
+    border-radius: 8px;
+    margin: 10px 0;
+    width: calc(100% - 24px); /* Full width minus padding and border */
+    max-width: 300px;
+}
+
+label {
+    color: #41B3A3;
+    font-weight: bold;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #E27D60;
     color: white;
-    text-align: center;
-    padding: 10px 0;
-}
-.footer .contact {
-    display: flex;
-    justify-content: center;
-    gap: 100px;
-    padding: 10px 200px;
-}
-.footer a {
-    color: white;
-    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
 }
 
-/* ---------------------- FIN FOOTER ---------------------- */
-
-/*=======================================================*/
-
-#simple-visualisation{
-    height: 100%;
-    width: 90%;
-    padding: 0px;
-    margin: 0px;
+button:hover {
+    background-color: #F18E67;
 }
 
-#simple-tab{
-    display: none;
-    margin-top: 2px;
-}
-
-#tab-btn{
-    display: none;
-    margin-top: 2px;
+.arbres_inserted h1 {
+    margin-left: 5%;
+    color: #E27D60;
+    font-size: 35px;
+    margin-top: 20px;  
+    margin-bottom: 1px; 
 }
 
 .map-tab-container{
+    margin-top: 1px;
     display: flex;
     flex-direction: column;
     justify-content:center;
     align-items: center;
 }
 
-.choose-container{
-display: flex;
-flex-direction: row;
-margin: 10px;
-}
-
-#btn-choise-map {
-    padding-right: 0px;
-    margin-right: 0px;
-    padding: 10px 25px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px ;
-
-    background-color: #C38D9E;
-    color: white;
-    border: none;
-    
-    cursor: pointer;
-}
-
-#btn-choise-tab {
-    padding-left: 0px;
-    margin-left: 0px;
-    padding: 10px 15px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px ;
-
-
-    background-color: lightgray;
-    color: black;
-    border: none;
-    
-    cursor: pointer;
-}
-
-
-/*=======================================================*/
-
-
 table {
-    margin-top: 50px;
+    margin-top: 15px;
     margin-bottom: 50px;
     height: 90%;
     width: 90%;
@@ -245,56 +226,31 @@ tbody {
     background-color: rgb(255, 255, 255);
 }
 
-.button-list {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 10px;
+.suppr-compte {
+    margin-left: 45%;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
-.button-list button {
-    margin: 0 10px;
-    padding: 5px 10px;
-    border: 1px solid #E27D60;
-    border-radius: 5px;
-    background-color: #E27D60;
-    cursor: pointer;
-    font-size: large;
-}
 
-.button-list p {
-    font-style: bold;
-    margin: 0 10px;
-    padding: 5px 10px;
-}
+/* ---------------------- FOOTER ---------------------- */
 
-#next, #prev{
-    font-weight: bold;
+
+.footer {
+    background-color: #41B3A3;
     color: white;
-}
-
-th, td {
-    width: 100px; 
-    height: 50px; 
-    border: 1px solid #C38D9E;
     text-align: center;
+    padding: 10px 0;
 }
-
-
-.hor{
-    display:flex;
-    flex-direction:row;
-    justify-content:space-around;
-    align-items: center;
-}
-.select-container{
+.footer .contact {
     display: flex;
-    flex-direction: column;
-    justify-content:space-around;
-    align-items: center;
-    margin-right: 20%;
+    justify-content: center;
+    gap: 100px;
+    padding: 10px 200px;
+}
+.footer a {
+    color: white;
+    text-decoration: none;
 }
 
-#options{
-    margin-top: 10px;
-}
+/* ---------------------- FIN FOOTER ---------------------- */

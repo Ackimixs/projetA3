@@ -103,8 +103,8 @@ footer {
 
 .footer-container .contact {
     display: flex;
-    gap: 20px;
-    padding: 10px 0;
+    gap: 100px;
+    padding: 10px 200px;
 }
 
 .footer-container a {
