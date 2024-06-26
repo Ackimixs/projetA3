@@ -18,53 +18,51 @@ async function getClusters(method = "Kmeans", nb_clusters = 3) {
     return response.json();
 }
 
-let clustering = true;
+function drawMap(clustering = false) {
+    // Utilisation de fetch pour récupérer les données JSON
+    fetch("/api/tree.php?all=true")
+        .then(response => response.json())
+        .then(async rows => {
+            rows = rows.data
 
-// Utilisation de fetch pour récupérer les données JSON
-fetch("/api/tree.php?all=true")
-    .then(response => response.json())
-    .then(async rows => {
-        rows = rows.data
+            const clusteredData = (await getClusters());
 
-        const clusteredData = (await getClusters());
-
-        let j = 0;
-        for (let i = 0; i < rows.length; i++) {
-            if (rows[i].id === clusteredData[j]?.tree.id) {
-                rows[i].cluster = clusteredData[j].cluster;
-            } else {
-                rows[i].cluster = -1;
-                j--;
-            }
-
-            j++;
-        }
-
-        let data = [
-            {
-                type: "scattermapbox",
-                text: unpack(rows, "nom"),
-                lon: unpack(rows, "longitude"),
-                lat: unpack(rows, "latitude"),
-                hoverinfo: unpack(rows, "nom", "haut_tronc", "haut_tot"),
-                marker: {
-                    color: clustering ? unpackColor(rows) : "blue",
-                    size: 12
+            let j = 0;
+            for (let i = 0; i < rows.length; i++) {
+                if (rows[i].id === clusteredData[j]?.tree.id) {
+                    rows[i].cluster = clusteredData[j].cluster;
+                } else {
+                    rows[i].cluster = -1;
+                    j--;
                 }
+
+                j++;
             }
-        ];
 
-        let layout = {
-            dragmode: "zoom",
-            mapbox: { style: "open-street-map", center: { lat: 49.85, lon: 3.30 }, zoom: 11 },
-            margin: { r: 10, t: 30, b: 30, l: 10 }
-        };
+            let data = [
+                {
+                    type: "scattermapbox",
+                    text: unpack(rows, "nom"),
+                    lon: unpack(rows, "longitude"),
+                    lat: unpack(rows, "latitude"),
+                    hoverinfo: unpack(rows, "nom", "haut_tronc", "haut_tot"),
+                    marker: {
+                        color: clustering ? unpackColor(rows) : "blue",
+                        size: 12
+                    }
+                }
+            ];
 
-        Plotly.newPlot("simple-visualisation", data, layout);
-    })
-    .catch(error => console.error('Error fetching the JSON data:', error));
+            let layout = {
+                dragmode: "zoom",
+                mapbox: { style: "open-street-map", center: { lat: 49.85, lon: 3.30 }, zoom: 11 },
+                margin: { r: 10, t: 30, b: 30, l: 10 }
+            };
 
-
+            Plotly.newPlot("simple-visualisation", data, layout);
+        })
+        .catch(error => console.error('Error fetching the JSON data:', error));
+}
 
 let btn1 = document.getElementById('btn-choise-map');
 let btn2 = document.getElementById('btn-choise-tab');
@@ -132,3 +130,5 @@ function changemaptab(){
         tab_btn.style.display = 'flex';
     }
 }
+
+drawMap();
