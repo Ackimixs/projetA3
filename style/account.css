@@ -149,6 +149,20 @@ select {
     max-width: 300px;
 }
 
+.modify_username h2,
+.modify_password h2{
+    color: #E27D60;
+}
+
+.label1 {
+    margin-right: 9px;
+
+}
+
+.label2 {
+    margin-right: 24px;
+}
+
 label {
     color: #41B3A3;
     font-weight: bold;

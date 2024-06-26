@@ -121,7 +121,7 @@ a:nth-child(5) {
 /* ---------------------- FIN HEADER ---------------------- */
 
 .card-list {
-    width: 70%;
+    width: 80%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -136,7 +136,7 @@ form {
 }
 
 .card-list h3 {
-    color: #41B3A3;
+    color: #E27D60;
     margin-bottom: 0;
 }
 
@@ -185,7 +185,7 @@ form {
     cursor: pointer;
     border-radius: 5px;
     align-self: center;
-    margin-left: 8%;
+    margin-left: 2%;
     margin-top: 20px;
 }
 
