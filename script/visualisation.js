@@ -9,7 +9,7 @@ function unpack(rows, ...key) {
 
 function unpackColor(rows) {
     return rows.map(function(row) {
-        return row.cluster === 0 ? "blue" : row.cluster === 1 ? "red" : "green";
+        return row.cluster === -1 ? "black" : row.cluster === 0 ? "blue" : row.cluster === 1 ? "red" : "green";
     });
 }
 
@@ -26,6 +26,20 @@ fetch("/api/tree.php?all=true")
     .then(async rows => {
         rows = rows.data
 
+        const clusteredData = (await getClusters());
+
+        let j = 0;
+        for (let i = 0; i < rows.length; i++) {
+            if (rows[i].id === clusteredData[j]?.tree.id) {
+                rows[i].cluster = clusteredData[j].cluster;
+            } else {
+                rows[i].cluster = -1;
+                j--;
+            }
+
+            j++;
+        }
+
         let data = [
             {
                 type: "scattermapbox",
@@ -34,13 +48,11 @@ fetch("/api/tree.php?all=true")
                 lat: unpack(rows, "latitude"),
                 hoverinfo: unpack(rows, "nom", "haut_tronc", "haut_tot"),
                 marker: {
-                    color: clustering ? unpackColor(await getClusters()) : "blue",
+                    color: clustering ? unpackColor(rows) : "blue",
                     size: 12
                 }
             }
         ];
-
-        console.log(data)
 
         let layout = {
             dragmode: "zoom",
