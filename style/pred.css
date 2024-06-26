@@ -25,7 +25,11 @@ header {
 .logo {
     max-width: 50%;
     max-height: 50%;
-    
+    transition: filter 1s ease, transform 1s ease;
+}
+.logo:hover {
+    filter: invert(100%);
+    transform: scale(1.05);
 }
 
 .header-container nav {
