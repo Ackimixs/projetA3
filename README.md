@@ -36,6 +36,12 @@ VirtualHost exemple:
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
+```bash
+sudo a2ensite projetA3.conf
+```
+```bash
+sudo service apache2 reload
+```
 
 Cette configuration permet de rediriger les requetes vers le dossier /var/www/projetA3    
 Lorsque qu'un autre virtual host par default est configuré, il est necessaire de sois le desactivé ou changer votre fichier hosts sur votre OS pour rediriger les requetes vers le bon virtual host.  
