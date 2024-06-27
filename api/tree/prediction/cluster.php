@@ -20,7 +20,7 @@ if (isset($id)) {
     if ($tree) {
         $data = array($tree['haut_tronc'], $tree['haut_tot'], $tree['tronc_diam'], $tree['age_estim']);
 
-        file_put_contents('../../../IA/f1.json', json_encode($data));
+        file_put_contents('../../../IA/f1.json', json_encode(array($data)));
 
         exec('cd ../../../IA && python3 load_models.py --nb_clusters '. $nb_clusters .' --algo '. $model .' --f1 --input_json f1.json');
 

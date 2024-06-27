@@ -46,12 +46,20 @@ document.querySelector("#btn-predict").addEventListener("click", () => {
         .then(data => {
             document.querySelector("#predict-uproot").value = data.deracinement ? "Oui" : "Non";
         })
+})
 
-    /*fetch(`/api/tree/prediction/cluster.php?model=Kmean&nb_clusters=3&id=${id}`, {
+document.querySelector("#btn-predict-cluster").addEventListener("click", () => {
+    const model_nb_cluster = document.querySelector('#prediction-model-cluster').value;
+    if (model_nb_cluster === "") return;
+    const nb_cluster = model_nb_cluster.split('-')[1];
+    const model = model_nb_cluster.split('-')[0];
+    const id = document.querySelector("#tree-id").value;
+
+    fetch(`/api/tree/prediction/cluster.php?model=${model}&nb_clusters=${nb_cluster}&id=${id}`, {
         method: "GET"
     })
         .then(response => response.json())
         .then(data => {
-            document.querySelector("#predict-height").value = data[0].class;
-        })*/
+            document.querySelector("#predict-height").value = data[0].cluster;
+        })
 })

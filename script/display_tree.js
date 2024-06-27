@@ -69,7 +69,7 @@ document.querySelectorAll(".filter-select").forEach(select => {
     select.addEventListener("change", () => {
 
         document.querySelectorAll(".filter-select").forEach(s => {
-            s.firstChild.selected = true;
+            if (s !== select) s.selectedIndex = 0;
         })
 
         filterCol = select.getAttribute("data-value-db")
@@ -99,7 +99,6 @@ display_tree(10, page)
 
 document.querySelectorAll("th").forEach(th => {
     th.addEventListener("click", (e) => {
-        console.log(e.target)
         if (e.target.classList.contains("filter-select")) {
             return;
         }
