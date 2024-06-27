@@ -3,6 +3,8 @@ document.querySelector("#username-text").innerHTML = JSON.parse(localStorage.get
 document.querySelector(".btn-username").addEventListener("click", () => {
     let newUsername = document.querySelector("#modify-username").value;
     if (newUsername === "") return;
+    document.getElementById("text-modif-username").style.color = 'green';
+    document.getElementById("text-modif-username").innerHTML = "Modification pris en compte";
     fetch(`/api/account.php?username=${newUsername}&id=${JSON.parse(localStorage.getItem('user')).id}`, {
         method: "PUT"
     })
@@ -32,6 +34,8 @@ document.querySelector(".btn-password").addEventListener("click", () => {
         .then(response => response.json())
         .then(data => {
             if (data.status === "success") {
+                document.getElementById("text-modif-password").style.color = 'green';
+                document.getElementById("text-modif-password").innerHTML = "Modification pris en compte";
                 fetch(`/api/account.php?password=${newPassword}&id=${JSON.parse(localStorage.getItem('user')).id}`, {
                     method: "PUT"
                 })
@@ -41,6 +45,10 @@ document.querySelector(".btn-password").addEventListener("click", () => {
                         document.querySelector("#modify-password-check").value = "";
                         localStorage.setItem("user", JSON.stringify(data));
                     })
+            }
+            else{
+                document.getElementById("text-modif-password").style.color = 'red';
+                document.getElementById("text-modif-password").innerHTML = "Modification non pris en compte veuillez reésayer";
             }
         })
 })

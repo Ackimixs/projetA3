@@ -258,6 +258,23 @@ tbody {
     margin-bottom: 30px;
 }
 
+#text-modif-password, #text-modif-username{
+    font-weight: bold;
+}
+
+
+.hori{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.hori > label{
+    margin-right: 5px;
+}
+.btn-modify{
+    margin-right: 10px;
+}
+
 
 /* ---------------------- FOOTER ---------------------- */
 
