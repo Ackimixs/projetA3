@@ -29,7 +29,6 @@ fetch('/api/name/list.php')
     .then(data => {
         data.data.forEach(item => {
             let option = document.createElement("option");
-            console.log(item);
             option.value = item.value;
             option.innerText = item.value.charAt(0).toUpperCase() + item.value.slice(1);
             option.selected = true;
@@ -49,7 +48,8 @@ document.querySelector("#create-arbre").addEventListener("submit", (e) => {
             if (data.status === "success") {
                 document.querySelector("#success-message").innerText = "Arbre ajouté avec succès";
                 document.querySelector("#success-message").hidden = false;
-                hasError = true;
+                hasSuccess = true;
+                clearForm();
             }
             else {
                 document.querySelector("#error-message").innerText = data.message;
@@ -95,3 +95,9 @@ document.querySelectorAll("select").forEach(select => {
         }
     })
 })*/
+
+function clearForm() {
+    document.querySelectorAll("input").forEach(input => {
+        input.value = "";
+    });
+}
