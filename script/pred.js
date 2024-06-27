@@ -36,7 +36,11 @@ document.querySelector("#btn-predict").addEventListener("click", () => {
     })
         .then(response => response.json())
         .then(data => {
-            document.querySelector("#predict-age").value = data.age;
+            if (parseInt(data.age) > 90) {
+                document.querySelector("#predict-age").value = `+90 ans`;
+            } else {
+                document.querySelector("#predict-age").value = `${parseInt(data.age)-5}-${parseInt(data.age)+4} ans`;
+            }
         })
 
     fetch(`/api/tree/prediction/risque_deracinement.php?model=${model}&grid_search=${gridSearch}&id=${id}`, {
@@ -60,7 +64,6 @@ document.querySelector("#btn-predict-cluster").addEventListener("click", () => {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             document.querySelector("#predict-height").value = parseInt(data[0].cluster) + 1;
         })
 })
