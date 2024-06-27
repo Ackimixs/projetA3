@@ -71,12 +71,12 @@ GRANT ALL PRIVILEGES ON DATABASE tree TO tree;
 Table de la base
 ```bash
 cd 'root du projet'
-psql -U tree -d tree -a -f sql/tables.sql
-psql -U tree -d tree -a -f sql/data.sql
+psql -U tree -d tree -f sql/tables.sql
+psql -U tree -d tree -f sql/data.sql
 ```
 Remplir la base de donnée avec les données du fichier csv Data_arbre.csv
 ```bash
-cd IA && python3load_data.py
+cd IA && python3 load_data.py
 ```
 
 ### Configuration du projet
@@ -86,11 +86,11 @@ Pour configurer le projet, il est nécessaire de renomer le fichier hidden.const
 Pour lancer le projet, il est necessaire de lancer le serveur apache et de lancer le service postgresql.  
 Pour lancer le serveur apache:
 ```bash
-sudo service apache2 start
+sudo service apache2 reload
 ```
 Pour lancer le service postgresql:
 ```bash
-sudo service postgresql start
+sudo service postgresql restart
 ```
 
 ## Utilisation
