@@ -121,10 +121,14 @@ a:nth-child(5) {
     padding: 10px 0px;
     cursor: pointer;
     border-radius: 8px;
-    font-size: 20px;
-    margin-right: 20px;
 
+
+    transition: filter 0.5s ease, transform 0.5s ease;
 }
+.btn-login:hover {
+    transform: scale(1.10);
+}
+
 
 /* ---------------------- FIN HEADER ---------------------- */
 
