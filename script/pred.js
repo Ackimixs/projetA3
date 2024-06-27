@@ -25,17 +25,17 @@ document.querySelector("#btn-search-id").addEventListener("click", async () => {
     window.location.search = `?id=${id}`;
 })
 
-document.querySelector("#btn-predict").addEventListener("click", (e) => {
-    const model = document.querySelector('#prediction-model').value;
-    if (model === "") return;
-    const gridSearch = model.split('-').length === 2;
+document.querySelector("#btn-predict").addEventListener("click", () => {
+    const model_grid = document.querySelector('#prediction-model').value;
+    if (model_grid === "") return;
+    const gridSearch = model_grid.split('-').length === 2;
+    const model = model_grid.split('-')[0];
     const id = document.querySelector("#tree-id").value;
     fetch(`/api/tree/prediction/age.php?model=${model}&grid_search=${gridSearch}&id=${id}`, {
         method: "GET"
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             document.querySelector("#predict-age").value = data.age;
         })
 
@@ -44,7 +44,14 @@ document.querySelector("#btn-predict").addEventListener("click", (e) => {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             document.querySelector("#predict-uproot").value = data.deracinement ? "Oui" : "Non";
         })
+
+    /*fetch(`/api/tree/prediction/cluster.php?model=Kmean&nb_clusters=3&id=${id}`, {
+        method: "GET"
+    })
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector("#predict-height").value = data[0].class;
+        })*/
 })

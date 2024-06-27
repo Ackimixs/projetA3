@@ -10,7 +10,7 @@ require_once __DIR__ . '/../database.php';
 
 class Tree
 {
-    static function getTrees($limit = 10, $offset = 0, $sort = 'id', $order = 'ASC')
+    static function getTrees($limit = 10, $offset = 0, $sort = 'id', $order = 'ASC', $filter_col = null, $filter_value = null)
     {
         try {
             $db = database::connectionDB();
@@ -20,11 +20,15 @@ class Tree
                           LEFT JOIN public.port p2 on p2.id = t.id_port
                           LEFT JOIN public.stade_dev sd on sd.id = t.id_stade_dev
                           LEFT JOIN public."user" u on u.id = t.id_user
+                        '. ($filter_col ? 'WHERE ' . $filter_col . ' = :filter_value' : '') . '
                         ORDER BY ' . $sort . ' ' . $order . '
                         LIMIT :limit OFFSET :offset;';
             $stmt = $db->prepare($request);
             $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
             $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+            if ($filter_col) {
+                $stmt->bindParam(':filter_value', $filter_value);
+            }
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $exception) {

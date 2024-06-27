@@ -3,11 +3,13 @@ body_table = document.querySelector(".body-table-arbre")
 let page = 0
 let sort = "id"
 let order = "ASC"
+let filterCol = ""
+let filterValue = ""
 
-function display_tree(limit = 10, offset = 0, sort = 'id', order = 'ASC') {
+function display_tree(limit = 10, offset = 0, sort = 'id', order = 'ASC', filter_col = "", filter_value = "") {
     console.log(limit, offset, sort, order)
 
-    fetch(`/api/tree.php?limit=${limit}&offset=${offset}&sort=${sort}&order=${order}`, {
+    fetch(`/api/tree.php?limit=${limit}&offset=${offset}&sort=${sort}&order=${order}&filter_col=${filter_col}&filter_value=${filter_value}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -49,26 +51,59 @@ function display_tree(limit = 10, offset = 0, sort = 'id', order = 'ASC') {
         })
 }
 
+document.querySelectorAll(".filter-select").forEach(select => {
+    fetch(`/api/${select.getAttribute("data-value")}/list.php`, {
+        method: "GET"
+    })
+        .then(response => response.json())
+        .then(data => {
+            data.data.forEach(item => {
+                let option = document.createElement("option");
+                option.value = item.value;
+                option.innerText = item.value.charAt(0).toUpperCase() + item.value.slice(1);
+
+                select.appendChild(option);
+            });
+    })
+
+    select.addEventListener("change", () => {
+
+        document.querySelectorAll(".filter-select").forEach(s => {
+            s.firstChild.selected = true;
+        })
+
+        filterCol = select.getAttribute("data-value-db")
+        filterValue = select.value
+
+        if (filterValue === "") filterCol = "";
+
+        display_tree(10, page*10, sort, order, filterCol, filterValue)
+    })
+})
 
 document.querySelector("#prev").addEventListener("click", () => {
     if (page > 0) {
         page --
     }
-    display_tree(10, page*10, sort, order)
+    display_tree(10, page*10, sort, order, filterCol, filterValue)
     document.querySelector("#page").innerHTML = page.toString()
 })
 
 document.querySelector("#next").addEventListener("click", () => {
     page ++
-    display_tree(10, page*10, sort, order)
+    display_tree(10, page*10, sort, order, filterCol, filterValue)
     document.querySelector("#page").innerHTML = page.toString()
 })
 
 display_tree(10, page)
 
 document.querySelectorAll("th").forEach(th => {
-    th.addEventListener("click", () => {
-        console.log(th)
+    th.addEventListener("click", (e) => {
+        console.log(e.target)
+        if (e.target.classList.contains("filter-select")) {
+            return;
+        }
+
         let new_sort = th.getAttribute("data-value")
         if (sort === new_sort) {
             order = order === "ASC" ? "DESC" : "ASC"
@@ -78,7 +113,7 @@ document.querySelectorAll("th").forEach(th => {
         sort = new_sort
         addNewIcon(th, order)
 
-        display_tree(10, page*10, sort, order)
+        display_tree(10, page*10, sort, order, filterCol, filterValue)
     })
 })
 

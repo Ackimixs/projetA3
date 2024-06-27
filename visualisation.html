@@ -75,7 +75,9 @@
         <table id='simple-tab' class="table-arbres" data-status="hidden">
             <thead>
             <tr>
-                <th data-value="id" scope="col">id</th>
+                <th data-value="id" scope="col">
+                    id
+                </th>
                 <th data-value="haut_tronc" scope="col">Hauteur Tronc</th>
                 <th data-value="haut_tot" scope="col">Hauteur Total</th>
                 <th data-value="tronc_diam" scope="col">Diamètre du tronc</th>
@@ -86,12 +88,42 @@
                 <th data-value="longitude" scope="col">Longitude</th>
                 <th data-value="latitude" scope="col">Latitude</th>
                 <th data-value="risque_deracinement" scope="col">Risque deracinemet</th>
-                <th data-value="nom" scope="col">Nom</th>
-                <th data-value="etat_arbre" scope="col">Etat arbre</th>
-                <th data-value="pied" scope="col">Pied</th>
-                <th data-value="port" scope="col">Port</th>
-                <th data-value="stade_dev" scope="col">stade de developpement</th>
-                <th data-value="username" scope="col">Ajouter par</th>
+                <th data-value="nom" scope="col">
+                    Nom
+                    <select name="nom_filter" id="nom_filter" class="filter-select" data-value="name" data-value-db="nom">
+                        <option value=""></option>
+                    </select>
+                </th>
+                <th data-value="etat_arbre" scope="col">
+                    Etat arbre
+                    <select name="etat_arbre_filter" id="etat_arbre_filter" class="filter-select" data-value="etat_arbre" data-value-db="ea.value">
+                        <option value=""></option>
+                    </select>
+                </th>
+                <th data-value="pied" scope="col">
+                    Pied
+                    <select name="pied_filter" id="pied_filter" class="filter-select" data-value="pied" data-value-db="p.value">
+                        <option value=""></option>
+                    </select>
+                </th>
+                <th data-value="port" scope="col">
+                    Port
+                    <select name="port_filter" id="port_filter" class="filter-select" data-value="port" data-value-db="p2.value">
+                        <option value=""></option>
+                    </select>
+                </th>
+                <th data-value="stade_dev" scope="col">
+                    stade de developpement
+                    <select name="stade_dev_filter" id="stade_dev_filter" class="filter-select" data-value="stade_dev" data-value-db="sd.value">
+                        <option value=""></option>
+                    </select>
+                </th>
+                <th data-value="username" scope="col">
+                    Ajouter par
+                    <select name="username_filter" id="username_filter" class="filter-select" data-value="username" data-value-db="u.username">
+                        <option value=""></option>
+                    </select>
+                </th>
             </tr>
             </thead>
             <tbody class="body-table-arbre">

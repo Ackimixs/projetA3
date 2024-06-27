@@ -103,4 +103,17 @@ class User
             return false;
         }
     }
+
+    static function list() {
+        try {
+            $db = database::connectionDB();
+            $request = 'SELECT id, username as value FROM "user"';
+            $stmt = $db->prepare($request);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $exception) {
+            error_log("[" . basename(__FILE__) . "][" . __LINE__ . "] " . 'Request error: ' . $exception->getMessage());
+            return false;
+        }
+    }
 }
