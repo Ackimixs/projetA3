@@ -122,6 +122,9 @@ a:nth-child(5) {
 .btn-login:hover {
     transform: scale(1.10);
 }
+#simple-tab{
+    cursor: pointer;
+}
 
 
 /* ---------------------- FIN HEADER ---------------------- */
