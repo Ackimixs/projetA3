@@ -18,7 +18,7 @@ if (isset($id)) {
     $tree = Tree::getTreeById($id);
 
     if ($tree) {
-        $data = array($tree['haut_tronc'], $tree['haut_tot'], $tree['tronc_diam'], $tree['age_estim']);
+        $data = array($tree['haut_tronc'], $tree['tronc_diam'], $tree['age_estim'], $tree['prec_estim']);
 
         file_put_contents('../../../IA/f1.json', json_encode(array($data)));
 

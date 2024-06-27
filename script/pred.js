@@ -60,6 +60,7 @@ document.querySelector("#btn-predict-cluster").addEventListener("click", () => {
     })
         .then(response => response.json())
         .then(data => {
-            document.querySelector("#predict-height").value = data[0].cluster;
+            console.log(data);
+            document.querySelector("#predict-height").value = parseInt(data[0].cluster) + 1;
         })
 })

@@ -53,7 +53,7 @@ function drawMap(clustering = false, method = "Kmeans", nb_clusters = 3) {
             let data = [
                 {
                     type: "scattermapbox",
-                    text: unpackWithKeys(rows, ["nom", "Nom"], ["haut_tronc", "Hauteur Tronc"], ["haut_tot", "Hauteur Totale"], ["tronc_diam", "Diametre du tronc"], ["prec_estim", "Precision estimé"], ["clc_nbr_diag", "Nombre de diagnostique"], ['age_estim', "Age Estimé"]),
+                    text: unpackWithKeys(rows, ["id", "Id"], ["nom", "Nom"], ["haut_tronc", "Hauteur Tronc"], ["haut_tot", "Hauteur Totale"], ["tronc_diam", "Diametre du tronc"], ["prec_estim", "Precision estimé"], ["clc_nbr_diag", "Nombre de diagnostique"], ['age_estim', "Age Estimé"]),
                     lon: unpack(rows, "longitude"),
                     lat: unpack(rows, "latitude"),
                     hoverinfo: unpack(rows, "nom", "haut_tronc", "haut_tot"),
@@ -71,6 +71,11 @@ function drawMap(clustering = false, method = "Kmeans", nb_clusters = 3) {
             };
 
             Plotly.newPlot("simple-visualisation", data, layout);
+
+            document.getElementById("simple-visualisation").on("plotly_click", (data) => {
+                const treeId = data.points[0].text.split("<br>")[0].split(" ")[1];
+                window.location.href = `/pred.html?id=${treeId}`;
+            })
         })
         .catch(error => console.error('Error fetching the JSON data:', error));
 }
