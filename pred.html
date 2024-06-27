@@ -75,10 +75,6 @@
                 <label for="predict-uproot">Prédire le déracinement :</label>
                 <input type="text" id="predict-uproot" name="predict-uproot" readonly="readonly">
             </div>
-            <div class="prediction-card">
-                <label for="predict-height">Prédire la taille :</label>
-                <input type="text" id="predict-height" name="predict-height" readonly="readonly">
-            </div>
         </section>
         
         <section class="model-section">
@@ -90,6 +86,24 @@
                 <option value="MLPClassifier-gridSearch">MLP - grid search</option>
                 <option value="RandomForestClassifier-gridSearch">RandomForest - grid search</option>
                 <option value="SGDClassifier-gridSearch">SGD - grid search</option>
+            </select>
+            <button class="btn-predict" id="btn-predict">Prédire</button>
+        </section>
+
+        <section class="prediction-section">
+            <div class="prediction-card">
+                <label for="predict-height">Prédire la taille :</label>
+                <input type="text" id="predict-height" name="predict-height" readonly="readonly">
+            </div>
+        </section>
+
+        <section class="model-section">
+            <select name="prediction-model" id="prediction-model">
+                <option value="" disabled selected>Choisir le modèle de prédiction</option>
+                <option value="k2">Kmeans 2 clusters</option>
+                <option value="k3">Kmeans 3 clusters</option>
+                <option value="b2">Birch 2 clusters</option>
+                <option value="b3">Birch 3 clusters</option>
             </select>
             <button class="btn-predict" id="btn-predict">Prédire</button>
         </section>
