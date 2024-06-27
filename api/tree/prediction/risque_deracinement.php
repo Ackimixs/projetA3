@@ -29,7 +29,7 @@ if ($tree) {
 
     $out = json_decode(file_get_contents('../../../IA/output.json'))[0];
 
-    Tree::updateDeracinement($id, $out->class === 0);
+    Tree::updateDeracinement($id, $out->class === 1 ? 'true' : 'false');
 
     echo json_encode(array('status' => 'success', 'deracinement' => $out->class));
 } else {
