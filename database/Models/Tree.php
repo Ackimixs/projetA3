@@ -168,4 +168,18 @@ class Tree
             return false;
         }
     }
+
+    static function delete($id) {
+        try {
+            $db = database::connectionDB();
+            $request = 'DELETE FROM tree WHERE id=:id';
+            $stmt = $db->prepare($request);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $exception) {
+            error_log("[" . basename(__FILE__) . "][" . __LINE__ . "] " . 'Request error: ' . $exception->getMessage());
+            return false;
+        }
+    }
 }
